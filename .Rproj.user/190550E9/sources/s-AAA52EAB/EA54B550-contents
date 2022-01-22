@@ -8,8 +8,10 @@ links:
     url: "https://www.researchgate.net/profile/Leticia-Rettore-Micheli"
   - label: Twitter
     url: "https://twitter.com/LeticiaRMicheli"
-  - label: GitHub
-    url: "https://github.com/LeticiaMicheli"
+#  - label: GitHub
+#    url: "https://github.com/LeticiaMicheli"
+  - label: ORCid
+    url: "https://orcid.org/0000-0003-0066-8222"
   - label: Email
     url: "mailto:leticia.micheli@uni-wuerzburg.de"
 
