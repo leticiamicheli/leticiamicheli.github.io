@@ -22,9 +22,7 @@ knitr::include_graphics("phd_thesis_cover.jpg")
 
 <br>
 
-![](https://youtu.be/pfdd8ny9VJ8){width="560" height="315"}
-
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=pfdd8ny9VJ8" frameborder="0" allowfullscreen></iframe>
+This is the video of my PhD thesis.
 
 ```{r, eval=knitr::is_html_output(excludes = "epub"), results = 'asis', echo = F}
 cat(
