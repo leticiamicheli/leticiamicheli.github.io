@@ -3,7 +3,7 @@
     "path": "C:/Users/leler/Website/leticiamicheli.github.io/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "2566792560",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1642854227039.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "44,106",
-        "scrollLine": "23"
+        "cursorPosition": "13,48",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1642877344,
+    "lastKnownWriteTime": 1642877820,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1642877344423,
+    "last_content_update": 1642877820833,
     "read_only": false,
     "read_only_alternatives": []
 }
