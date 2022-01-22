@@ -1,0 +1,164 @@
+body{
+  font-family: Montserrat;
+  font-size: 11pt;
+  text-align: justify;
+/*   background-color: #e3d3d9;
+  background-color: #ffffff;
+/*   background-color:  #141414;
+/*   color:   #F2F3F4; */
+}
+
+/* This change the style of the main container that wraps the whole R Markdown document. It allows the parallax image to be full width */
+.main-container {
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Then we place our content with this style because we don't want it to be full width */
+.mycontent{
+      max-width: 900px !important;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Montserrat';
+      font-size: 120%;
+      line-height: 1.7;
+      padding-right: 12px;
+      padding-left: 12px;
+}
+
+
+/* Then we place our content with this style because we don't want it to be full width */
+.mycontentold{
+      max-width: 900px !important;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Montserrat';
+      font-size: 120%;
+      line-height: 1.7;
+      padding-right: 12px;
+      padding-left: 12px;
+}
+
+/* Academicons */
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+/* Just for fun, a bit of customization for title and text.. */
+.mytitle{
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 80%;
+  font-weight: 250;
+  letter-spacing: 4px;
+}
+
+.mysubtitle{
+  color:grey;
+  font-family: 'Montserrat';
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 100px;
+}
+
+h1 {
+    padding-top: 65px !important;
+    margin-top: 30px !important;
+}
+
+pre {
+    border: 0px solid #cccccc;
+    border-radius: 0px;
+ }
+
+a {
+  color: #25a6bc;
+}
+
+/* Here is a CSS code for flat icons and text */
+
+.column-left{
+  float: left;
+  width: 33%;
+  text-align: center;
+}
+.column-center{
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
+.column-right{
+  float: right;
+  width: 33%;
+  text-align: center;
+}
+
+
+.column-left-people{
+  float: left;
+  width: 30%;
+  text-align: center;
+  padding-right: 20px;
+  padding-left: 1px;
+}
+.column-right-people{
+  float: right;
+  width: 30%;
+  text-align: center;
+  padding-right: 1px;
+  padding-left: 20px;
+}
+
+a:hover {
+  color: hotpink;
+}
+/* Here is a CSS code for arrows*/
+
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+/* Here is a CSS code for 2 and 3 columns WITHOUT definition of what goes where*/
+
+.col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+.col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+
+
+pre.bluecars {
+    background-color: #aabbff !important;
+}
+pre.redcars {
+    background-color: #ff6bbc !important;
+}
