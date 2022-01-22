@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 2021
 
-Wang K., Goldenberg A., Dorison, C.A., Miller, J.K., Uusberg, A., Lerner, J.S., Gross, J.J., ... **Micheli, L.**, ... \& Moshontz, H. (2021). A multi-country test of brief reappraisal interventions on emotions during the COVID-19 pandemic. *Nature Human Behavior 5*, 1089–1110. [link](https://doi.org/10.1038/s41562-021-01173-x)   
+Wang K., Goldenberg A., Dorison, C.A., Miller, J.K., Uusberg, A., Lerner, J.S., Gross, J.J., ... **Micheli, L.**, ... \& Moshontz, H. (2021). A multi-country test of brief reappraisal interventions on emotions during the COVID-19 pandemic. *Nature Human Behavior 5*, 1089–1110. [(link)](https://doi.org/10.1038/s41562-021-01173-x)   
   
 <aside>
 <div data-badge-type="donut" data-doi="10.1038/s41562-021-01173-x" data-hide-no-mentions="true" class="altmetric-embed"></div>
@@ -24,7 +24,7 @@ Wang K., Goldenberg A., Dorison, C.A., Miller, J.K., Uusberg, A., Lerner, J.S., 
 
 *[Team Science Contributorship: Resources; Writing: review and editing]*
 
-**Micheli, L.**, Stallen, M., \& Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. *Brain Sciences, 11(3)*, 317. [link](https://doi.org/10.3390/brainsci11030317) | [data](https://data.donders.ru.nl/?1)
+**Micheli, L.**, Stallen, M., \& Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. *Brain Sciences, 11(3)*, 317. [(link)](https://doi.org/10.3390/brainsci11030317) | [(data)](https://data.donders.ru.nl/?1)
 
 <aside>
 <div data-badge-type="donut" data-doi="10.3390/brainsci11030317" data-hide-no-mentions="true" class="altmetric-embed"></div>
@@ -34,7 +34,7 @@ Wang K., Goldenberg A., Dorison, C.A., Miller, J.K., Uusberg, A., Lerner, J.S., 
 
 ### 2020
 
-**Micheli, L.** \& Gagnon, N.(2020). Unequal chances: Ex ante fairness and individual control. *Scientific Reports, 10*, 21862. [link](https://doi.org/10.1038/s41598-020-78335-w).  
+**Micheli, L.** \& Gagnon, N.(2020). Unequal chances: Ex ante fairness and individual control. *Scientific Reports, 10*, 21862. [(link)](https://doi.org/10.1038/s41598-020-78335-w).  
 
 <aside>
 <div data-badge-type="donut" data-doi="10.1038/s41598-020-78335-w" data-hide-no-mentions="true" class="altmetric-embed"></div>
@@ -42,7 +42,7 @@ Wang K., Goldenberg A., Dorison, C.A., Miller, J.K., Uusberg, A., Lerner, J.S., 
 </aside>  
 
 
-Tierney, W., Hardy, J. H. III., Ebersole, C., Leavitt, K., Viganola, D., Clemente, E., Gordon, M., Dreber, A.A., Johannesson, M., Pfeiffer, T., Hiring Decisions Forecasting Collaboration, \& Uhlmann, E.L. (2020). Creative destruction in science. *Organizational Behavior and Human Decision Processes, 161*, 291-309. [link](https://doi.org/10.1016/j.obhdp.2020.07.002}).   
+Tierney, W., Hardy, J. H. III., Ebersole, C., Leavitt, K., Viganola, D., Clemente, E., Gordon, M., Dreber, A.A., Johannesson, M., Pfeiffer, T., Hiring Decisions Forecasting Collaboration, \& Uhlmann, E.L. (2020). Creative destruction in science. *Organizational Behavior and Human Decision Processes, 161*, 291-309. [(link)](https://doi.org/10.1016/j.obhdp.2020.07.002}).   
 
 <aside>
 <div data-badge-type="donut" data-doi="10.1016/j.obhdp.2020.07.002" data-hide-no-mentions="true" class="altmetric-embed"></div>
@@ -54,21 +54,26 @@ Tierney, W., Hardy, J. H. III., Ebersole, C., Leavitt, K., Viganola, D., Clement
 
 ### 2019
 
-Huijsmans, I., Ma, I., **Micheli, L.**, Civai, C., Stallen, M., \& Sanfey, A.G. (2019). A scarcity mindset alters neural processing underlying value-based decision making. *PNAS, 116*(24), 11699-11704. [link](https://doi.org/10.1073/pnas.1818572116)
+Huijsmans, I., Ma, I., **Micheli, L.**, Civai, C., Stallen, M., \& Sanfey, A.G. (2019). A scarcity mindset alters neural processing underlying value-based decision making. *PNAS, 116*(24), 11699-11704. [(link)](https://doi.org/10.1073/pnas.1818572116)
 
 <aside>
 <div data-badge-type="donut" data-doi="10.1073/pnas.1818572116" data-hide-no-mentions="true" class="altmetric-embed"></div>
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 </aside>
 
+## Under Review
 
-### 2012
+**Micheli, L.**, Negrini, M., Schuhmann, T., \& Riedl, A. (2021). Brain stimulation reveals distinct motives underlying reciprocal punishment and reward.
 
+<div style="text-align: justify"> Reciprocal punishment and reward are at the core of human societal order. Their underlying neural mechanisms are, however, not fully understood. We systemize evidence regarding the involvement of the right dorsolateral and medial prefrontal cortex (rDLPFC, mPFC) in reciprocal fairness in three psychological mechanisms (cognitive control, integration-and-selection, and self-reference). We test them in a comprehensive behavioral experiment with non-invasive brain stimulation where participants can punish greedy actions and reward generous actions. Stimulation of either brain area decreases reward and punishment when reciprocation is costly but increases reward when it is non-costly. None of the hypothesized mechanisms fully accounts for the observed behavior. We propose that, for reciprocal punishment, both the rDLPFC and the mPFC process self-relevant information, in terms of both personal cost and personal involvement. For reciprocal reward, these brain regions are involved in controlling selfish and pure reciprocity motives, while simultaneously promoting the enforcement of fairness norms. The asymmetric involvement of the investigated brain areas in reciprocal punishment and reward is informative for the research on biologically plausible models of human decision-making.</div>    
+
+<br>
+Azevedo, F., Marques, T., \& **Micheli, L.** (2021). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. 
+
+<div style="text-align: justify"> “I can’t breathe, I can’t breathe” were the last words of Eric Garner and George Floyd before being murdered by those who swore to protect them. The Black Lives Matter (BLM) movement arose to put a much-needed spotlight on police brutality and systemic racism against Black people in the United States. In two comprehensive studies, we sought to investigate systematically the demographic, political and psychological bases of support for the BLM movement. First, we conducted a systematic review and narratively synthesized the determinants of BLM support investigated in the published literature. A total of 1590 records were identified and findings of 24 studies (Npooled=27,691) were summarized along six categories relating to demographics, race, partisanship and ideology, discrimination and prejudice, and social and psychological attitudes. Second, we exhaustively searched for determinants of BLM support across seventeen probability-based nationally representative datasets (Npooled=31,779), finding 37 common predictors for which individual meta-analyses were conducted to estimate the strength and robustness of their associations. Our results suggest that there is a near perfect match between BLM opposition and positive attitudes towards American institutions deeply rooted in systemic racism. The present work contributes to a broad categorization of correlates of BLM support across social, psychological, and political domains.</div>     
+
+<br>
+Azevedo, F., Liu, M., Pennington, C.R., Pownall, M., Evans, T.R., Parsons, S., Elsherif, M., **Micheli, L.**, Westwood, S., \& FORRT (2021). Towards a culture of open scholarship: The role of pedagogical communities. [(Preprint)](https://osf.io/preprints/metaarxiv/ek9m5)
 
 ## Preprints and working papers
 
-**Parsons, S** (2020). Exploring reliability heterogeneity with multiverse analyses: Data processing decisions unpredictably influence measurement reliability. Under review at Meta-Psychology. Preprint: [psyarxiv.com/y6tcz](https:/psyarxiv.com/y6tcz), data and code: [osf.io/haz6u/](https://osf.io/haz6u/)
-
-FORRT. (2019). Introducing a Framework for Open and Reproducible Research Training (FORRT). (Co-author). Preprint: [osf.io/bnh7p/](https://osf.io/bnh7p/). Website: [forrt.org](https://forrt.org)
-
-**Parsons, S** (2019). Visualising two approaches to explore reliability-power relationships. Preprint: [psyarxiv.com/qh5mf](https://psyarxiv.com/qh5mf)
