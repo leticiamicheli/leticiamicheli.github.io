@@ -1,0 +1,52 @@
+---
+title: "Leticia Micheli"
+image: "avatar.png"
+links:
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=PRZirZoAAAAJ&hl=en"
+  - label: Research Gate
+    url: "https://www.researchgate.net/profile/Leticia-Rettore-Micheli"
+  - label: Twitter
+    url: "https://twitter.com/LeticiaRMicheli"
+  - label: GitHub
+    url: "https://github.com/LeticiaMicheli"
+  - label: Email
+    url: "mailto:leticia.micheli@uni-wuerzburg.de"
+
+output: 
+  postcards::trestles
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+
+
+## Bio
+
+Leticia Micheli studies Neuroeconomics, Social and Decision Neuroscience, and
+Consumer behavior. Her research focuses on how to make loloz mais gostoso
+para o pimpao dela. She frequently collaborates with researchers studying 
+whatever pimpão studies or which ever project pimpão works in. 
+Leticia Micheli's work has been featured in Pimpão's sofa, bed, and floor (as
+pimpão can be clumsy sometimes, just sometimes).
+
+<br>
+
+## Education
+
+**Maastricht University** | Maastricht, NL
+
+Ph.D. in Neuroeconomics | September 2015 - May 2021
+
+**Donders Institute** | Nijmegen, NL
+
+M.Sc. in Cognitive Neuroscience | September 2012 - May 2014
