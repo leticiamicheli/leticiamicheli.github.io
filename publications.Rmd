@@ -15,34 +15,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 2021
 
-Lim, M. C., **Parsons, S.**, Goglio, A., Fox, E. (2021). Anxiety, stress, and binge eating behaviours in adolescence: a prospective approach. *Journal of Eating Disorders, 9*. [doi.org/10.1186/s40337-021-00444-2](https://doi.org/10.1186/s40337-021-00444-2)
-
+Wang K., Goldenberg A., Dorison, C.A., Miller, J.K., Uusberg, A., Lerner, J.S., Gross, J.J., ... **Micheli, L.**, ... \& Moshontz, H. (2021). A multi-country test of brief reappraisal interventions on emotions during the COVID-19 pandemic. *Nature Human Behavior 5*, 1089–1110. [link](https://doi.org/10.1038/s41562-021-01173-x)   
+  
 <aside>
-<div data-badge-type="donut" data-doi="10.1186/s40337-021-00444-2" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<div data-badge-type="donut" data-doi="10.1038/s41562-021-01173-x" data-hide-no-mentions="true" class="altmetric-embed"></div>
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 </aside>
 
-**Parsons, S.**, (2021). splithalf: robust estimates of split half reliability. *Journal of Open Source Software, 6*(60), 3041, [doi.org/10.21105/joss.03041](https://doi.org/10.21105/joss.03041) 
+*[Team Science Contributorship: Resources; Writing: review and editing]*
+
+**Micheli, L.**, Stallen, M., \& Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. *Brain Sciences, 11(3)*, 317. [link](https://doi.org/10.3390/brainsci11030317) | [data](https://data.donders.ru.nl/?1)
 
 <aside>
-<div data-badge-type="donut" data-doi="10.21105/joss.03041" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<div data-badge-type="donut" data-doi="10.3390/brainsci11030317" data-hide-no-mentions="true" class="altmetric-embed"></div>
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 </aside>
 
-**Parsons, S.**, Booth, C., Songco, A., & Fox, E. (2021). Emotional information-processing correlates of mental health in adolescence: A network analysis approach. *Cognition and Emotion* \\ [doi.org/10.1080/02699931.2021.1915752](https://doi.org/10.1080/02699931.2021.1915752). Preprint: [psyarxiv.com/8ygn](https://psyarxiv.com/8ygnh), data and code: [osf.io/mn5ek/](https://osf.io/mn5ek/)
-
-<aside>
-<div data-badge-type="donut" data-doi="10.1080/02699931.2021.1915752" data-hide-no-mentions="true" class="altmetric-embed"></div>
-<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-</aside>
-
-Demkowicz, O., Panayiotou, M., **Parsons, S.**, Feltham, A., Arseneault, L., Ingram, B., Patalay, P., Edge D.,, Pierce, M., Creswell, C., Victor, C., O'Connor, R., & Qualter, P. (2021). Looking back to move forward: Reflections on the strengths and challenges of the COVID-19 UK mental health research response. 
-*Frontiers Psychiatry*. [10.3389/fpsyt.2021.622562](https://doi.org/10.3389/fpsyt.2021.622562)
-
-<aside>
-<div data-badge-type="donut" data-doi="10.3389/fpsyt.2021.622562" data-hide-no-mentions="true" class="altmetric-embed"></div>
-<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-</aside>
 
 ### 2020
 
