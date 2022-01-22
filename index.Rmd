@@ -1,5 +1,5 @@
 ---
-title: "Leticia Micheli"
+title: "Leticia Micheli, PH.D"
 image: "avatar.png"
 links:
   - label: Google Scholar
@@ -8,9 +8,9 @@ links:
     url: "https://www.researchgate.net/profile/Leticia-Rettore-Micheli"
   - label: Twitter
     url: "https://twitter.com/LeticiaRMicheli"
-#  - label: GitHub
-#    url: "https://github.com/LeticiaMicheli"
-  - label: ORCid
+  - label: GitHub
+    url: "https://github.com/LeticiaMicheli"
+  - label: ORCID
     url: "https://orcid.org/0000-0003-0066-8222"
   - label: Email
     url: "mailto:leticia.micheli@uni-wuerzburg.de"
@@ -34,18 +34,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Bio
 
-I am a psychologist trained in Cognitive Neuroscience and Neuroeconomics.   
-I am currently a postdoctoral researcher at the Institute of Psychology, Würzburg University, in Germany.
-
-In my research, I am mainly interested in investigating how situations of 
-*inequality, unfairness and scarcity*   
-influence our psychology as well our social and consumer decision-making.   
-I adopt an interdisciplinary approach and use insights and methods 
-from Psychology, Economics and Neuroscience.   
-
-I am also committed to progressively adopt open scholarship
+I am a psychologist trained in Cognitive Neuroscience and Neuroeconomics. I am mainly interested in 
+investigating how situations of *inequality, unfairness and scarcity*   
+influence our psychology as well as our social and consumer decision-making.   
+In my research, I adopt an interdisciplinary approach and use insights and methods 
+from Psychology, Economics and Neuroscience. I am also striving to adopt open scholarship
 into my own work. Since 2020, I am a community manager at the Framework for 
 Open and Reproducible Research Training [(FORRT)](https://forrt.org/). 
+
+I am currently a postdoctoral researcher at the [Institute of Psychology, Würzburg University, in Germany](https://www.psychologie.uni-wuerzburg.de/social-cognition/startseite/).
 
 <br>
 
