@@ -1,0 +1,3658 @@
+---
+title: 'Consolidated data: Sample 1'
+subtitle: 'dataFull, data.76, dataQF, dataIncomplete, dataOut'
+author: Flavio Azevedo
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=F,
+                      small.mar=TRUE,
+                      include=FALSE,
+                      root.dir ="C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study")
+```
+
+```{r Load Packages}
+# Loading Libraries
+library(psych)          
+library(CTT)
+library(mirt)
+library(ltm)
+library(ggplot2)
+library(extrafont)
+library(scales)
+library(reshape2)
+library(descr)
+library(dplyr)
+library(RColorBrewer)
+library(nFactors)
+library(likert)
+library(gridExtra)
+library(ggthemes)
+library(gmodels)
+library(car)
+```
+
+```{r Load Data}
+# Setting Working Directory
+#setwd("C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study")
+#
+# Loading data
+#dataFull         <- read.csv("C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Consolidated Data - 1st Sample.csv")
+#
+dataFull         <- read.csv("Consolidated Data - 1st Sample.csv")
+#
+#
+#load("C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/Working Data.RData")
+```
+
+```{r Demographics - Screening}
+################
+# Demographics #
+################
+# Screening #
+#############
+#
+# 1. What is your age?
+# ---------------------
+#18 to 24 years (1)
+#25 to 34 years (2)
+#35 to 44 years (3)
+#45 to 54 years (4)
+#55 to 64 years (5)
+#65+ (6)
+#
+#
+#table(dataFull$Scr_Age)
+#
+dataFull$Age  <- dataFull$Scr_Age
+dataFull$AgeF <- factor(dataFull$Scr_Age,
+                    labels = c("18-24 years", "25-34 years", 
+                               "35-44 years","45-54 ycccccccears",
+                               "55-64 years", "65+"))
+# as.data.frame(cbind(Count=table(dataFull$AgeF),Percentage=round(prop.table(table(dataFull$AgeF))*100,1)))
+#
+#
+#
+# 2. What is your education level?
+# ----------------------------------
+#Less than high school (1)
+#High school graduate (includes equivalency) (2)
+#Some college, no degree (3)
+#Bachelor's degree (4)
+#Graduate or professional degree (5)
+# 
+#
+#
+# table(dataFull$Scr_Edu)
+dataFull$Edu  <- dataFull$Scr_Edu
+dataFull$EduF <- factor(dataFull$Scr_Edu,
+                    labels = c("Less than High-school", 
+                               "High-school","Some college",
+                               "Bachelor",  "Graduate"))
+# as.data.frame(cbind(Count=table(dataFull$EduF),Percentage=round(prop.table(table(dataFull$EduF))*100,1)))
+#
+#
+#
+#
+#
+# 3. What is your current gross annual income (before taxes)?
+# -----------------------------------------------------------
+#Less than $15,000 (1)
+#$15,000 to $24,999 (2)
+#$25,000 to $34,999 (3)
+#$35,000 to $49,999 (4)
+#$50,000 to $74,999 (5)
+#$75,000 to $99,999 (6)
+#$100,000 to $149,999 (7)
+#$150,000 more (8)
+# 
+#
+#
+# table(dataFull$Scr_Inc)
+#
+dataFull$Inc  <- dataFull$Scr_Inc
+dataFull$IncF <- factor(dataFull$Scr_Inc,
+              labels = c("Less than $15,000", "$15,000-$24,999",
+                         "$25,000-$34,999"  , "$35,000-$49,999", 
+                         "$50,000-$74,999"  , "$75,000-$99,999",
+                         "$100,000-$149,999", "$150,000 +"))
+# as.data.frame(cbind(Count=table(dataFull$IncF),Percentage=round(prop.table(table(dataFull$IncF))*100,1)))
+#
+#
+#
+# 
+# 4. # What is your gender?
+# -------------------------
+#Female (1)
+#Male (2)
+# 
+#
+# table(dataFull$Scr_Sex)
+dataFull$Sex  <- dataFull$Scr_Sex
+dataFull$SexF <- factor(dataFull$Scr_Sex, labels = c("Female", "Male"))
+# as.data.frame(cbind(Count=table(dataFull$SexF),Percentage=round(prop.table(table(dataFull$SexF))*100,1)))
+#
+#
+#
+#
+# 
+# 5. In terms of mainstream political parties, which do you feel closest to - or that best represents your views on political issues?
+# ------------------------------------------------------------------
+#Democrat (1)
+#Republican (2)
+#
+#
+# table(dataFull$Scr_PID)
+#
+dataFull$P.ID <- factor(dataFull$Scr_PID, 
+                    labels = c("Democrat", "Republican"))
+# as.data.frame(cbind(Count=table(dataFull$P.ID),Percentage=round(prop.table(table(dataFull$P.ID))*100,1)))
+```
+
+```{r Demographics - Block}
+################
+# Demographics #
+################
+# Block #
+#########
+#
+# 1. What is your ethnicity?
+# --------------------------
+#Caucasian/European origin (1)
+#Black/African American (2)
+#Latino (3)
+#Asian/Pacific Islander (4)
+#Native American (5)
+#Other (6) 
+# 
+#
+# table(dataFull$Dem_Eth)
+#
+dataFull$Eth  <- dataFull$Dem_Eth
+dataFull$EthF <- factor(dataFull$Dem_Eth,
+              labels = c("Caucasian/European origin",
+                         "Black/African American",
+                         "Latino", 
+                         "Asian/Pacific Islander", 
+                         "Native American",
+                         "Other"))
+
+
+# 2. What is your occupation?
+# ---------------------------
+#Student (1)
+#Employed (2)
+#Unemployed (3)
+#Full-time caregiver (4)
+#Retired (5)
+#Parent (6)
+#Disabled (7)
+# 
+#
+# table(dataFull$Dem_Job)
+#
+dataFull$Occ  <- dataFull$Dem_Job
+dataFull$OccF <- factor(dataFull$Dem_Job,
+              labels = c("Student",
+                         "Employed",
+                         "Unemployed", 
+                         "Full-time caregiver", 
+                         "Retired",
+                         "Parent",
+                         "Disabled"))
+#
+#
+#
+#
+#
+# 3. What is your religious affiliation?
+# --------------------------------------
+# Christian (1)
+# Muslim (2)
+# Jewish (3)
+# Atheist/Agnostic (4)
+# Not listed (5)
+# 
+#
+# table(dataFull$Dem_Rel)
+#
+dataFull$Rel  <- dataFull$Dem_Rel
+dataFull$RelF <- factor(dataFull$Dem_Rel,
+              labels = c("Christian",
+                         "Muslim",
+                         "Jewish", 
+                         "Atheist/Agnostic", 
+                         "Not listed, No religion"))
+
+
+
+
+
+# 4. What type of area do you currently live in?
+# ----------------------------------------------
+# Urban (1)
+# Rural (2)
+#
+#
+#
+# table(dataFull$Dem_Area)
+#
+dataFull$Area  <- dataFull$Dem_Area
+dataFull$AreaF <- factor(dataFull$Dem_Area,
+              labels = c("Urban", "Rural"))
+#
+#
+#
+#
+#
+# 5. In which state do you currently live?
+# ----------------------------------------------
+# 
+# 
+#
+#table(dataFull$Dem_State)
+```
+
+```{r Quotas for all data}
+#
+#######################
+# Quotas - Screening #
+#####################
+Quotas <- 
+  rbind(
+    rbind(
+      as.data.frame(cbind(
+        Count=table(dataFull$AgeF),
+        Percentage=round(prop.table(table(dataFull$AgeF))*100,1))),
+        Total_Age=colSums(
+          as.data.frame(cbind(
+            Count=table(dataFull$AgeF),
+            Percentage=round(prop.table(table(dataFull$AgeF))*100,1))))),
+    
+    rbind(as.data.frame(cbind(
+      Count=table(dataFull$SexF),
+      Percentage=round(prop.table(table(dataFull$SexF))*100,1))),
+      Total_Gender=colSums(
+        as.data.frame(cbind(
+          Count=table(dataFull$SexF),
+          Percentage=round(prop.table(table(dataFull$SexF))*100,1))))),
+    
+    rbind(as.data.frame(cbind(
+      Count=table(dataFull$IncF),
+      Percentage=round(prop.table(table(dataFull$IncF))*100,1))),
+      Total_Income=colSums(
+        as.data.frame(cbind(
+          Count=table(dataFull$IncF),
+          Percentage=round(prop.table(table(dataFull$IncF))*100,1))))),
+  
+    rbind(as.data.frame(cbind(
+      Count=table(dataFull$EduF),
+      Percentage=round(prop.table(table(dataFull$EduF))*100,1))),
+      Total_Education=colSums(
+        as.data.frame(cbind(
+          Count=table(dataFull$EduF),
+          Percentage=round(prop.table(table(dataFull$EduF))*100,0))))),
+  
+    rbind(as.data.frame(cbind(
+      Count=table(dataFull$P.ID),
+      Percentage=round(prop.table(table(dataFull$P.ID))*100,1))),
+      Total_P.ID=colSums(
+        as.data.frame(cbind(
+          Count=table(dataFull$P.ID),
+          Percentage=round(prop.table(table(dataFull$P.ID))*100,1)))))
+    )
+
+Quotas$Census <- c(196, 263, 263, 288, 233, 258, 1500,
+                   738, 762, 1500,
+                   195, 180, 165,210,270,180, 180, 120, 1500,
+                   210, 435, 435, 270, 150, 1500,
+                   750,750, 1500)
+
+Quotas$Difference <- Quotas$Count - Quotas$Census
+Quotas$Percentage_Difference <- (Quotas$Count - Quotas$Census)*100/(Quotas$Count)
+names(Quotas) <- c("Data Frequencies", "Proportion in %",
+                   "U.S. Census Frequencies", "Data vs. Census",
+                   "Data vs. Census in %")
+#
+#write.csv(Quotas, file = "Quotas PPBS 2016 by SSI.csv")
+```
+
+```{r Party ID Candidate and Party Preference Likeability}
+#
+##########################################################
+# Party ID, Candidate and Party Preference, Likeability #
+########################################################
+#
+# 1. PID - Dichotomous - Quotas 
+# ------------------------------
+# In terms of mainstream political parties, which do you feel closest to - or that best represents your views on political issues?
+dataFull$Scr_PIDF <- factor(dataFull$Scr_PID, labels = c("Democrat", "Republican"))
+#
+dataFull$PID <- (dataFull$Scr_PID - 1)
+dataFull$PIDF <- factor(dataFull$PID, 
+                         labels = c("Democrat", "Republican"))
+# identical(dataFull$Scr_PIDF, dataFull$PIDF)
+#
+#
+#
+#
+# 2. Party ID 
+# -------------------------------------------------------
+# Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or what?
+# Would you call yourself a...  
+# Strong Republican (4)  Not very strong Republican (3)
+# Do you think of yourself as closer to...
+# Republican Party (3)  Democrat Party (1)  No preference (2)
+#
+# Expanded to contain 11 options (not ordinal: hence nominal)
+# -------------------------------
+dataFull[dataFull$SC0_0 == "0", c("SC0_0")] <- NA
+dataFull$SC0_0F <- factor(dataFull$SC0_0, 
+                labels = c("Strong Democrat",
+                           "Democrat",
+                           "Leaning Democrat",
+                           "Independent",
+                           "Leaning Republican",
+                           "Republican",
+                           "Strong Republican",
+                           "Don't Know",
+                           "Leaning Democrat [DK]", 
+                           "Leaning Republican  [DK]",
+                           "Libertarian"))
+#table(dataFull$SC0_0F)
+dataFull$P.ID.11F <- dataFull$SC0_0F
+#
+# 
+#
+dataFull$PS_PID_ANES.F <- factor(dataFull$PS_PID_ANES,  labels = c("Democrat", "Independent", "Republican","Don't Know"))
+#
+# 2. Party ID - 9 points - ordinal
+# -------------------------------------------------------
+# Insert the Leaning DEM & GOP between ANES PID: recover 60 subjects
+dataFull$SC0_0B <- dataFull$SC0_0
+dataFull$SC0_0B[dataFull$SC0_0B == "10"] <- NA # DK
+dataFull$SC0_0B[dataFull$SC0_0B == "13"] <- NA # Libertarian
+#
+dataFull$SC0_0B[dataFull$SC0_0B == "7"]  <- 9  
+dataFull$SC0_0B[dataFull$SC0_0B == "6"]  <- 8
+dataFull$SC0_0B[dataFull$SC0_0B == "5"]  <- 7
+#  
+dataFull$SC0_0B[dataFull$SC0_0B == "4"]  <- 5  
+dataFull$SC0_0B[dataFull$SC0_0B == "11"] <- 4  # Leaning Democrat [DK]
+dataFull$SC0_0B[dataFull$SC0_0B == "12"] <- 6  # Leaning Republican  [DK]
+#
+#table(dataFull$SC0_0B, useNA = "ifany")
+#table(dataFull$SC0_0, useNA = "ifany")
+# levels(dataFull$SC0_0F)
+# table(dataFull$SC0_0F)
+#
+#
+############################
+# 2.1. Official ANES PID ##
+##########################
+dataFull$P.ID.ANES <- dataFull$SC0_0
+dataFull$P.ID.ANES <- ifelse(dataFull$SC0_0 < 8, dataFull$P.ID.ANES, NA)
+#table(dataFull$P.ID.ANES, useNA = "ifany")
+dataFull$P.ID.ANES.F <- factor(dataFull$P.ID.ANES, 
+                labels = c("Strong Democrat",
+                           "Democrat",
+                           "Leaning Democrat",
+                           "Independent",
+                           "Leaning Republican",
+                           "Republican",
+                           "Strong Republican"))
+#table(dataFull$P.ID.ANES.F, useNA = "ifany")
+#
+# Creating Trichotomous PID with Leaaners as "independent"
+dataFull$P.ID.ANES.F.w.Leanears.as.Ind <- recode(dataFull$P.ID.ANES.F,
+                                             "c('Strong Democrat', 'Democrat')='Democrats'")
+dataFull$P.ID.ANES.F.w.Leanears.as.Ind <- recode(dataFull$P.ID.ANES.F.w.Leanears.as.Ind,
+                                             "c('Strong Republican', 'Republican')='Republicans'")
+dataFull$P.ID.ANES.F.w.Leanears.as.Ind <- recode(dataFull$P.ID.ANES.F.w.Leanears.as.Ind,
+                                             "c('Leaning Republican', 'Leaning Democrat', 'Independent')='Independent'")
+#
+#
+# Creating Trichotomous PID with Leaaners as "independent"
+dataFull$P.ID.ANES.F.w.Leanears <- recode(dataFull$P.ID.ANES.F,
+                                             "c('Strong Democrat', 'Democrat', 'Leaning Democrat')='Democrats'")
+dataFull$P.ID.ANES.F.w.Leanears <- recode(dataFull$P.ID.ANES.F.w.Leanears,
+                                             "c('Strong Republican', 'Republican', 'Leaning Republican')='Republicans'")
+#
+#
+#
+#
+#
+# 3. Candidate Preference #
+# -------------------------
+# In the 2016 presidential election, which candidate do you feel the closest to - or best represents your views on political issues?
+#dataFull$PS_Cand
+dataFull$PS_CandF <- factor(dataFull$PS_Cand, 
+                 labels = c("Ted Cruz", "Bernie Sanders", "Rand Paul", 
+                            "Donald Trump", "Gary Johnson",
+                            "Hillary Clinton",
+                            "Jeb Bush", "Austin Petersen"))
+# levels(dataFull$PS_CandF)
+# table(dataFull$PS_CandF)
+#
+#
+#
+# 3. Candidate Preference #
+# -------------------------
+# 3.1 Democrat vs Republicans vs. Libertarians 
+# ----------------------------------------------
+#
+dataFull$PS_Cand_PID <- dataFull$PS_Cand
+library(car)
+dataFull$PS_Cand_PID <- recode(dataFull$PS_Cand_PID,"c(1,3,4,7)='Republican'")
+dataFull$PS_Cand_PID <- recode(dataFull$PS_Cand_PID,"c(2,6)='Democrats'")
+dataFull$PS_Cand_PID <- recode(dataFull$PS_Cand_PID,"c(5,8)='Libertarians'")
+#
+#
+# Coding Ideology and PID via candidates
+dataFull$PS_Cand_PID_Ideo <- dataFull$PS_Cand
+dataFull$PS_Cand_PID_Ideo <- recode(dataFull$PS_Cand_PID_Ideo, "c(1,3,4,7)='Conservative-Republicans'")
+dataFull$PS_Cand_PID_Ideo <- recode(dataFull$PS_Cand_PID_Ideo, "c(2,6)='Liberal-Democrats'")
+dataFull$PS_Cand_PID_Ideo <- recode(dataFull$PS_Cand_PID_Ideo, "c(5,8)='Libertarians'")
+#
+# Adding Rand Paul as Libertarian
+dataFull$PS_Cand_PID_Ideo_v2 <- dataFull$PS_Cand
+dataFull$PS_Cand_PID_Ideo_v2 <- recode(dataFull$PS_Cand_PID_Ideo_v2,"c(1,4,7)='Conservative-Republicans'")
+dataFull$PS_Cand_PID_Ideo_v2 <- recode(dataFull$PS_Cand_PID_Ideo_v2,"c(2,6)='Liberal-Democrats'")
+dataFull$PS_Cand_PID_Ideo_v2 <- recode(dataFull$PS_Cand_PID_Ideo_v2,"c(3,5,8)='Libertarians'")
+
+#table(dataFull$PS_Cand_PID)
+# revalue(junk$nm, c("B"="b"))
+# subset(StudentdataFull, SchoolName=="Pine Tree Elementary" | Grade==3)
+#
+# 
+#
+# 3. Candidate Preference #
+# -------------------------
+# 3.2 Consistency  
+# ---------------
+# Given that the nominee of your preference did not succeed in winning the party nomination, who is the candidate that is the most likely to receive your vote?
+# Donald Trump (1) 
+# Gary Johnson (2)
+# Hillary Clinton (3)
+# None of these, Other (4)
+# sum(!is.na(dataFull$PS_Cand_1)) #617 
+#table(dataFull$PS_Cand_PID)
+#table(dataFull$PS_Cand_1) # DT=157, GJ=51, HC=233, other=176
+#table(dataFull$PS_Cand_1)
+# Democrat 1 | Republican 2
+#doBy::summaryBy(PS_Cand_1~Scr_PID, data=dataFull, FUN=c(table))
+# unique(dataFull$PS_Cand_1)
+dataFull$PS_Cand_Nominee <- factor(dataFull$PS_Cand_1, 
+                        labels = c("Donald Trump", 
+                                   "Gary Johnson",
+                                   "Hilary Clinton", 
+                                   "None/Other"))
+
+#
+# 4. Party Preference
+# ---------------------
+# Below you find a more comprehensive list in terms of the major political parties in the United States. Which one do you feel closest to - or that best represents your views on political issues?
+#
+dataFull$PS_PartiesF <- factor(dataFull$PS_Parties, 
+        labels = c("Democratic Party",  "Republican Party", 
+        "Libertarian Party", "Green Party", "Tea Party",
+        "Constitution Party", "None", "Don't know"))
+# levels(dataFull$PS_PartiesF)
+# table(dataFull$PS_PartiesF)
+#
+#
+# 5. Likeability
+# ---------------
+# Please elicit the extent to which you like or dislike each the main party's nominee for the 2016 elections
+# 
+# dataFull$PS_Like_1 #  Trump
+# dataFull$PS_Like_2 #  Clinton
+# dataFull$PS_Like_3 #  Johnson
+#
+dataFull$PS_Like_1_REV <- sapply(dataFull$PS_Like_1,  function(x) 10 - x)
+dataFull$PS_Like_2_REV <- sapply(dataFull$PS_Like_2,  function(x) 10 - x)
+dataFull$PS_Like_3_REV <- sapply(dataFull$PS_Like_3,  function(x) 10 - x)
+#
+#
+#
+# 6. Trumpism
+# -------------
+dataFull$PS_Cand_Trumpism <- dataFull$PS_Cand
+library(car)
+dataFull$PS_Cand_Trumpism <- car::recode(dataFull$PS_Cand,"c(1,3,7)='Republicans'")
+dataFull$PS_Cand_Trumpism <- car::recode(dataFull$PS_Cand_Trumpism,"c(4)='Trumpists'")
+dataFull$PS_Cand_Trumpism <- car::recode(dataFull$PS_Cand_Trumpism,"c(2,6)='Democrats'")
+dataFull$PS_Cand_Trumpism <- car::recode(dataFull$PS_Cand_Trumpism,"c(5,8)='Libertarians'")
+# table(dataFull$PS_Cand_Trumpism)
+```
+
+```{r Voting}
+#######################################
+# VOTE # Prospective # Retrospective #
+#####################################
+#
+#
+# 1. Are you a registered voter?
+# ---------------------------
+# table(dataFull$PS_Reg) # Yes: 1416, No: 84 
+#
+#
+# 2. In the 2016 presidential election, will you vote?
+# --------------------------------------------------
+# table(dataFull$PS_Part) # Yes: 1375  No: 125 
+#
+#
+#
+# [Prospective] (if "Yes" Is Selected, then) 
+# Who are you going to vote for?
+# ------------------------------------------
+dataFull$Vote_Pro <- factor(dataFull$PS_Vote_Pro, 
+                        labels = c("Donald Trump", "Hilary Clinton", 
+                                   "Gary Johnson", "Don't know"))
+#
+# table(dataFull$Vote_Pro, useNA = c("ifany")) # 1275 will vote, 
+# Donald Trump Hilary Clinton   Gary Johnson     Don't know  <NA> 
+#         546            557             81            191    125 
+#
+dataFull$Vote_16   <- dataFull$Vote_Pro
+dataFull$Vote_16F  <- dataFull$Vote_Pro
+#
+#
+# [Support] (Answer If "No" Is Selected) Given that you elicited that you will not vote, whose Presidency would you support?
+# ------------------------------------------------------------------------------------
+dataFull$Vote_Supp <- factor(dataFull$PS_Vote_Supp, 
+                        labels = c("Donald Trump", "Hilary Clinton", 
+                                   "Gary Johnson", "Don't know"))
+#
+# table(dataFull$Vote_Supp, useNA = c("ifany")) 
+# Donald Trump Hilary Clinton Gary Johnson  Don't know   <NA> 
+#         27            18           14           66     1375 
+#
+# [Retrospective 2012]
+# ---------------------
+#
+# In the 2012 presidential election, who did you vote for? 
+dataFull$Vote_12  <- factor(dataFull$PS_Vote_Retro12 , 
+                        labels = c("Mitt Romney", "Barak Obama",
+                                   "Don't know/Didn't vote"))
+#
+# table(dataFull$Vote_12)
+# Mitt Romney            Barak Obama    Don't know/Didn't vote 
+#       576                    660                        264 
+#
+#
+# [Retrospective 2008]
+# ---------------------
+#
+# In the 2008 presidential election, who did you vote for? 
+dataFull$Vote_08 <- factor(dataFull$PS_Vote_Retro08, 
+                        labels = c("John McCain", "Barak Obama",
+                                   "Don't know/Didn't vote"))
+# table(dataFull$Vote_08)
+#          John McCain        Barak Obama    Don't know/Didn't vote 
+#               555                    651                    294 
+#
+#
+#
+#
+#
+# [Prospective & Support] (if "Yes" Is Selected for either) 
+# 
+#
+dataFull$Vote_16.PROnSUPP  <- rowSums(cbind(
+  dataFull$PS_Vote_Pro, dataFull$PS_Vote_Supp),
+  na.rm = T)
+#
+#table(dataFull$Vote_16.PROnSUPP)
+dataFull$Vote_16.PROnSUPP[dataFull$Vote_16.PROnSUPP == "0"] <- NA # this is necessary because when you sum NAs it gives 0 > rowSums(cbind(c(NA),c(NA)), na.rm = T)
+#
+dataFull$Vote_16.PROnSUPP.D <- dataFull$Vote_16.PROnSUPP
+dataFull$Vote_16.PROnSUPP.D[dataFull$Vote_16.PROnSUPP.D == "3"] <- NA # 
+dataFull$Vote_16.PROnSUPP.D[dataFull$Vote_16.PROnSUPP.D == "4"] <- NA # 
+#
+#
+dataFull$Vote_16.PROnSUPP.D <- (dataFull$Vote_16.PROnSUPP.D - 1)
+#
+dataFull$Vote_16.PROnSUPP.DF <- factor(dataFull$Vote_16.PROnSUPP.D,
+                         labels = c("Donald Trump", "Hilary Clinton"))
+#
+#table(dataFull$Vote_16.PROnSUPP,  useNA = "ifany")
+#table(dataFull$Vote_16.PROnSUPP.D,  useNA = "ifany")
+#
+
+#
+#
+#
+# Vote 2016 - Dichotomous - Is registered, will vote
+# ----------------------------------------------------
+dataFull$Vote_16D  <- dataFull$Vote_16
+dataFull$Vote_16D[dataFull$Vote_16D == "Gary Johnson"] <- NA 
+dataFull$Vote_16D[dataFull$Vote_16D == "Don't know"]   <- NA 
+#dataFull$Vote_16D.N <- (2-as.numeric(dataFull$Vote_16D))
+#
+dataFull$Vote_12D  <- dataFull$Vote_12
+dataFull$Vote_12D[dataFull$Vote_12D == "Don't know/Didn't vote"] <- NA
+#
+dataFull$Vote_08D  <- dataFull$Vote_08
+dataFull$Vote_08D[dataFull$Vote_08D == "Don't know/Didn't vote"] <- NA
+```
+
+```{r Volatility}
+###############
+# Volatility #
+#############
+#
+# 0.[?] Given that the nominee of your preference did not succeed in winning the party nomination, who is the candidate that is the most likely to receive your vote?
+# ----------------------------------------------------------
+#table(dataFull$PS_Vol_PID_1)
+#doBy::summaryBy(PS_Cand_1~Scr_PID, data=dataFull, FUN=c(table))
+# 
+#
+#
+# 1.[Answer If "None of these, Other"" Is Selected above] 
+# I normally self-identify with only one party. But in this 2016 Presidential election, the candidate chosen by my party does not represent me. For and for this reason I am considering...
+# ----------------------------------------------------------
+# Voting for the other main party (1)
+# Voting for another - not mainstream - party (2)
+# Casting a blank ballot (3)
+# Not voting (4)
+# This statement does not apply to me (5)
+# table(dataFull$PS_Vol_PID_1)
+# 1  2  3  4  5 
+# 7 66 21 68 14
+#
+#
+#
+# [Volatility] 2008 - 2012
+# -------------------------
+#
+library(mosaic)
+myfile <- plyr::mutate(dataFull, Volatility = derivedFactor(
+    "FirmRepublican"   = (PS_Vote_Retro12==1 & PS_Vote_Retro08==1),
+    "FirmDemocrat"     = (PS_Vote_Retro12==2 & PS_Vote_Retro08==2),
+    "Dem-to-Rep"       = (PS_Vote_Retro12==2 & PS_Vote_Retro08==1),
+    "Rep-to-Dem"       = (PS_Vote_Retro12==1 & PS_Vote_Retro08==2),
+    "DK-DR"            = (PS_Vote_Retro12==3 & PS_Vote_Retro08==3),
+    .method = "unique", .default = "DK"))
+dataFull$Volatility <- myfile$Volatility
+#table(dataFull$Volatility)
+#dataFull$Volatility1 <- as.numeric(dataFull$Volatility)
+#table(dataFull$Volatility1)
+#
+#
+#
+# [Volatility] 2008 - 2012
+# -------------------------
+#
+# Due to NA's I need to create a Prospective voting w/out NAs so it works
+# myfile <- plyr::mutate(dataFull, Volatility2 = derivedFactor(
+#    "FirmRepublican"  = (Volatility1==1 & dataFull$PS_Vote_Pro==1),
+#    "FirmDemocrat"    = (Volatility1==2 & dataFull$PS_Vote_Pro==2),
+#    .method = "first", .default = "DK"))
+#dataFull$Volatility2 <- myfile$Volatility2
+# table(dataFull$Volatility2)
+#
+#
+#PS_Vol_Elec 
+# Some voters feel disenfranchised because their preferred candidate did not win the party's nomination and/or because the party's nominee does not represent their political views. In this sense, which statement better represents you? In this 2016 Presidential election...
+#
+#
+#
+#PS_Vol_Gen 
+# You elicited your preference for a political party earlier in this survey. In terms of previous elections, would you say... #
+#
+# PS_Vol_PID_2 
+# Still referring to your party of preference, which of the statements below best describe you?
+```
+
+```{r National ID - Nationalism - Patriotism - Collective Narcisism}
+#########################################
+# National ID, Nationalism, Patriotism #
+#######################################
+#
+#
+# National Identity
+# ------------------
+#
+# 1. Being American is an important part of my identity
+# 2. I like to see myself as an American
+# 3. I feel connected to the American people
+#
+# dataFull$National_ID <- sapply(dataFull$PP_NatID_1_1,  function(x) 10 - x) +
+#                        sapply(dataFull$PP_NatID_1_2,  function(x) 10 - x) +
+#                        sapply(dataFull$PP_NatID_1_3,  function(x) 10 - x) 
+#
+#
+dataFull$PP_NatID_1_1_REV <- sapply(dataFull$PP_NatID_1_1,
+                                function(x) 10 - x)
+dataFull$PP_NatID_1_2_REV <- sapply(dataFull$PP_NatID_1_2,
+                                function(x) 10 - x)
+dataFull$PP_NatID_1_3_REV <- sapply(dataFull$PP_NatID_1_3,
+                                function(x) 10 - x) 
+#
+#
+#
+#
+# Whose supporters is the most Nat.ID?
+# ------------------------------------
+# x<-doBy::summaryBy(PP_NatID_1_1~PS_CandF, data=dataFull, FUN=c(mean))
+# x[order(x$PP_NatID_1_1.mean),]
+#
+#
+# x<-doBy::summaryBy(PP_NatID_1_2~PS_CandF, data=dataFull, FUN=c(mean))
+# x[order(x$PP_NatID_1_2.mean),]
+#
+#
+# x<-doBy::summaryBy(PP_NatID_1_3~PS_CandF, data=dataFull, FUN=c(mean))
+# x[order(x$PP_NatID_1_3.mean),]
+#
+dataFull$National_ID <- rowMeans(dataFull[,c("PP_NatID_1_1_REV", "PP_NatID_1_2_REV","PP_NatID_1_3_REV")], na.rm=TRUE)
+#
+#doBy::summaryBy(National_ID~Scr_PIDF, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(National_ID~SC0_0F, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(National_ID~PS_Cand_PID, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(National_ID~PS_PartiesF, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(National_ID~PS_CandF, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(National_ID~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+# 
+#
+#
+################
+# Nationalism #
+# -----------#
+#############
+#
+# [Nationalism] The United States is better than other nation in almost all respects
+# [Ethnic Nationalism] From our ancestry, something deep in the heart clearly distinguishes the Americans from other nations
+#
+dataFull$Nat.1_REV <- sapply(dataFull$Nat.1,  function(x) 10 - x)
+dataFull$Nat.2_REV <- sapply(dataFull$Nat.2,  function(x) 10 - x)
+#
+#
+dataFull$Nationalism <- rowMeans(dataFull[,c("Nat.1_REV", "Nat.2_REV")], na.rm=TRUE)
+#
+#
+#
+#
+##########################################
+# Blind and Constructive Patriotism  ####
+# -----------------------------------####
+########################################
+#
+# [Blind Patriotism] I would support my country right or wrong
+# [Constructive Patriotism] I oppose some U.S. policies because I care about my country and want to improve it
+#
+dataFull$B.Patr <- sapply(dataFull$B.Patr,  function(x) 10 - x)
+dataFull$C.Patr <- sapply(dataFull$C.Patr,  function(x) 10 - x)
+#
+#
+#
+# Collective Narcisism 
+# --------------------
+# When thinking in terms of your ethnic group, to what extent do you agree or disagree with the following statements:
+#
+# My group deserves special treatment.
+# Not many people seem to fully understand the importance of my group.
+# It really makes me angry when others criticize my group.
+# If my group had a major say in the world, the world would be a much better place.
+# I will never be satisfied until my group gets the recognition it deserves.
+#
+# Strongly agree(1) <> Strongly disagree (9)
+#
+dataFull$Alek_CN_1_REV <- sapply(dataFull$Alek_CN_1,  function(x) 10 - x)
+dataFull$Alek_CN_2_REV <- sapply(dataFull$Alek_CN_2,  function(x) 10 - x)
+dataFull$Alek_CN_3_REV <- sapply(dataFull$Alek_CN_3,  function(x) 10 - x)
+dataFull$Alek_CN_4_REV <- sapply(dataFull$Alek_CN_4,  function(x) 10 - x)
+dataFull$Alek_CN_5_REV <- sapply(dataFull$Alek_CN_5,  function(x) 10 - x)
+#
+dataFull$CN <- rowMeans(dataFull[,c("Alek_CN_1_REV", "Alek_CN_2_REV",
+                            "Alek_CN_3_REV", "Alek_CN_4_REV",
+                            "Alek_CN_5_REV"
+                            )], na.rm=TRUE)
+#
+#doBy::summaryBy(CN ~ Scr_PIDF + EthF, data=dataFull, FUN=c(mean))
+#
+#doBy::summaryBy(CN ~ Scr_PIDF + EthF, data=dataFull, FUN=c(mean))[[3]][1:6] - doBy::summaryBy(CN~Scr_PIDF + EthF, data=dataFull, FUN=c(mean))[[3]][7:12]
+#
+#
+# Group Comparison [sense of entitlement]
+# ---------------------------------------
+# Compared with other groups in this country, you feel that the group you identify with most strongly has things ... 
+# Much better (1) <> Much worse (9)
+#
+dataFull$Gr_Comp <- sapply(dataFull$Cont_groups_1,  function(x) 10 - x)
+#
+#
+#doBy::summaryBy(Gr_Comp ~ Scr_PIDF + EthF, data=dataFull, FUN=c(mean))
+#
+```
+
+```{r Self-placement Measures}
+############################
+# Self-placement Measures #
+##########################
+#
+# Self-Placement Political Ideology [JJ]
+# --------------------------------------
+# Strongly liberal (left): 1
+# Strongly conservative (right): 9
+#
+# Overall, where would you place yourself, on the following scale of liberalism-conservatism?
+dataFull$Ideo_SP_JJ_Overall <- dataFull$PP_JO_SP_1_1
+#
+#
+# How about in terms of social and cultural issues? (e.g., abortion, separation of church and state, affirmative action)
+dataFull$Ideo_SP_JJ_Soc <- dataFull$PP_JO_SP_2_1
+#
+#
+# How about in terms of economic issues? (e.g., taxation, welfare, privatization of social security)
+dataFull$Ideo_SP_JJ_Eco <- dataFull$PP_JO_SP_3_1
+#
+#
+dataFull$SRPI_CM <- rowMeans(dataFull[,c( 
+  "Ideo_SP_JJ_Overall",
+  "Ideo_SP_JJ_Eco",
+  "Ideo_SP_JJ_Soc")])
+# 
+# Self-Placement Quadrant
+# ------------------------
+# Please choose one or two (1 or 2) labels that best represent your political views?
+# Economic Conservatism (1)
+# Economic Liberalism   (6)
+# Social Conservatism   (11)
+# Social Progressivism  (16)
+# 
+# Conservatives (12) = Social Conservatism  (11)  + Economic Conservatism (1)
+# Liberals (22)      = Social Progressivism (16) + Economic Liberalism (6)
+# Libertarians (17)  = Social Progressivism (16) + Economic Conservatism (1)
+# Broad_Populists (17)   = Social Conservatism (11)  + Economic Liberalism (6)
+#
+#
+#
+#
+df <- data.frame(dataFull$PP_Quad_1, dataFull$PP_Quad_2, dataFull$PP_Quad_3, dataFull$PP_Quad_4) 
+# table(rowSums(df, na.rm = TRUE))   775=1   725=2
+names(df) <- c("Eco_Cons", "Eco_Lib","Soc_Cons", "Soc_Pro")
+# head(df)
+myfile <- plyr::mutate(df, Quadrants = derivedFactor(
+    "Conservatives"   = (Eco_Cons==1 & Soc_Cons==1),
+    "Liberals"        = (Eco_Lib ==1 & Soc_Pro==1),
+    "Libertarians"    = (Soc_Pro ==1 & Eco_Cons==1),
+    "Broad_Populists" = (Soc_Cons==1 & Eco_Lib==1),
+    "Eco_Cons"        = (Eco_Cons==1),
+    "Soc_Cons"        = (Soc_Cons==1),
+    "Soc_Pro"         = (Soc_Pro==1),
+    "Eco_Lib"         = (Eco_Lib==1),
+    .method = "first", .default = "DK"))
+#
+#
+# table(myfile$Quadrants,useNA = c("ifany"))
+dataFull$SRPI_Group <- myfile$Quadrants
+```
+
+```{r Trust}
+##########
+# Trust #
+########
+#
+# Trust in the Political Process 
+# ------------------------------
+# I generally trust the collective judgments of the American people, even for complex political issues
+# Nat_Patr_6 is the right item: Checked!
+dataFull$Trust <- sapply(dataFull$Nat_Patr_6,  function(x) 10 - x)
+```
+
+```{r Religiosity}
+################
+# Religiosity #
+##############
+#
+# Self-Placement Religiosity
+# ---------------------------
+# How about in terms of religion, how would you consider yourself?
+# Not religious/Agnostic (left): 1 Very religious (right): 9
+dataFull$Religiosity <- dataFull$PP_Rel_1
+#
+#
+# Scientific Skepticism
+# ----------------------------
+# We believe too often in science, and not enough in faith and feelings (7)
+# Checked ! Nat_Patr_8 is the right item in the data
+dataFull$RBSS <- sapply(dataFull$Nat_Patr_8,function(x) 10 - x)
+#
+```
+
+```{r Context}
+############
+# Context #
+##########
+#
+# SATISFACTION: Satisfied vs. Dissatisfied w/ America - Context 
+# ----------------------------------------------
+# All in all, are you satisfied or dissatisfied with the way things are going in America today?
+# Satisfied (left = 1) <> Dissatisfied (right=9)
+dataFull$Context_Pre  <- sapply(dataFull$Cont_Sat,function(x) 10 - x)
+#
+# BETTER/SATISFACTION: SBetter vs. Worse w/ America - Context 
+# -------------------------------------
+# Looking ahead, so far as you are concerned, do you think that 2016 will be better or worse than 2017? Worse (left)  : Better (right)
+#
+dataFull$Context_Fut  <-  dataFull$Cont_Fut
+```
+
+```{r Social Movements}
+#####################
+# Social Movements #
+###################
+#
+# How positive or negative do you feel concerning the following (social) movements?
+# 1. LGBTQ 
+# 2. Black Lives Matter
+# 3. Civil Rights
+# 4. Environmental & Ecology
+# 5. Blue Lives Matter 
+# 6. Occupy Wall Street
+# 7. Feminism
+# 8. Ice Bucket Challenge
+# 9. Fair Trade
+#
+#
+dataFull$SM_LGBTQ  <- sapply(dataFull$Soc_mov_1,  function(x) 10 - x)
+dataFull$SM_BLM    <- sapply(dataFull$Soc_mov_2,  function(x) 10 - x)
+dataFull$SM_CivR   <- sapply(dataFull$Soc_mov_3,  function(x) 10 - x) 
+dataFull$SM_EnvEco <- sapply(dataFull$Soc_mov_4,  function(x) 10 - x)
+dataFull$SM_BlueLM <- sapply(dataFull$Soc_mov_5,  function(x) 10 - x) 
+dataFull$SM_OW     <- sapply(dataFull$Soc_mov_6,  function(x) 10 - x) 
+dataFull$SM_FEM    <- sapply(dataFull$Soc_mov_7,  function(x) 10 - x)
+dataFull$SM_IBC    <- sapply(dataFull$Soc_mov_8,  function(x) 10 - x)
+dataFull$SM_FT     <- sapply(dataFull$Soc_mov_9,  function(x) 10 - x)
+```
+
+```{r Conspiracy}
+###############
+# Conspiracy #
+#############
+#
+# Some political and social events are debated (for example 09/11 attacks, the death of Lady Diana, the assassination of John F. Kennedy). It is suggested that the "official version" of these events could be an attempt to hide the truth to the public. This "official version" could mask the fact that these events have been planned and secretly prepared by a covert alliance of powerful individuals or organizations (for example secret services or government). What do you think?
+#
+# I think that the official version of the events given by the authorities very often hides the truth (1)
+# I think the 2016 US Presidential elections referendum will be rigged. (2)
+# Media coverage of the 2016 US Presidential elections has been controlled by vested interests behind one side of the debate. (3)
+#
+# dataFull$Consp_Gen_1
+# dataFull$Consp_Gen_2
+# dataFull$Consp_Gen_3
+#
+#gmodels::CrossTable(dataFull$Consp_Gen_1, dataFull$PS_Cand_Trumpism , prop.r=F, prop.c=T, prop.t=F, prop.chisq=F)
+#table(dataFull$Consp_Gen_1, dataFull$PS_Cand_Trumpism)
+#table(dataFull$Consp_Gen_2, dataFull$PS_Cand_Trumpism)
+#table(dataFull$Consp_Gen_3, dataFull$PS_Cand_Trumpism)
+#
+dataFull$Consp_Gen_1_REV <- sapply(dataFull$Consp_Gen_1,  function(x) 10 - x)
+dataFull$Consp_Gen_2_REV <- sapply(dataFull$Consp_Gen_2,  function(x) 10 - x)
+dataFull$Consp_Gen_3_REV <- sapply(dataFull$Consp_Gen_3,  function(x) 10 - x)
+#
+dataFull$Consp_Gen  <- rowMeans(dataFull[,c("Consp_Gen_1_REV", "Consp_Gen_2_REV", "Consp_Gen_3_REV")], na.rm=TRUE)
+#
+#
+#cor(dataFull$Consp_Gen, dataFull$SJ_Gen)
+#cor(dataFull$Consp_Gen, dataFull$SJ_Eco)
+#cor(dataFull$SJ_Eco, dataFull$SJ_Gen)
+#
+#####################################################
+# Satisfaction & Prediction of Election outcome ####
+###################################################
+#
+# PS_Rob_1 Who do you believe will win the 2016 Presidential Election? 1 2 3 4 5 6 7 8 9 Hillary Clinton(left): Donald Trump (right) 
+dataFull$PS_Elec_Win  <- dataFull$PS_Rob_1
+dataFull$PS_Elec_WinF <- cut(dataFull$PS_Elec_Win,
+                         breaks=c(0, 4, 5, 9),
+                         labels=c("Clinton","DK","Trump"))
+#table(dataFull$PS_Elec_WinF, dataFull$PS_Cand_Trumpism)
+#
+#
+# PS_Rob_2 How satisfied do you think you will be with the result of 2016 Presidential Election? 1 2 3 4 5 6 7 8 9 Very satisfied (left): Very dissatisfied (right) 
+dataFull$PS_Elec_Sat  <- dataFull$PS_Rob_2
+dataFull$PS_Elec_SatF <- cut(dataFull$PS_Elec_Sat,
+                         breaks=c(0, 4, 5, 9),
+                         labels=c("Satisfied","Neither","Dissatisfied"))
+#table(dataFull$PS_Elec_SatF, dataFull$PS_Cand_Trumpism)
+#
+#
+#
+#gmodels::CrossTable(dataFull$Consp_Gen_1, dataFull$PS_Cand_Trumpism, prop.r=F, prop.c=T, prop.t=F, prop.chisq=F)
+#gmodels::CrossTable(dataFull$Consp_Gen_2, dataFull$PS_Cand_Trumpism, prop.r=F, prop.c=T, prop.t=F, prop.chisq=F)
+#gmodels::CrossTable(dataFull$Consp_Gen_3, dataFull$PS_Cand_Trumpism, prop.r=F, prop.c=T, prop.t=F, prop.chisq=F)
+#
+#doBy::summaryBy(Consp_Gen_1~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(Consp_Gen_2~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(Consp_Gen_3~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#
+#
+#
+# Please indicate the degree to which you agree or disagree with each of the following statements:
+# dataFull$Consp_Clim_1
+# dataFull$Consp_Clim_2
+# dataFull$Consp_Clim_4
+# dataFull$Consp_Clim_5
+#doBy::summaryBy(Consp_Clim_1~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(Consp_Clim_2~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(Consp_Clim_4~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(Consp_Clim_5~PS_Cand_Trumpism, data=dataFull, FUN=c(mean))
+#
+# PS dataFull$Consp_Clim_3 was an AQ.
+#
+#
+#
+#
+######################
+# Climate Change ####
+#####################
+#PS dataFull$Consp_Clim_3 was an AQ.
+#
+#
+# 1.	Climate scientists and their political allies are deliberately misleading the public about global warming. [denialists]
+# 2.	Selfish interests are scheming to convince the public that global warming is a major threat. [denialists]
+# 3.	Oil companies and their political allies are deliberately misleading the public about global warming. [warmists]
+# 4.	Selfish interests are scheming to convince the public that global warming is *not* a major threat. [warmists]
+#
+#
+# All items are conspiratorial.
+#
+# Note that there is only DENIALIST conspiracy, as warmist conspiracy is actually *a fact* (e.g., ENRON). So these are not in any way equivalente. However, it would be iteresting to see whether
+#
+dataFull$Consp_Clim_1_REV <- 
+  sapply(dataFull$Consp_Clim_1,  function(x) 10 - x)
+dataFull$Consp_Clim_2_REV <- 
+  sapply(dataFull$Consp_Clim_2,  function(x) 10 - x)
+dataFull$Consp_Clim_4_REV <- 
+  sapply(dataFull$Consp_Clim_4,  function(x) 10 - x)
+dataFull$Consp_Clim_5_REV <- 
+  sapply(dataFull$Consp_Clim_5,  function(x) 10 - x)
+#
+dataFull$Clim.Consp  <- rowMeans(dataFull[,c(
+  "Consp_Clim_1_REV",
+  "Consp_Clim_2_REV"
+  #"Consp_Clim_4_REV",
+  #"Consp_Clim_5_REV"
+  )], na.rm=TRUE)
+```
+
+```{r Libertarianism}
+###################
+# Libertarianism #
+#################
+#
+# In terms of your political views, do you usually think of yourself as a Libertarian?
+dataFull$Libertarian <- factor(dataFull$PS_Lib_PID , 
+                        labels = c("Libertarian", "Non-Libertarian"))
+#table(dataFull$Libertarian)
+#
+#
+#
+#
+# The Libertarian Party is considered to be America's third-party. What is the degree to which it represents your political views.Completely represents my political views(left=1) Does not represents my political views at all (right=9)
+dataFull$Lib_Pol_Views <- sapply(dataFull$PS_Lib_Rep,  function(x) 10 - x)
+# plot(table(dataFull$PS_Lib_Rep))
+#
+#
+###########
+# Scale ##
+##########
+#
+# Facets: State Control, Economic, Social/Tradition and ?State?
+# --------------------------------------------------------------
+#
+# [State Control] Military service ought to be voluntary
+# [Soc-T] There should not be laws regulating the sexual activity between consenting adults
+# [Soc-T] There should be no laws prohibiting adult possession and use of drugs
+# [State Control] There should not be a National Identity card
+# [Eco] No welfare and no restrictions on work
+# [Soc-T] De-regulate drugs, alcohol, prostitution, gambling, and suicide
+# [Eco] Eliminate the minimum wage in every state
+# [State Control] Repeal all gun control laws and affirm the right to keep and bear arms
+# [State Control] The government interferes far too much in our everyday lives
+# [Soc-T] People should be free to decide which group-norms or traditions to follow
+# [State] The government is practically always wasteful and inefficient
+# [Eco] We should reduce taxes, spending, and eliminate controls on trade
+# [REV] [Soc-T] The government main goal is to improve the common good, even if that limits the some of the civil liberties of individuals
+# [State Control] Repeal Obama Care and don't replace it with RomneyCare
+# [Soc-T] Government should be kept out of the matter of abortion
+# [State Control] It is OK for companies to deny service to anyone (gays or otherwise) as well as it is OK to boycott those companies
+# [Eco] Abolish all regulation of banks in favor of free market
+# [Eco] Free-market banking: unrestricted competition and no bailouts
+# [Eco] Pass constitutional amendment requiring a balanced budget
+# Oppose gerrymandering and restrictions on ballot access
+# [Eco] Phase out government-sponsored retirement system
+# [State Control] Repeal the Patriot Act and end state surveillance
+#
+#
+dataFull$Lib_1_REV  <- sapply(dataFull$Lib_1,  function(x) 10 - x)
+dataFull$Lib_2_REV  <- sapply(dataFull$Lib_2,  function(x) 10 - x)
+dataFull$Lib_3_REV  <- sapply(dataFull$Lib_3,  function(x) 10 - x)
+dataFull$Lib_4_REV  <- sapply(dataFull$Lib_4,  function(x) 10 - x)
+dataFull$Lib_5_REV  <- sapply(dataFull$Lib_5,  function(x) 10 - x)
+dataFull$Lib_6_REV  <- sapply(dataFull$Lib_6,  function(x) 10 - x)
+dataFull$Lib_7_REV  <- sapply(dataFull$Lib_7,  function(x) 10 - x)
+dataFull$Lib_8_REV  <- sapply(dataFull$Lib_8,  function(x) 10 - x)
+dataFull$Lib_9_REV  <- sapply(dataFull$Lib_9,  function(x) 10 - x)
+dataFull$Lib_10_REV <- sapply(dataFull$Lib_10,  function(x) 10 - x)
+dataFull$Lib_11_REV <- sapply(dataFull$Lib_11,  function(x) 10 - x)
+dataFull$Lib_12_REV <- sapply(dataFull$Lib_12,  function(x) 10 - x)
+# 13 not
+dataFull$Lib_14_REV <- sapply(dataFull$Lib_14,  function(x) 10 - x)
+dataFull$Lib_15_REV <- sapply(dataFull$Lib_15,  function(x) 10 - x)
+dataFull$Lib_16_REV <- sapply(dataFull$Lib_16,  function(x) 10 - x)
+dataFull$Lib_17_REV <- sapply(dataFull$Lib_17,  function(x) 10 - x)
+dataFull$Lib_18_REV <- sapply(dataFull$Lib_18,  function(x) 10 - x)
+dataFull$Lib_19_REV <- sapply(dataFull$Lib_19,  function(x) 10 - x)
+dataFull$Lib_20_REV <- sapply(dataFull$Lib_20,  function(x) 10 - x)
+dataFull$Lib_21_REV <- sapply(dataFull$Lib_21,  function(x) 10 - x)
+dataFull$Lib_22_REV <- sapply(dataFull$Lib_22,  function(x) 10 - x)
+#
+dataFull$Lib   <- rowMeans(dataFull[,c(
+  "Lib_1_REV", "Lib_2_REV", "Lib_3_REV", "Lib_4_REV", "Lib_5_REV",
+  "Lib_6_REV", "Lib_7_REV", "Lib_8_REV", "Lib_9_REV", "Lib_10_REV",
+  "Lib_11_REV", "Lib_12_REV", "Lib_13", "Lib_14_REV", "Lib_15_REV",
+  "Lib_16_REV", "Lib_17_REV", "Lib_18_REV", "Lib_19_REV", "Lib_20_REV",
+  "Lib_21_REV", "Lib_22_REV")], na.rm  =TRUE)
+#
+#
+# summary(dataFull$Lib)
+```
+
+```{r System Justification}
+#########################
+# System Justification #
+#######################
+#
+#
+# General SJ
+# -----------
+# In general, you find society to be fair
+# In general, the American system operates as it should 
+# [Rev] American society needs to be radically restructured *#
+# The United States is the best country in the world to live in
+# Most policies serve the greater good
+# Everyone has a fair shot at wealth and happiness
+# [Rev] Our society is getting worse every year *#
+# Society is set up so that people usually get what they deserve
+#
+#
+dataFull$CSJ_Gen_1_REV <- sapply(dataFull$CSJ_Gen_1,  function(x) 10 - x)
+dataFull$CSJ_Gen_2_REV <- sapply(dataFull$CSJ_Gen_2,  function(x) 10 - x)
+dataFull$CSJ_Gen_4_REV <- sapply(dataFull$CSJ_Gen_4,  function(x) 10 - x)
+dataFull$CSJ_Gen_5_REV <- sapply(dataFull$CSJ_Gen_5,  function(x) 10 - x)
+dataFull$CSJ_Gen_6_REV <- sapply(dataFull$CSJ_Gen_6,  function(x) 10 - x)
+dataFull$CSJ_Gen_8_REV <- sapply(dataFull$CSJ_Gen_8,  function(x) 10 - x)
+#
+# dataFull$SJ_Gen  <-  dataFull$CSJ_Gen_1_REV + dataFull$CSJ_Gen_2_REV + dataFull$CSJ_Gen_3 + dataFull$CSJ_Gen_4_REV + dataFull$CSJ_Gen_5_REV # + dataFull$CSJ_Gen_6_REV + dataFull$CSJ_Gen_7 + dataFull$CSJ_Gen_8_REV
+#
+#
+dataFull$SJ_Gen  <- rowMeans(dataFull[,c("CSJ_Gen_1_REV", "CSJ_Gen_2_REV","CSJ_Gen_3", "CSJ_Gen_4_REV", "CSJ_Gen_5_REV", "CSJ_Gen_6_REV", "CSJ_Gen_7", "CSJ_Gen_8_REV")], na.rm=TRUE)
+#
+# Economic SJ
+# ------------
+#
+# If people work hard, they almost always get what they want
+# [Rev] The existence of widespread economic differences does not mean that they are inevitable
+# Laws of nature are responsible for differences in wealth in society
+# [Rev] There are many reasons to think that the economic system is unfair *#
+# It is virtually impossible to eliminate poverty
+# [Rev] Poor people are not essentially different from rich people *#
+# Most people who don't get ahead in our society should not blame the system; they have only themselves to blame
+# [Rev] Equal distribution of resources is a possibility for our society *#
+# Social class differences reflect differences in the natural order of things
+# [Rev] Economic differences in the society reflect an illegitimate distribution of resources *#
+# There will always be poor people, because there will never be enough jobs for everybody
+# Economic positions are legitimate reflections of people's achievements
+# [Rev] If people wanted to change the economic system to make things equal, they could *#
+# Equal distribution of resources is unnatural
+# [Rev] It is unfair to have an economic system which produces extreme wealth and extreme poverty at the same time *#
+# There is no point in trying to make incomes more equal
+# [Rev] There are no inherent differences between rich and poor; it is purely a matter of the circumstances into which you are born *#
+#
+dataFull$CSJ_Econ_1_REV  <- sapply(dataFull$CSJ_Econ_1,  function(x) 10 - x)
+dataFull$CSJ_Econ_3_REV  <- sapply(dataFull$CSJ_Econ_3,  function(x) 10 - x)
+dataFull$CSJ_Econ_5_REV  <- sapply(dataFull$CSJ_Econ_5,  function(x) 10 - x)
+dataFull$CSJ_Econ_7_REV  <- sapply(dataFull$CSJ_Econ_7,  function(x) 10 - x)
+dataFull$CSJ_Econ_9_REV  <- sapply(dataFull$CSJ_Econ_9,  function(x) 10 - x)
+dataFull$CSJ_Econ_11_REV <- sapply(dataFull$CSJ_Econ_11,  function(x) 10 - x)
+dataFull$CSJ_Econ_12_REV <- sapply(dataFull$CSJ_Econ_12,  function(x) 10 - x)
+dataFull$CSJ_Econ_14_REV <- sapply(dataFull$CSJ_Econ_14,  function(x) 10 - x)
+dataFull$CSJ_Econ_16_REV <- sapply(dataFull$CSJ_Econ_16,  function(x) 10 - x)
+#
+#
+#dataFull$SJ_Eco  <-  
+ # dataFull$CSJ_Econ_1_REV + dataFull$CSJ_Econ_2_REV + dataFull$CSJ_Econ_3_REV + 
+ #dataFull$CSJ_Econ_4 +
+  #dataFull$CSJ_Econ_5_REV +
+  #dataFull$CSJ_Econ_6 + 
+  #dataFull$CSJ_Econ_7_REV +
+  #dataFull$CSJ_Econ_8 + 
+  #dataFull$CSJ_Econ_9_REV + 
+  #dataFull$CSJ_Econ_10 + 
+  #dataFull$CSJ_Econ_11_REV + dataFull$CSJ_Econ_12_REV + 
+  #dataFull$CSJ_Econ_13 + 
+  #dataFull$CSJ_Econ_14_REV + 
+  #dataFull$CSJ_Econ_15 + 
+  #dataFull$CSJ_Econ_16_REV +
+  #dataFull$CSJ_Econ_17
+#
+dataFull$SJ_Eco  <- rowMeans(dataFull[,c("CSJ_Econ_1_REV", "CSJ_Econ_2", "CSJ_Econ_3_REV", "CSJ_Econ_4", "CSJ_Econ_5_REV", "CSJ_Econ_6", "CSJ_Econ_7_REV", "CSJ_Econ_8", "CSJ_Econ_9_REV", "CSJ_Econ_10", "CSJ_Econ_11_REV", "CSJ_Econ_12_REV", "CSJ_Econ_13", "CSJ_Econ_14_REV", "CSJ_Econ_15", "CSJ_Econ_16_REV", "CSJ_Econ_17")], na.rm=TRUE)
+#
+#
+# Gender-Specific SJ
+# ------------------
+#
+# In general, relations between men and women are fair
+# The division of labor in families generally operates as it should
+# [Rev] Gender roles need to be radically restructured *#
+# For women, the United States is the best country in the world to live in
+# Most policies relating to gender and the sexual division of labor serve the greater good
+# Everyone (male or female) has a fair shot and wealth and happiness
+# [Rev] Sexism in society is getting worse every year *#
+# Society is set up so that men and women usually get what they deserve
+#
+# 
+dataFull$CSJ_Gender_1_REV <- sapply(dataFull$CSJ_Gender_1,  function(x) 10 - x)
+dataFull$CSJ_Gender_2_REV <- sapply(dataFull$CSJ_Gender_2,  function(x) 10 - x)
+dataFull$CSJ_Gender_4_REV <- sapply(dataFull$CSJ_Gender_4,  function(x) 10 - x)
+dataFull$CSJ_Gender_5_REV <- sapply(dataFull$CSJ_Gender_5,  function(x) 10 - x)
+dataFull$CSJ_Gender_7_REV <- sapply(dataFull$CSJ_Gender_7,  function(x) 10 - x)
+dataFull$CSJ_Gender_9_REV <- sapply(dataFull$CSJ_Gender_9,  function(x) 10 - x)
+#
+#
+#dataFull$SJ_Gender  <-  dataFull$CSJ_Gender_1_REV + dataFull$CSJ_Gender_2_REV + 
+ # dataFull$CSJ_Gender_3 +
+  #dataFull$CSJ_Gender_4_REV + dataFull$CSJ_Gender_5_REV + dataFull$CSJ_Gender_7_REV +
+  #dataFull$CSJ_Gender_8 +
+  #dataFull$CSJ_Gender_9_REV
+# 
+dataFull$SJ_Gender  <- rowMeans(dataFull[,c("CSJ_Gender_1_REV", "CSJ_Gender_2_REV", "CSJ_Gender_3", "CSJ_Gender_4_REV", "CSJ_Gender_5_REV", "CSJ_Gender_7_REV", "CSJ_Gender_8", "CSJ_Gender_9_REV" )], na.rm=TRUE)
+# PS: dataFull$CSJ_Gender_6 was an Attention Question. 
+```
+
+```{r Populism}
+#############
+# Populism #
+###########
+#
+# [OLIVER] Original survey data show that Trump's supporters are distinctive in their unique combination of anti-expertise, anti-elitism, and pronationalist sentiments. 
+#
+# [Steven] Populism as a style; A Manichean wordview; The inherent belief in a general or popular will (volont? g?n?rale); Distance between people and elite/s (anti-elitism)
+#
+#
+#
+# ------------------------
+#
+#
+# 1. Facet: Sovereignty of the People, Volont? G?n?rale [1, 5, 6]
+# ---------------------------------------------------------------
+# The politicians in Congress need to follow the will of the people
+# Majority decisions must apply, even if they curtail minority rights
+# If the majority of the population supports a political decision, it should be implemented by the government
+#dataFull$Pop_Sovereignty <- sapply(dataFull$Pop_1,  function(x) 10 - x) +
+ # sapply(dataFull$Pop_5,  function(x) 10 - x) +
+  #sapply(dataFull$Pop_6,  function(x) 10 - x) 
+#
+dataFull$Pop_1_REV <- sapply(dataFull$Pop_1,  function(x) 10 - x) 
+dataFull$Pop_5_REV <- sapply(dataFull$Pop_5,  function(x) 10 - x)
+dataFull$Pop_6_REV <- sapply(dataFull$Pop_6,  function(x) 10 - x)
+#
+# psych::alpha(dataFull[ ,c("Pop_1","Pop_5","Pop_6")])
+#
+dataFull$Pop_Sovereignty  <- rowMeans(dataFull[,c("Pop_1_REV", "Pop_5_REV", "Pop_6_REV")], na.rm=TRUE)
+#
+# 2. Facet: Anti-Pluralism [18, 19, 20, 21]
+# -----------------------------------------
+# In a democracy, it is important to make compromises among differing viewpoints
+# It is important to listen to the opinion of other groups
+# I like elected officials who make compromises with people they disagree with
+# [REV] I like elected officials who stick to their positions, even if some people think it is 'politically incorrect'
+#
+#dataFull$Pop_Pluralism  <- dataFull$Pop_18 + dataFull$Pop_19 + dataFull$Pop_20 +
+ # sapply(dataFull$Pop_21,  function(x) 10 - x)
+#
+dataFull$Pop_21_REV <-  sapply(dataFull$Pop_21,  function(x) 10 - x)
+#
+#
+dataFull$Pop_Pluralism  <- rowMeans(dataFull[,c("Pop_18", "Pop_19", "Pop_20", "Pop_21_REV")], na.rm=TRUE)
+#
+# psych::alpha(dataFull[ ,c("Pop_18","Pop_19","Pop_20", "Pop_21_REV")])
+# 
+#
+#
+#
+#
+# 3. Facet: Anti-Elitism - Skepticism towards political process [2, 3, 4, 7]
+# ---------------------------------------------------------------------------
+# The particular interests of the political class negatively affect the wellbeing of the people
+# Politicians always end up agreeing when it comes to protecting their privileges
+# Elected officials talk too much and take too little action
+# It doesn't actually matter who you vote for because the elites control the main political parties
+#dataFull$Pop_Anti_Elitism  <- sapply(dataFull$Pop_2,  function(x) 10 - x) +
+ # sapply(dataFull$Pop_3,  function(x) 10 - x) +
+  #sapply(dataFull$Pop_4,  function(x) 10 - x) +
+  #sapply(dataFull$Pop_7,  function(x) 10 - x)
+#
+dataFull$Pop_2_REV  <- sapply(dataFull$Pop_2,  function(x) 10 - x)
+dataFull$Pop_3_REV  <- sapply(dataFull$Pop_3,  function(x) 10 - x)
+dataFull$Pop_4_REV  <- sapply(dataFull$Pop_4,  function(x) 10 - x)
+dataFull$Pop_7_REV  <- sapply(dataFull$Pop_7,  function(x) 10 - x)
+#
+#
+dataFull$Pop_Anti_Elitism  <- rowMeans(dataFull[,c("Pop_2_REV", "Pop_3_REV", "Pop_4_REV", "Pop_7_REV")], na.rm=TRUE)
+#
+# 4. Facet: Representative Gap [8, 9, 10]
+# ----------------------------------------------
+# Public officials don't care much about what people like me think
+# Elected officials in Washington lost touch with the people's needs
+# The system is stacked against people like me
+#dataFull$Pop_Gap  <- sapply(dataFull$Pop_8,  function(x) 10 - x) +
+ # sapply(dataFull$Pop_9,  function(x) 10 - x) +
+  #sapply(dataFull$Pop_10,  function(x) 10 - x)
+#
+#
+dataFull$Pop_8_REV  <- sapply(dataFull$Pop_8,  function(x) 10 - x)
+dataFull$Pop_9_REV  <- sapply(dataFull$Pop_9,  function(x) 10 - x)
+dataFull$Pop_10_REV  <- sapply(dataFull$Pop_10,  function(x) 10 - x)
+#
+#
+dataFull$Pop_Gap  <- rowMeans(dataFull[,c("Pop_8_REV", "Pop_9_REV", "Pop_10_REV")], na.rm=TRUE)
+#
+#
+# 5. Facet: Mistrust of Experts - Anti-Expertise [14, 15, 16, 17]
+# ----------------------------------------------------------------
+# I would rather be represented by a citizen than by a specialized politician
+# When it comes to really important questions, scientific facts don't help very much
+# I'd rather put my trust in the wisdom of ordinary people than the opinions of experts and intellectuals
+# [REV] Ordinary people can really use the help of experts to understand complicated things like science and health
+#
+#dataFull$Pop_Anti_Expertise <-  sapply(dataFull$Pop_14,  function(x) 10 - x) +
+ # sapply(dataFull$Pop_15,  function(x) 10 - x) +
+  #sapply(dataFull$Pop_16,  function(x) 10 - x) + 
+  #dataFull$Pop_17
+#
+#
+dataFull$Pop_14_REV <-  sapply(dataFull$Pop_14,  function(x) 10 - x)
+dataFull$Pop_15_REV <-  sapply(dataFull$Pop_15,  function(x) 10 - x)
+dataFull$Pop_16_REV <-  sapply(dataFull$Pop_16,  function(x) 10 - x)
+#
+#
+dataFull$Pop_Anti_Expertise <- rowMeans(dataFull[,c("Pop_14_REV", "Pop_15_REV", "Pop_16_REV", "Pop_17")], na.rm=TRUE)
+#
+#
+#
+# 6. Facet: Manichean Outlook (or Wordview) [12, 22]
+# -----------------------------------------------------
+# Politics usually boils down to a struggle between the people and the powerful
+# In today's world there is a struggle between good and evil, and people must choose between one of the two.
+#dataFull$Pop_Manichean  <- sapply(dataFull$Pop_12,  function(x) 10 - x) +
+ # sapply(dataFull$Pop_22,  function(x) 10 - x)
+#
+dataFull$Pop_12_REV  <- sapply(dataFull$Pop_12,  function(x) 10 - x) 
+dataFull$Pop_22_REV  <- sapply(dataFull$Pop_22,  function(x) 10 - x) 
+#
+dataFull$Pop_Manichean  <- rowMeans(dataFull[,c("Pop_12_REV", "Pop_22_REV")], na.rm=TRUE)
+#
+#
+# 7. Facet: Protectionism  [23, 24, 25, 28]
+# -----------------------------------------------------
+# The government should protect domestic markets, for example by taxing imports.
+# Borders should be closed for asylum seekers.
+# Even in times of recession, the government should invest in military defense.
+# Immigrants increase crime rates
+# [Tobias OUT] It's important for a political leader to be like the people he or she represents
+# America has been taken away from true Americans
+
+#dataFull$Protec<-   sapply(dataFull$Pop_23,  function(x) 10 - x) +
+ #  sapply(dataFull$Pop_24,  function(x) 10 - x) +
+  # sapply(dataFull$Pop_25,  function(x) 10 - x) +
+   #sapply(dataFull$Pop_28,  function(x) 10 - x) +
+   # sapply(dataFull$Pop_11,  function(x) 10 - x) +
+   #sapply(dataFull$Nat_Patr_7,  function(x) 10 - x)
+#
+dataFull$Pop_23_REV<-   sapply(dataFull$Pop_23,  function(x) 10 - x) 
+dataFull$Pop_24_REV<-   sapply(dataFull$Pop_24,  function(x) 10 - x) 
+dataFull$Pop_25_REV<-   sapply(dataFull$Pop_25,  function(x) 10 - x) 
+dataFull$Pop_28_REV<-   sapply(dataFull$Pop_28,  function(x) 10 - x) 
+dataFull$Nat_Patr_7_REV<-   sapply(dataFull$Nat_Patr_7,  function(x) 10 - x) 
+#
+dataFull$Protec <- rowMeans(dataFull[,c("Pop_23_REV", "Pop_24_REV", "Pop_25_REV", "Pop_28_REV", "Nat_Patr_7_REV")], na.rm=TRUE)
+#
+# [TOBIAS] Inter-item correlation
+# dataT <- data.frame(sapply(dataFull$Pop_23,  function(x) 10 - x), sapply(dataFull$Pop_24,  function(x) 10 - x), sapply(dataFull$Pop_25,  function(x) 10 - x), sapply(dataFull$Pop_28,  function(x) 10 - x), sapply(dataFull$Pop_11,  function(x) 10 - x), sapply(dataFull$Nat_Patr_7,  function(x) 10 - x), dataFull$Protec)
+#PerformanceAnalytics::chart.Correlation(dataT, method="spearman", histogram=TRUE)
+#
+# 8. Facet: Left Populism [13, 27]
+# ---------------------------------
+# Income redistribution is more important than economic growth.
+# Big corporations accumulate wealth by exploiting the people
+# dataFull$Pop_Left <-   sapply(dataFull$Pop_13,  function(x) 10 - x) +
+#   sapply(dataFull$Pop_27,  function(x) 10 - x) 
+#
+#
+#
+# PS: there is no item 26.
+#
+# POPULISM SUM SCORES
+# -------------------
+#dataFull$Populism <- 
+ # dataFull$Pop_Sovereignty    +
+  #dataFull$Pop_Pluralism      +
+  #dataFull$Pop_Anti_Elitism   +
+  #dataFull$Pop_Gap            +
+  #dataFull$Pop_Anti_Expertise +
+  #dataFull$Pop_Manichean      +
+  #dataFull$Protec         
+  # dataFull$Pop_Left
+```
+
+```{r Environmentalism}
+#####################
+# Environmentalism #
+###################
+#
+# Facets:
+# --------------------------------------------------------------
+#
+#(+) I would be willing to pay higher prices in order to protect the environment
+#(+) The rights of animals ought be considered just as important as the rights of humans
+#(+) The production of environmentally harmful goods should be taxed heavily
+#(-) *Claims about environmental threats are exaggerated (Env_4)
+#(+) Protecting the environment should be given priority, even if it causes slower economic growth and some job losses
+#(-) *Economic growth and creating jobs should be the top priority, even if the environment suffers to some extent (Env_6)
+#(+) Humans are harmfully exploiting the environment
+#(+) If things continue on their present course, we will soon experience a major ecological catastrophe
+#(+) The US government should implement laws that mandates nation-wide recycling
+#(+) We should vote for candidates proposing laws intending to mitigate the effects of climate change
+#(+) The US government should consider taking actions against deforestation overseas, such as the Amazon Forest
+#(-) *Environmentalists goals are to attack industries and globalization rather than legitimate environmental concerns (Env_12)
+#(+)  We should buy Fair Trade products - even when they are more expensive - to incentivize producers in developing countries achieve better trading conditions and to promote sustainability
+#(+)  The US government should decrease taxes on Bioproducts and Green products
+#(+)  To preserve Earth's ecosystems, there should be strong governamental incentives for products that are derived from renewable biological resources
+# 
+#
+#dataFull$Env <- dataFull$Env_1 + dataFull$Env_2 + dataFull$Env_3 + dataFull$Env_4 + dataFull$Env_5 + 
+ # dataFull$Env_6 + dataFull$Env_7 + dataFull$Env_8 + dataFull$Env_9 + dataFull$Env_10 +
+  #dataFull$Env_11 + dataFull$Env_12 + dataFull$Env_13 + dataFull$Env_14 + dataFull$Env_15
+dataFull$Env_1_REV<-   sapply(dataFull$Env_1,  function(x) 10 - x) 
+dataFull$Env_2_REV<-   sapply(dataFull$Env_2,  function(x) 10 - x) 
+dataFull$Env_3_REV<-   sapply(dataFull$Env_3,  function(x) 10 - x) 
+dataFull$Env_4_REV<-   sapply(dataFull$Env_4,  function(x) 10 - x) 
+dataFull$Env_5_REV<-   sapply(dataFull$Env_5,  function(x) 10 - x) 
+dataFull$Env_6_REV<-   sapply(dataFull$Env_6,  function(x) 10 - x) 
+dataFull$Env_7_REV<-   sapply(dataFull$Env_7,  function(x) 10 - x) 
+dataFull$Env_8_REV<-   sapply(dataFull$Env_8,  function(x) 10 - x) 
+dataFull$Env_9_REV<-   sapply(dataFull$Env_9,  function(x) 10 - x) 
+dataFull$Env_10_REV<-   sapply(dataFull$Env_10,  function(x) 10 - x) 
+dataFull$Env_11_REV<-   sapply(dataFull$Env_11,  function(x) 10 - x) 
+dataFull$Env_12_REV<-   sapply(dataFull$Env_12,  function(x) 10 - x) 
+dataFull$Env_13_REV<-   sapply(dataFull$Env_13,  function(x) 10 - x)
+dataFull$Env_14_REV<-   sapply(dataFull$Env_14,  function(x) 10 - x)
+dataFull$Env_15_REV<-   sapply(dataFull$Env_15,  function(x) 10 - x) 
+
+dataFull$Env <- rowMeans(dataFull[,c("Env_1_REV", "Env_2_REV", "Env_3_REV","Env_4", "Env_5_REV", "Env_6", "Env_7_REV", "Env_8_REV", "Env_9_REV", "Env_10_REV", "Env_11_REV", "Env_12", "Env_13_REV", "Env_14_REV", "Env_15_REV")], na.rm=TRUE)
+#
+#
+dataFull$ENV <- rowMeans(dataFull[,c("Env_1", "Env_2", "Env_3","Env_4_REV", "Env_5", "Env_6_REV", "Env_7", "Env_8", "Env_9", "Env_10", "Env_11", "Env_12_REV", "Env_13", "Env_14", "Env_15")], na.rm=TRUE)
+```
+
+```{r RWA}
+#
+# IMPORTANT NOTE: RWA & SDO go from 1 (strongly disagree) to 9 (strongly agree), which is contrary to majority of scales
+#
+########
+# RWA #
+######
+#
+# What our country needs instead of more "civil rights" is a good stiff dose of law and order
+# What our country really needs is a strong, determined President which will crush the evil and set us on our right way again
+# [REV] There is no such crime to justify capital punishment
+# [REV] It is important to protect the rights of radicals and deviants in all ways
+#
+# Obedience and respect for authority are the most important values children should learn
+# The real keys to the "good life" are obedience, discipline, and virtue
+# [REV] The days when women are submissive should belong strictly in the past. A "woman's place" in society should be wherever she wants to be
+# [REV] It is good that nowadays young people have greater freedom "to make their own rules" and to protest against things they don't like
+#
+# The withdrawal from tradition will turn out to be a fatal fault one day
+# Being virtuous and law-abiding is in the long run better for us than permanently challenging the #foundation of our society
+# [REV] People should develop their own personal standards about good and evil and pay less attention to the Bible and other old, traditional forms of religious guidance
+# [REV] Homosexual long-term relationships should be treated as equivalent to marriage
+#
+#
+dataFull$RWA_3_REV  <- sapply(dataFull$RWA_3,   function(x) 10 - x)
+dataFull$RWA_4_REV  <- sapply(dataFull$RWA_4,   function(x) 10 - x)
+dataFull$RWA_7_REV  <- sapply(dataFull$RWA_7,   function(x) 10 - x)
+dataFull$RWA_8_REV  <- sapply(dataFull$RWA_8,   function(x) 10 - x)
+dataFull$RWA_11_REV <- sapply(dataFull$RWA_11,  function(x) 10 - x)
+dataFull$RWA_12_REV <- sapply(dataFull$RWA_12,  function(x) 10 - x)
+# dataFull$RWA_3_REV + dataFull$RWA_3
+# unique(dataFull$RWA_3)
+#
+# 1. Facet: Agression
+# --------------------
+#dataFull$RWA_Agression <- dataFull$RWA_1 + dataFull$RWA_2 + dataFull$RWA_3_REV + #dataFull$RWA_4_REV
+#
+dataFull$RWA_Agression <- rowMeans(dataFull[,c("RWA_1", "RWA_2", "RWA_3_REV", "RWA_4_REV")], na.rm=TRUE)
+#
+#
+# 2. Facet: Submission
+# --------------------
+#dataFull$RWA_Submission <- dataFull$RWA_5 + dataFull$RWA_6 + dataFull$RWA_7_REV + dataFull$RWA_8_REV
+#
+dataFull$RWA_Submission <- rowMeans(dataFull[,c("RWA_5", "RWA_6", "RWA_7_REV", "RWA_8_REV")], na.rm=TRUE)
+#
+# 3. Facet: Conventionalism
+# -------------------------
+dataFull$RWA_Conventionalism <- dataFull$RWA_9 + dataFull$RWA_10 + dataFull$RWA_11_REV + dataFull$RWA_12_REV 
+#
+dataFull$RWA_Conventionalism <- rowMeans(dataFull[,c("RWA_9", "RWA_10", "RWA_11_REV", "RWA_12_REV")], na.rm=TRUE)
+#
+#
+# OVERALL RWA
+# ------------
+#dataFull$RWA <- dataFull$RWA_Agression + dataFull$RWA_Submission + dataFull$RWA_Conventionalism
+#
+dataFull$RWA <- rowMeans(dataFull[,c("RWA_1", "RWA_2", "RWA_3_REV", "RWA_4_REV", "RWA_5", "RWA_6", "RWA_7_REV", "RWA_8_REV", "RWA_9", "RWA_10", "RWA_11_REV", "RWA_12_REV")], na.rm=TRUE)
+#
+#
+#
+# df <- data.frame(AG=dataFull$RWA_Agression, SUB=dataFull$RWA_Submission, CONV=dataFull$RWA_Conventionalism) # .57
+# psych::pairs.panels(df)
+# PerformanceAnalytics::chart.Correlation(df)
+# x <- cor(df); corrplot::corrplot(x, type="upper", order="hclust")
+#
+#data <- data.76
+#psych::describeBy(data$RWA_Conventionalism, group = data$Scr_PIDF)
+#psych::describeBy(data$RWA_Submission, group = data$Scr_PIDF)
+#psych::describeBy(data$RWA_Agression, group = data$Scr_PIDF)
+
+
+#RWA <- data[,c("RWA_1", "RWA_2", "RWA_3_REV", "RWA_4_REV", "RWA_5", "RWA_6", "RWA_7_REV", "RWA_8_REV", "RWA_9", "RWA_10", "RWA_11_REV", "RWA_12_REV")]
+
+```
+
+```{r SDO-7}
+#
+# IMPORTANT NOTE: RWA & SDO go from 1 (strongly disagree/oppose) to 9 (strongly agree), which is contrary to majority of scales
+#
+##########
+# SDO 7 #
+########
+#
+# Some groups of people must be kept in their place
+# It's probably a good thing that certain groups are at the top and other groups are at the bottom
+# An ideal society requires some groups to be on top and others to be on the bottom
+# Some groups of people are simply inferior to other groups
+# [REV] Groups at the bottom are just as deserving as groups at the top 
+# [REV] No one group should dominate in society 
+# [REV] Groups at the bottom should not have to stay in their place 
+# [REV] Group dominance is a poor principle 
+# We should not push for group equality
+# We shouldn't try to guarantee that every group has the same quality of life
+# It is unjust to try to make groups equal
+# Group equality should not be our primary goal
+# This is a random attention question. Please select "Strongly oppose" and move to the next item 
+# [REV] We should work to give all groups an equal chance to succeed 
+# [REV] We should do what we can to equalize conditions for different groups 
+# [REV] No matter how much effort it takes, we ought to strive to ensure that all groups have the same chance in life
+# [REV] Group equality should be our ideal
+#
+#
+# Renaming from SD-ZERO (excel code) to SD-LETTER "O". SD0 to SDO.
+dataFull$SDO7_1  <-  dataFull$SD07_1  
+dataFull$SDO7_2  <-  dataFull$SD07_2  
+dataFull$SDO7_3  <-  dataFull$SD07_3  
+dataFull$SDO7_4  <-  dataFull$SD07_4  
+dataFull$SDO7_9  <-  dataFull$SD07_9  
+dataFull$SDO7_10 <-  dataFull$SD07_10  
+dataFull$SDO7_11 <-  dataFull$SD07_11  
+dataFull$SDO7_12 <-  dataFull$SD07_12  
+dataFull$SDO7_13 <-  dataFull$SD07_13  
+#
+dataFull$SDO7_5_REV  <-  sapply(dataFull$SD07_5,   function(x) 10 - x)
+dataFull$SDO7_6_REV  <-  sapply(dataFull$SD07_6,   function(x) 10 - x)
+dataFull$SDO7_7_REV  <-  sapply(dataFull$SD07_7,   function(x) 10 - x)
+dataFull$SDO7_8_REV  <-  sapply(dataFull$SD07_8,   function(x) 10 - x)
+dataFull$SDO7_14_REV <-  sapply(dataFull$SD07_14,  function(x) 10 - x)
+dataFull$SDO7_15_REV <-  sapply(dataFull$SD07_15,  function(x) 10 - x)
+dataFull$SDO7_16_REV <-  sapply(dataFull$SD07_16,  function(x) 10 - x)
+dataFull$SDO7_17_REV <-  sapply(dataFull$SD07_17,  function(x) 10 - x)
+# dataFull$SDO7_5_REV + dataFull$SD07_5
+#
+#
+# 1. Facet: Dominance
+# --------------------
+# dataFull$SDO7_Dominance <- dataFull$SD07_1 + dataFull$SD07_2 + dataFull$SD07_3 + dataFull$SD07_4 + dataFull$SDO7_5_REV + dataFull$SDO7_6_REV + dataFull$SDO7_7_REV + dataFull$SDO7_8_REV
+#
+dataFull$SDO7_Dominance <- rowMeans(dataFull[,c("SDO7_1", "SDO7_2", "SDO7_3", "SDO7_4", "SDO7_5_REV", "SDO7_6_REV", "SDO7_7_REV", "SDO7_8_REV")], na.rm=TRUE)
+#
+# 2. Facet: Antiegalitarianism
+# --------------------
+#dataFull$SDO7_Anti_Egal <- dataFull$SDO7_9 + dataFull$SDO7_10 + dataFull$SDO7_11 + dataFull$SDO7_12 + dataFull$SDO7_14_REV + dataFull$SDO7_15_REV + dataFull$SDO7_16_REV + dataFull$SDO7_17_REV
+#
+dataFull$SDO7_AntiEgal <- rowMeans(dataFull[,c("SDO7_9", "SDO7_10", "SDO7_11", "SDO7_12", "SDO7_14_REV", "SDO7_15_REV", "SDO7_16_REV", "SDO7_17_REV")], na.rm=TRUE)
+# PS: dataFull$SDO7_13 was an Attention Question. 
+#
+#
+#
+# SDO Overall Score
+# ------------------
+#dataFull$SDO <- dataFull$SDO7_Dominance + dataFull$SDO7_Anti_Egal
+#
+dataFull$SDO <- rowMeans(dataFull[,c("SDO7_1", "SDO7_2", "SDO7_3", "SDO7_4", "SDO7_5_REV", "SDO7_6_REV", "SDO7_7_REV", "SDO7_8_REV", "SDO7_9", "SDO7_10", "SDO7_11", "SDO7_12", "SDO7_14_REV", "SDO7_15_REV", "SDO7_16_REV", "SDO7_17_REV")], na.rm=TRUE)
+#
+# df <- data.frame(DOM=dataFull$SDO7_Dominance, Anti_Egal=dataFull$SDO7_Anti_Egal) # .57
+# psych::pairs.panels(df)
+# PerformanceAnalytics::chart.Correlation(df)
+# x <- cor(df); corrplot::corrplot(x, type="upper", order="hclust")
+#
+#
+#psych::alpha(dataFull[,c("SDO7_9", "SDO7_10", "SDO7_11", "SDO7_12", "SDO7_14_REV", "SDO7_15_REV", "SDO7_16_REV", "SDO7_17_REV")])
+#psych::alpha(dataFull[,c("SDO7_1", "SDO7_2", "SDO7_3", "SDO7_4", "SDO7_5_REV", "SDO7_6_REV", "SDO7_7_REV", "SDO7_8_REV")])
+#cor(dataFull$SDO7_AntiEgal,dataFull$SDO7_Dominance)
+#
+#
+#
+#data <- data.76
+#psych::describeBy(data$SDO7_AntiEgal, group = data$Scr_PIDF)
+#psych::describeBy(data$SDO7_Dominance, group = data$Scr_PIDF)
+```
+
+```{r IRI Reactivity}
+###############
+# Reactivity #
+#############
+#
+# I often have tender, concerned feelings for people less fortunate than me
+# [Rev] I sometimes find it difficult to see things from the "other guy's" point of view *#
+# [Rev] Sometimes I don't feel very sorry for other people when they are having problems *#
+# In emergency situations, I feel apprehensive and ill-at-ease
+# I try to look at everybody's side of a disagreement before I make a decision 
+# When I see someone being taken advantage of, I feel kind of protective towards them 
+# I sometimes feel helpless when I am in the middle of a very emotional situation
+# I sometimes try to understand my friends better by imagining how things look from their perspective
+# [Rev] When I see someone get hurt, I tend to remain calm *#
+# [Rev] Other people's misfortunes do not usually disturb me a great deal  *#
+# [Rev] If I'm sure I'm right about something, I don't waste much time listening to other people's arguments  *#
+# Being in a tense emotional situation scares me 
+# [Rev] When I see someone being treated unfairly, I sometimes don't feel very much pity for them  *#
+# [Rev] I am usually pretty effective in dealing with emergencies *#
+# I am often quite touched by things that I see happen 
+# I believe that there are two sides to every question and try to look at them both
+# I would describe myself as a pretty soft-hearted person
+# I tend to lose control during emergencies 
+# When I'm upset at someone, I usually try to "put myself in his shoes" for a while 
+# When I see someone who badly needs help in an emergency, I go to pieces 
+# Before criticizing somebody, I try to imagine how I would feel if I were in their place 
+#
+#
+dataFull$R1_IRI_2_REV  <- sapply(dataFull$R1_IRI_2,  function(x) 6 - x)
+dataFull$R1_IRI_3_REV  <- sapply(dataFull$R1_IRI_3,  function(x) 6 - x)
+dataFull$R1_IRI_9_REV  <- sapply(dataFull$R1_IRI_9,  function(x) 6 - x)
+dataFull$R1_IRI_10_REV <- sapply(dataFull$R1_IRI_10,  function(x) 6 - x)
+dataFull$R1_IRI_11_REV <- sapply(dataFull$R1_IRI_11,  function(x) 6 - x)
+dataFull$R1_IRI_13_REV <- sapply(dataFull$R1_IRI_13,  function(x) 6 - x)
+dataFull$R1_IRI_14_REV <- sapply(dataFull$R1_IRI_14,  function(x) 6 - x)
+# dataFull$R1_IRI_2_REV + dataFull$R1_IRI_2
+#
+#
+#
+# 1. Facet: Empathic concern (EC)
+# --------------------------------
+# The Empathic Concern (EC) scale measures sympathy and concern for others. You could probably look at this as emotional empathy. IRIec items relate to feelings of empathy towards others (e.g. "When I see someone being taken advantage of, I feel kind of protective towards them."). The EC subscale measures other-oriented feelings of sympathy and concern for others in distress.
+
+#dataFull$R1_IRI_EC <- dataFull$R1_IRI_1 + dataFull$R1_IRI_3_REV + dataFull$R1_IRI_6 + dataFull$R1_IRI_10_REV + dataFull$R1_IRI_13_REV + dataFull$R1_IRI_15 + dataFull$R1_IRI_17
+#
+#
+dataFull$R1_IRI_EC <- rowMeans(dataFull[,c("R1_IRI_1", "R1_IRI_3_REV", "R1_IRI_6","R1_IRI_10_REV", "R1_IRI_13_REV", "R1_IRI_15", "R1_IRI_17")], na.rm=TRUE)
+#
+# 2. Facet: Perspective Taking (PT)
+# --------------------------------
+# The Perspective Taking (PT) scale measures the tendency to take the psychological point of view of others. You could probably look at this as cognitive (thinking) empathy. Items of the IRIptscale address one's tendency to take another's point-of-view, akin to the "theory of mind" (e.g. "When I am upset at someone, I usually try to 'put myself in his shoes' for a while."). The IRI subscale PT assesses the tendency to spontaneously adopt the psychological point of view of others.
+#
+#dataFull$R1_IRI_PT <- dataFull$R1_IRI_2_REV + dataFull$R1_IRI_5 + dataFull$R1_IRI_8 + dataFull$R1_IRI_11_REV + dataFull$R1_IRI_16 + dataFull$R1_IRI_19 + dataFull$R1_IRI_21
+#
+#
+dataFull$R1_IRI_PT <- rowMeans(dataFull[,c("R1_IRI_2_REV", "R1_IRI_5", "R1_IRI_8","R1_IRI_11_REV", "R1_IRI_16", "R1_IRI_19", "R1_IRI_21")], na.rm=TRUE)
+#
+# 3. Facet: Personal Distress (PD)
+# --------------------------------
+# The Personal Distress (PD) scale measures the kind of feelings (anxiety, etc.) that gets in the way of helping others. IRIpd addresses the tendency to experience distress in stressful situations (e.g. "In emergency situations, I feel apprehensive and ill-at-ease."). The PD subscale assesses self-oriented anxiety when experiencing others in distress.
+#
+#dataFull$R1_IRI_PD <- dataFull$R1_IRI_4 + dataFull$R1_IRI_7 + dataFull$R1_IRI_9_REV + dataFull$R1_IRI_12 + dataFull$R1_IRI_14_REV + dataFull$R1_IRI_18 + dataFull$R1_IRI_20
+#
+#
+dataFull$R1_IRI_PD <- rowMeans(dataFull[,c("R1_IRI_4", "R1_IRI_7", "R1_IRI_9_REV","R1_IRI_12", "R1_IRI_14_REV", "R1_IRI_18", "R1_IRI_20")], na.rm=TRUE)
+#
+# [AUTHOR: A summation of the four subscales is meaningless.] 4. Overall IRI Score
+# ---------------------
+# dataFull$R1_IRI <- dataFull$R1_IRI_EC + dataFull$R1_IRI_PT + dataFull$R1_IRI_PD
+# df <- data.frame(EC=dataFull$R1_IRI_EC, PT=dataFull$R1_IRI_PT, PD=dataFull$R1_IRI_PD)
+# psych::pairs.panels(df[1:3])
+# PerformanceAnalytics::chart.Correlation(df[1:3])
+# x <- cor(df[1:3]); corrplot::corrplot(x, type="upper", order="hclust")
+```
+
+```{r Justice Sensitivity}
+########################
+# Justice Sensitivity #
+######################
+#
+# JS_1 Victim Perspective (Own disadvantage)
+# -------------------------------------------
+# It makes me angry when others are undeservingly better off than me 
+# It worries me when I have to work hard for things that come easily to others
+#dataFull$JS_Victim <- dataFull$JS_1_1 + dataFull$JS_1_2
+dataFull$JS_Victim <- rowMeans(dataFull[,c("JS_1_1", "JS_1_2")], na.rm=TRUE)
+#
+# JS_2 Observer Perspective (Someone else disadvantage)
+# -----------------------------------------------------
+# I am upset when someone is undeservingly worse off than others 
+# It worries me when someone has to work hard for things that come easily to others 
+#dataFull$JS_Observer <- dataFull$JS_2_1 + dataFull$JS_2_2
+dataFull$JS_Observer <- rowMeans(dataFull[,c("JS_2_1", "JS_2_2")], na.rm=TRUE)
+#
+#
+# JS_3 Beneficiary Perspective (Own advantage)
+# --------------------------------------------
+# I feel guilty when I am better off than others for no reason 
+# It bothers me when things come easily to me that others have to work hard for 
+#dataFull$JS_Beneficiary <- dataFull$JS_3_1 + dataFull$JS_3_2
+dataFull$JS_Beneficiary <- rowMeans(dataFull[,c("JS_3_1", "JS_3_2")], na.rm=TRUE)
+#
+#
+# JS_4 Perpetrator Perspective (You treat someone unfairly)
+# ---------------------------------------------------------
+# I feel guilty when I enrich myself at the cost of others 
+# It bothers me when I use tricks to achieve something while others have to struggle for it 
+#dataFull$JS_Perpetrator <- dataFull$JS_4_1 + dataFull$JS_4_2
+dataFull$JS_Perpetrator <- rowMeans(dataFull[,c("JS_4_1", "JS_4_2")], na.rm=TRUE)
+#
+#
+#
+# Overall Score Justice Sensitivity
+# ---------------------------------
+# 
+#dataFull$JS <- dataFull$JS_Victim  + dataFull$JS_Observer  + dataFull$JS_Beneficiary + dataFull$JS_Perpetrator
+dataFull$JS <- rowMeans(dataFull[,c("JS_Victim", "JS_Observer", "JS_Beneficiary", "JS_Perpetrator")], na.rm=TRUE)
+#
+#
+#
+#
+#
+#load("C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/Working Data.RData")
+#df <- data.frame(JS_Victim=scale(data.76$JS_Victim), JS_Observer=scale(data.76$JS_Observer), JS_Beneficiary=scale(data.76$JS_Beneficiary),JS_Perpetrator=scale(data.76$JS_Perpetrator),PS_CandF=data.76$PS_CandF)
+
+#fun <- function(x){c(m=mean(x),# v=var(x),n=length(x))}
+
+#View(doBy::summaryBy(cbind(JS_Victim, JS_Observer, JS_Beneficiary, JS_Perpetrator) ~ PS_CandF, FUN=mean, data=df))
+
+#df2 <- data.frame(SELF     = df$JS_Victim, 
+#             OTHER    = rowMeans(df[, c("JS_Observer", "JS_Beneficiary", "JS_Perpetrator")]),
+#             PS_CandF = df$PS_CandF,
+#             Vote_16F = data.76$Vote_16F)
+
+#View(doBy::summaryBy(cbind(SELF, OTHER) ~ PS_CandF + Vote_16F, FUN=mean, data=df2))
+#View(doBy::summaryBy(cbind(SELF, OTHER) ~ cbind(PS_CandF), FUN=mean, data=df2))
+#View(doBy::summaryBy(cbind(SELF, OTHER) ~ cbind(Vote_16F), FUN=mean, data=df2))
+
+#df3 <- data.frame(
+#  SELF     = df$JS_Victim, 
+#  OTHER    = rowMeans(df[, c("JS_Observer", "JS_Beneficiary", "JS_Perpetrator")]),
+#  PS_CandF = df$PS_CandF,
+#  Vote_16F = data.76$Vote_16F)
+
+#View(doBy::summaryBy(cbind(SELF, OTHER) ~ PS_CandF, FUN=fun, data=df2))
+
+#doBy::summaryBy(cbind(RWA_Agression, RWA_Conventionalism,RWA_Submission) ~ PS_CandF, FUN=mean, data=data.76)
+
+#doBy::summaryBy(cbind(RWA_Agression, RWA_Conventionalism,RWA_Submission) ~ PS_CandF, FUN=mean, data=US_DT)
+
+#data.76$PS_Cand_Trump <-ifelse(data.76$PS_Cand==4, 1, 0)
+#US_DT$PS_Cand_Trump   <-ifelse(US_DT$PS_Cand==4, 1, 0)
+
+#cor(data.76$PS_Cand_Trump,df2$SELF)  #-0.09
+#cor(data.76$PS_Cand_Trump,df2$OTHER) #-0.20
+#US_DT <- data.76
+```
+
+```{r PVQ 1 Aggegate F and M}
+##########
+# PVQ_RR #
+##########
+#
+# MALE ITEMS (as example, there is also FEMALE items)
+# 1. It is important to him to form his views independently  
+# 2. It is important to him that his country is secure and stable
+# 3. It is important to him to have a good time 
+# 4. It is important to him to avoid upsetting other people 
+# 5. It is important to him that the weak and vulnerable in society be protected 
+# 6. It is important to him that people do what he says they should 
+# 7. It is important to him never to think he deserves more than other people 
+# 8. It is important to him to care for nature 
+# 9. It is important to him that no one should ever shame him 
+# 10. It is important to him always to look for different things to do 
+# 11. It is important to him to take care of people he is close to 
+# 12. It is important to him to have the power that money can bring 
+# It is very important to him to avoid disease and protect his health 
+# It is important to him to be tolerant toward all kinds of people and groups 
+# It is important to him never to violate rules or regulations 
+# It is important to him to make his own decisions about his life 
+# It is important to him to have ambitions in life 
+# It is important to him to maintain traditional values and ways of thinking 
+# It is important to him that people he knows have full confidence in him 
+# It is important to him to be wealthy
+# It is important to him to take part in activities to defend nature 
+# It is important to him never to annoy anyone 
+# It is important to him to develop his own opinions 
+# It is important to him to protect his public image 
+# It is very important to him to help the people dear to him 
+# It is important to him to be personally safe and secure 
+# It is important to him to be a dependable and trustworthy friend 
+# It is important to him to take risks that make life exciting 
+# It is important to him to have the power to make people do what he wants 
+# It is important to him to plan his activities independently 
+# It is important to him to follow rules even when no-one is watching 
+# It is important to him to be very successful 
+# It is important to him to follow his family's customs or the customs of a religion
+# It is important to him to listen to and understand people who are different from him 
+# It is important to him to have a strong state that can defend its citizens 
+# It is important to him to enjoy life's pleasures 
+# It is important to him that every person in the world have equal opportunities in life 
+# It is important to him to be humble 
+# It is important to him to figure things out himself 
+# It is important to him to honor the traditional practices of his culture 
+# It is important to him to be the one who tells others what to do 
+# It is important to him to obey all the laws 
+# It is important to him to have all sorts of new experiences 
+# It is important to him to own expensive things that show his wealth 
+# It is important to him to protect the natural environment from destruction or pollution 
+# It is important to him to take advantage of every opportunity to have fun 
+# It is important to him to concern himself with every need of his dear ones 
+# It is important to him that people recognize what he achieves 
+# It is important to him never to be humiliated 
+# It is important to him that his country protect itself against all threats
+# It is important to him never to make other people angry 
+# It is important to him that everyone be treated justly, even people he doesn't know 
+# It is important to him to avoid anything dangerous 
+# It is important to him to be satisfied with what he has and not ask for more 
+# It is important to him that all his friends and family can rely on him completely 
+# It is important to him to be free to choose what he does by himself 
+# It is important to him to accept people even when he disagrees with them 
+#
+# Binding Female and Male answers to one collumn
+dataFull$PVQ_1 <- rowSums(cbind(dataFull$PVQ_RR_Male_1, dataFull$PVQ_RR_Fem_1), na.rm=TRUE)
+dataFull$PVQ_2 <- rowSums(cbind(dataFull$PVQ_RR_Male_2, dataFull$PVQ_RR_Fem_2), na.rm=TRUE)
+dataFull$PVQ_3 <- rowSums(cbind(dataFull$PVQ_RR_Male_3, dataFull$PVQ_RR_Fem_3), na.rm=TRUE)
+dataFull$PVQ_4 <- rowSums(cbind(dataFull$PVQ_RR_Male_4, dataFull$PVQ_RR_Fem_4), na.rm=TRUE)
+dataFull$PVQ_5 <- rowSums(cbind(dataFull$PVQ_RR_Male_5, dataFull$PVQ_RR_Fem_5), na.rm=TRUE)
+dataFull$PVQ_6 <- rowSums(cbind(dataFull$PVQ_RR_Male_6, dataFull$PVQ_RR_Fem_6), na.rm=TRUE)
+dataFull$PVQ_7 <- rowSums(cbind(dataFull$PVQ_RR_Male_7, dataFull$PVQ_RR_Fem_7), na.rm=TRUE)
+dataFull$PVQ_8 <- rowSums(cbind(dataFull$PVQ_RR_Male_8, dataFull$PVQ_RR_Fem_8), na.rm=TRUE)
+dataFull$PVQ_9 <- rowSums(cbind(dataFull$PVQ_RR_Male_9, dataFull$PVQ_RR_Fem_9), na.rm=TRUE)
+dataFull$PVQ_10 <- rowSums(cbind(dataFull$PVQ_RR_Male_10, dataFull$PVQ_RR_Fem_10), na.rm=TRUE)
+dataFull$PVQ_11 <- rowSums(cbind(dataFull$PVQ_RR_Male_11, dataFull$PVQ_RR_Fem_11), na.rm=TRUE)
+dataFull$PVQ_12 <- rowSums(cbind(dataFull$PVQ_RR_Male_12, dataFull$PVQ_RR_Fem_12), na.rm=TRUE)
+dataFull$PVQ_13 <- rowSums(cbind(dataFull$PVQ_RR_Male_13, dataFull$PVQ_RR_Fem_13), na.rm=TRUE)
+dataFull$PVQ_14 <- rowSums(cbind(dataFull$PVQ_RR_Male_14, dataFull$PVQ_RR_Fem_14), na.rm=TRUE)
+dataFull$PVQ_15 <- rowSums(cbind(dataFull$PVQ_RR_Male_15, dataFull$PVQ_RR_Fem_15), na.rm=TRUE)
+dataFull$PVQ_16 <- rowSums(cbind(dataFull$PVQ_RR_Male_16, dataFull$PVQ_RR_Fem_16), na.rm=TRUE)
+dataFull$PVQ_17 <- rowSums(cbind(dataFull$PVQ_RR_Male_17, dataFull$PVQ_RR_Fem_17), na.rm=TRUE)
+dataFull$PVQ_18 <- rowSums(cbind(dataFull$PVQ_RR_Male_18, dataFull$PVQ_RR_Fem_18), na.rm=TRUE)
+dataFull$PVQ_19 <- rowSums(cbind(dataFull$PVQ_RR_Male_19, dataFull$PVQ_RR_Fem_19), na.rm=TRUE)
+dataFull$PVQ_20 <- rowSums(cbind(dataFull$PVQ_RR_Male_20, dataFull$PVQ_RR_Fem_20), na.rm=TRUE)
+dataFull$PVQ_21 <- rowSums(cbind(dataFull$PVQ_RR_Male_21, dataFull$PVQ_RR_Fem_21), na.rm=TRUE)
+dataFull$PVQ_22 <- rowSums(cbind(dataFull$PVQ_RR_Male_22, dataFull$PVQ_RR_Fem_22), na.rm=TRUE)
+dataFull$PVQ_23 <- rowSums(cbind(dataFull$PVQ_RR_Male_23, dataFull$PVQ_RR_Fem_23), na.rm=TRUE)
+dataFull$PVQ_24 <- rowSums(cbind(dataFull$PVQ_RR_Male_24, dataFull$PVQ_RR_Fem_24), na.rm=TRUE)
+dataFull$PVQ_25 <- rowSums(cbind(dataFull$PVQ_RR_Male_25, dataFull$PVQ_RR_Fem_25), na.rm=TRUE)
+dataFull$PVQ_26 <- rowSums(cbind(dataFull$PVQ_RR_Male_26, dataFull$PVQ_RR_Fem_26), na.rm=TRUE)
+dataFull$PVQ_27 <- rowSums(cbind(dataFull$PVQ_RR_Male_27, dataFull$PVQ_RR_Fem_27), na.rm=TRUE)
+dataFull$PVQ_28 <- rowSums(cbind(dataFull$PVQ_RR_Male_28, dataFull$PVQ_RR_Fem_28), na.rm=TRUE)
+dataFull$PVQ_29 <- rowSums(cbind(dataFull$PVQ_RR_Male_29, dataFull$PVQ_RR_Fem_29), na.rm=TRUE)
+dataFull$PVQ_30 <- rowSums(cbind(dataFull$PVQ_RR_Male_30, dataFull$PVQ_RR_Fem_30), na.rm=TRUE)
+dataFull$PVQ_31 <- rowSums(cbind(dataFull$PVQ_RR_Male_31, dataFull$PVQ_RR_Fem_31), na.rm=TRUE)
+dataFull$PVQ_32 <- rowSums(cbind(dataFull$PVQ_RR_Male_32, dataFull$PVQ_RR_Fem_32), na.rm=TRUE)
+dataFull$PVQ_33 <- rowSums(cbind(dataFull$PVQ_RR_Male_33, dataFull$PVQ_RR_Fem_33), na.rm=TRUE)
+dataFull$PVQ_34 <- rowSums(cbind(dataFull$PVQ_RR_Male_34, dataFull$PVQ_RR_Fem_34), na.rm=TRUE)
+dataFull$PVQ_35 <- rowSums(cbind(dataFull$PVQ_RR_Male_35, dataFull$PVQ_RR_Fem_35), na.rm=TRUE)
+dataFull$PVQ_36 <- rowSums(cbind(dataFull$PVQ_RR_Male_36, dataFull$PVQ_RR_Fem_36), na.rm=TRUE)
+dataFull$PVQ_37 <- rowSums(cbind(dataFull$PVQ_RR_Male_37, dataFull$PVQ_RR_Fem_37), na.rm=TRUE)
+dataFull$PVQ_38 <- rowSums(cbind(dataFull$PVQ_RR_Male_38, dataFull$PVQ_RR_Fem_38), na.rm=TRUE)
+dataFull$PVQ_39 <- rowSums(cbind(dataFull$PVQ_RR_Male_39, dataFull$PVQ_RR_Fem_39), na.rm=TRUE)
+dataFull$PVQ_40 <- rowSums(cbind(dataFull$PVQ_RR_Male_40, dataFull$PVQ_RR_Fem_40), na.rm=TRUE)
+dataFull$PVQ_41 <- rowSums(cbind(dataFull$PVQ_RR_Male_41, dataFull$PVQ_RR_Fem_41), na.rm=TRUE)
+dataFull$PVQ_42 <- rowSums(cbind(dataFull$PVQ_RR_Male_42, dataFull$PVQ_RR_Fem_42), na.rm=TRUE)
+dataFull$PVQ_43 <- rowSums(cbind(dataFull$PVQ_RR_Male_43, dataFull$PVQ_RR_Fem_43), na.rm=TRUE)
+dataFull$PVQ_44 <- rowSums(cbind(dataFull$PVQ_RR_Male_44, dataFull$PVQ_RR_Fem_44), na.rm=TRUE)
+dataFull$PVQ_45 <- rowSums(cbind(dataFull$PVQ_RR_Male_45, dataFull$PVQ_RR_Fem_45), na.rm=TRUE)
+dataFull$PVQ_46 <- rowSums(cbind(dataFull$PVQ_RR_Male_46, dataFull$PVQ_RR_Fem_46), na.rm=TRUE)
+dataFull$PVQ_47 <- rowSums(cbind(dataFull$PVQ_RR_Male_47, dataFull$PVQ_RR_Fem_47), na.rm=TRUE)
+dataFull$PVQ_48 <- rowSums(cbind(dataFull$PVQ_RR_Male_48, dataFull$PVQ_RR_Fem_48), na.rm=TRUE)
+dataFull$PVQ_49 <- rowSums(cbind(dataFull$PVQ_RR_Male_49, dataFull$PVQ_RR_Fem_49), na.rm=TRUE)
+dataFull$PVQ_50 <- rowSums(cbind(dataFull$PVQ_RR_Male_50, dataFull$PVQ_RR_Fem_50), na.rm=TRUE)
+dataFull$PVQ_51 <- rowSums(cbind(dataFull$PVQ_RR_Male_51, dataFull$PVQ_RR_Fem_51), na.rm=TRUE)
+dataFull$PVQ_52 <- rowSums(cbind(dataFull$PVQ_RR_Male_52, dataFull$PVQ_RR_Fem_52), na.rm=TRUE)
+dataFull$PVQ_53 <- rowSums(cbind(dataFull$PVQ_RR_Male_53, dataFull$PVQ_RR_Fem_53), na.rm=TRUE)
+dataFull$PVQ_54 <- rowSums(cbind(dataFull$PVQ_RR_Male_54, dataFull$PVQ_RR_Fem_54), na.rm=TRUE)
+dataFull$PVQ_55 <- rowSums(cbind(dataFull$PVQ_RR_Male_55, dataFull$PVQ_RR_Fem_55), na.rm=TRUE)
+dataFull$PVQ_56 <- rowSums(cbind(dataFull$PVQ_RR_Male_56, dataFull$PVQ_RR_Fem_56), na.rm=TRUE)
+dataFull$PVQ_57 <- rowSums(cbind(dataFull$PVQ_RR_Male_57, dataFull$PVQ_RR_Fem_57), na.rm=TRUE)
+#
+```
+
+```{r PVQ 2 Sum Scores, eval=FALSE}
+# #######################################################################################
+# ######################################################################################
+# ##################### There are several ways of scoring PVQ: ########################
+# ##################### ------------------------------------- ########################
+# ############################### SUM SUM SUM SUM ###################################
+# ##################################################################################
+#
+#
+# 19 Values
+# 10 original values
+# Higher order values
+# 
+#
+########################
+## 19 original values #
+#######################
+#
+# Self Direction Thought
+# --------------
+dataFull$PVQ_thought <- dataFull$PVQ_1 + dataFull$PVQ_23 + dataFull$PVQ_39 
+dataFull$PVQ_thought <- mean(dataFull$PVQ_thought) 
+#
+#dataFull$PVQ_thought <- rowMeans(dataFull[,c("PVQ_1", "PVQ_23","PVQ_39")], na.rm=TRUE)
+#
+# Self Direction Action
+# --------------
+dataFull$PVQ_action <- dataFull$PVQ_16 + dataFull$PVQ_30 + dataFull$PVQ_56 
+dataFull$PVQ_action <- mean(dataFull$PVQ_action) 
+#
+# Stimulation
+# --------------
+dataFull$PVQ_stim <- dataFull$PVQ_10 + dataFull$PVQ_28 + dataFull$PVQ_43 
+dataFull$PVQ_stim <- mean(dataFull$PVQ_stim) 
+#
+# Hedonism
+# --------------
+# Pleasure and sensuous gratification for oneself
+dataFull$PVQ_hed <- dataFull$PVQ_3 + dataFull$PVQ_36 + dataFull$PVQ_46 
+dataFull$PVQ_hed <- mean(dataFull$PVQ_hed) 
+#
+# Achievement
+# --------------
+dataFull$PVQ_ach <- dataFull$PVQ_17 + dataFull$PVQ_32 + dataFull$PVQ_48 
+dataFull$PVQ_ach <- mean(dataFull$PVQ_ach) 
+#
+# Power Dominance
+# --------------
+dataFull$PVQ_dom <- dataFull$PVQ_6 + dataFull$PVQ_29 + dataFull$PVQ_41 
+dataFull$PVQ_dom <- mean(dataFull$PVQ_dom) 
+#
+# Power Resources
+# --------------
+dataFull$PVQ_res <- dataFull$PVQ_12 + dataFull$PVQ_20 + dataFull$PVQ_44 
+dataFull$PVQ_res <- mean(dataFull$PVQ_res) 
+#
+# Face
+# --------------
+# Security and power through maintaining one's public image and avoiding humiliation
+dataFull$PVQ_face <- dataFull$PVQ_9 + dataFull$PVQ_24 + dataFull$PVQ_49 
+dataFull$PVQ_face <- mean(dataFull$PVQ_face) 
+#
+# Security Personal
+# --------------
+dataFull$PVQ_per <- dataFull$PVQ_13 + dataFull$PVQ_26 + dataFull$PVQ_53 
+dataFull$PVQ_per <- mean(dataFull$PVQ_per) 
+#
+# Security Societal
+# --------------
+dataFull$PVQ_soc <- dataFull$PVQ_2 + dataFull$PVQ_35 + dataFull$PVQ_50 
+dataFull$PVQ_soc <- mean(dataFull$PVQ_soc) 
+#
+# Tradition
+# --------------
+dataFull$PVQ_trad <- dataFull$PVQ_18 + dataFull$PVQ_33 + dataFull$PVQ_40 
+dataFull$PVQ_trad <- mean(dataFull$PVQ_trad) 
+#
+# Conformity-Rules
+# --------------
+dataFull$PVQ_rules <- dataFull$PVQ_15 + dataFull$PVQ_31 + dataFull$PVQ_42 
+dataFull$PVQ_rules <- mean(dataFull$PVQ_rules) 
+#
+# Conformity Interpersonal
+# --------------
+dataFull$PVQ_int <- dataFull$PVQ_4 + dataFull$PVQ_22 + dataFull$PVQ_51 
+dataFull$PVQ_int <- mean(dataFull$PVQ_int) 
+#
+# Humility
+# --------------
+dataFull$PVQ_hum <- dataFull$PVQ_7 + dataFull$PVQ_38 + dataFull$PVQ_54 
+dataFull$PVQ_hum <- mean(dataFull$PVQ_hum) 
+#
+# Universalism-Nature
+# --------------
+#  Preservation of the natural environment
+dataFull$PVQ_nat <- dataFull$PVQ_8 + dataFull$PVQ_21 + dataFull$PVQ_45 
+dataFull$PVQ_nat <- mean(dataFull$PVQ_nat) 
+#
+# Universalism-Concern
+# --------------
+dataFull$PVQ_conc <- dataFull$PVQ_5 + dataFull$PVQ_37 + dataFull$PVQ_52 
+dataFull$PVQ_conc <- mean(dataFull$PVQ_conc) 
+#
+# Universalism-Tolerance
+# --------------
+dataFull$PVQ_tol <- dataFull$PVQ_14 + dataFull$PVQ_34 + dataFull$PVQ_57 
+dataFull$PVQ_tol <- mean(dataFull$PVQ_tol) 
+#
+# Benevolence-Care
+# --------------
+dataFull$PVQ_care <- dataFull$PVQ_11 + dataFull$PVQ_25 + dataFull$PVQ_47 
+dataFull$PVQ_care <- mean(dataFull$PVQ_care) 
+#
+# Benvolence-Dependability
+# --------------
+dataFull$PVQ_dep <- dataFull$PVQ_19 + dataFull$PVQ_27 + dataFull$PVQ_55 
+dataFull$PVQ_dep <- mean(dataFull$PVQ_dep) 
+#
+#
+#
+#
+#
+########################
+## 10 original values #
+#######################
+#
+# Self Direction
+# --------------
+dataFull$PVQ_dir <- dataFull$PVQ_1 + dataFull$PVQ_23 + dataFull$PVQ_39 + dataFull$PVQ_16 + dataFull$PVQ_30 + dataFull$PVQ_56
+dataFull$PVQ_dir <- mean(dataFull$PVQ_dir) 
+#
+# Stimulation
+# -----------
+dataFull$PVQ_stim <- dataFull$PVQ_10 + dataFull$PVQ_28 + dataFull$PVQ_43
+dataFull$PVQ_stim <- mean(dataFull$PVQ_stim) 
+#
+# Hedonism
+# --------
+dataFull$PVQ_hed <- dataFull$PVQ_3 + dataFull$PVQ_36 + dataFull$PVQ_46
+dataFull$PVQ_hed <- mean(dataFull$PVQ_hed) 
+#
+#
+# Achievement
+# -----------
+dataFull$PVQ_achiev <- dataFull$PVQ_17 + dataFull$PVQ_32 + dataFull$PVQ_48
+dataFull$PVQ_achiev <- mean(dataFull$PVQ_achiev) 
+#
+#
+# Power
+# -----
+dataFull$PVQ_pow <- dataFull$PVQ_6 + dataFull$PVQ_29 + dataFull$PVQ_41 + dataFull$PVQ_12 + dataFull$PVQ_20 + dataFull$PVQ_44
+dataFull$PVQ_pow <- mean(dataFull$PVQ_pow) 
+#
+#
+# Security
+# ---------
+dataFull$PVQ_sec <- dataFull$PVQ_13 + dataFull$PVQ_26 + dataFull$PVQ_53 + dataFull$PVQ_2 + dataFull$PVQ_35 + dataFull$PVQ_50
+dataFull$PVQ_sec <- mean(dataFull$PVQ_sec) 
+#
+#
+# Conformity
+# ----------
+dataFull$PVQ_conf <- dataFull$PVQ_15 + dataFull$PVQ_31 + dataFull$PVQ_42 + dataFull$PVQ_4 + dataFull$PVQ_22 + dataFull$PVQ_51
+dataFull$PVQ_conf <- mean(dataFull$PVQ_conf) 
+#
+#
+#
+# Tradition
+# ---------
+dataFull$PVQ_trad <- dataFull$PVQ_18 + dataFull$PVQ_33 + dataFull$PVQ_40 + dataFull$PVQ_7 + dataFull$PVQ_38 + dataFull$PVQ_54
+dataFull$PVQ_trad <- mean(dataFull$PVQ_trad) 
+#
+#
+# Benevolence
+# ------------
+dataFull$PVQ_ben <- dataFull$PVQ_11 + dataFull$PVQ_25 + dataFull$PVQ_47 + dataFull$PVQ_19 + dataFull$PVQ_27 + dataFull$PVQ_55
+dataFull$PVQ_ben <- mean(dataFull$PVQ_ben) 
+#
+#
+# Universalism
+# -------------
+dataFull$PVQ_univ <- dataFull$PVQ_8 + dataFull$PVQ_21 + dataFull$PVQ_45 + dataFull$PVQ_5 + dataFull$PVQ_37 + dataFull$PVQ_52 + dataFull$PVQ_14 + dataFull$PVQ_34 + dataFull$PVQ_57
+dataFull$PVQ_univ <- mean(dataFull$PVQ_univ) 
+#
+#
+#
+#
+#
+##########################
+## Higher order values ##
+########################
+#
+#
+# Self Transcendence
+#--------------------
+dataFull$PVQ_Trans <- dataFull$PVQ_8 + dataFull$PVQ_21 + dataFull$PVQ_45 + dataFull$PVQ_5 + dataFull$PVQ_37 + dataFull$PVQ_52 + dataFull$PVQ_14 + dataFull$PVQ_34 + dataFull$PVQ_57 + dataFull$PVQ_11 + dataFull$PVQ_25 + dataFull$PVQ_47 + dataFull$PVQ_19 + dataFull$PVQ_27 + dataFull$PVQ_55
+dataFull$PVQ_Trans <- mean(dataFull$PVQ_Trans) 
+#
+#
+#
+# Self Enhancement
+#------------------
+dataFull$PVQ_Enhanc <- dataFull$PVQ_17 + dataFull$PVQ_32 + dataFull$PVQ_48 + dataFull$PVQ_6 + dataFull$PVQ_29 + dataFull$PVQ_41 + dataFull$PVQ_12 + dataFull$PVQ_20 + dataFull$PVQ_44
+dataFull$PVQ_Enhanc <- mean(dataFull$PVQ_Enhanc) 
+#
+#
+# Openness to change
+#--------------------
+dataFull$PVQ_Open <- dataFull$PVQ_1 + dataFull$PVQ_23 + dataFull$PVQ_39 + dataFull$PVQ_16 + dataFull$PVQ_30 + dataFull$PVQ_56 + dataFull$PVQ_10 + dataFull$PVQ_28 + dataFull$PVQ_43 + dataFull$PVQ_3 + dataFull$PVQ_36 + dataFull$PVQ_46
+dataFull$PVQ_Open <- mean(dataFull$PVQ_Open)
+#
+#
+#
+# Conservation
+#--------------
+dataFull$PVQ_Conserv <- dataFull$PVQ_13 + dataFull$PVQ_26 + dataFull$PVQ_53 + dataFull$PVQ_2 + dataFull$PVQ_35 + dataFull$PVQ_50 + dataFull$PVQ_18 + dataFull$PVQ_33 + dataFull$PVQ_40 + dataFull$PVQ_15 + dataFull$PVQ_31 + dataFull$PVQ_42 + dataFull$PVQ_4 + dataFull$PVQ_22 + dataFull$PVQ_51
+dataFull$PVQ_Conserv <- mean(dataFull$PVQ_Conserv)
+#
+#
+## PS.: Humility and Face may also be included in conservation, if no structural analysis is done to check their location in your own sample. Alternatively, they could be treated as separate values.
+#
+# Mean RATING - MRAT
+# -------------------
+dataFull$PVQ <-  dataFull$PVQ_1 + dataFull$PVQ_2 + dataFull$PVQ_3 + dataFull$PVQ_4 + dataFull$PVQ_5 + dataFull$PVQ_6 + dataFull$PVQ_7 + dataFull$PVQ_8 + dataFull$PVQ_9 + dataFull$PVQ_10 + dataFull$PVQ_11 + dataFull$PVQ_12 + dataFull$PVQ_13 + dataFull$PVQ_14 + dataFull$PVQ_15 + dataFull$PVQ_16 + dataFull$PVQ_17 + dataFull$PVQ_18 + dataFull$PVQ_19 + dataFull$PVQ_20 + dataFull$PVQ_21 + dataFull$PVQ_22 + dataFull$PVQ_23 + dataFull$PVQ_24 + dataFull$PVQ_25 + dataFull$PVQ_26 + dataFull$PVQ_27 + dataFull$PVQ_28 + dataFull$PVQ_29 + dataFull$PVQ_30 + dataFull$PVQ_31 + dataFull$PVQ_32 + dataFull$PVQ_33 + dataFull$PVQ_34 + dataFull$PVQ_35 + dataFull$PVQ_36 + dataFull$PVQ_37 + dataFull$PVQ_38 + dataFull$PVQ_39 + dataFull$PVQ_40 + dataFull$PVQ_41 + dataFull$PVQ_42 + dataFull$PVQ_43 + dataFull$PVQ_44 + dataFull$PVQ_45 + dataFull$PVQ_46 + dataFull$PVQ_47 + dataFull$PVQ_48 + dataFull$PVQ_49 + dataFull$PVQ_50 + dataFull$PVQ_51 + dataFull$PVQ_52 + dataFull$PVQ_53 + dataFull$PVQ_54 + dataFull$PVQ_55 + dataFull$PVQ_56 + dataFull$PVQ_57
+#
+dataFull$PVQ <- mean(dataFull$PVQ)
+#
+```
+
+```{r PVQ 3 Mean Scores}
+# ########################################################################################
+# #######################################################################################
+# ##################### There are several ways of scoring PVQ: #########################
+# ##################### ------------------------------------- #########################
+# ################################ MEAN MEAN MEAN ##$#################################
+# ###################################################################################
+#
+#
+# 19 Values
+# 10 original values
+# 4 Higher order values
+# 
+#
+#########################
+## 19 original values #
+#######################
+#
+# Self Direction Thought
+# --------------
+dataFull$PVQ_thought <- rowMeans(dataFull[,c("PVQ_1", "PVQ_23","PVQ_39")], na.rm=TRUE)
+#
+# Self Direction Action
+# --------------
+dataFull$PVQ_dir <- rowMeans(dataFull[,c("PVQ_16", "PVQ_30","PVQ_56")], na.rm=TRUE)
+#
+# Stimulation
+# --------------
+dataFull$PVQ_stim <- rowMeans(dataFull[,c("PVQ_10", "PVQ_28","PVQ_43")], na.rm=TRUE)
+#
+# Hedonism
+# --------------
+dataFull$PVQ_hed <- rowMeans(dataFull[,c("PVQ_3", "PVQ_36","PVQ_46")], na.rm=TRUE)
+#
+# Achievement
+# --------------
+dataFull$PVQ_ach <- rowMeans(dataFull[,c("PVQ_17", "PVQ_32","PVQ_48")], na.rm=TRUE)
+#
+# Power Dominance
+# --------------
+dataFull$PVQ_dom <- rowMeans(dataFull[,c("PVQ_6", "PVQ_29","PVQ_41")], na.rm=TRUE)
+#
+# Power Resources
+# --------------
+dataFull$PVQ_res <- rowMeans(dataFull[,c("PVQ_12", "PVQ_20","PVQ_44")], na.rm=TRUE)
+#
+# Face
+# --------------
+dataFull$PVQ_face <- rowMeans(dataFull[,c("PVQ_9", "PVQ_24","PVQ_49")], na.rm=TRUE)
+#
+# Security Personal
+# --------------
+dataFull$PVQ_per <- rowMeans(dataFull[,c("PVQ_13", "PVQ_26","PVQ_53")], na.rm=TRUE)
+#
+# Security Societal
+# --------------
+dataFull$PVQ_soc <- rowMeans(dataFull[,c("PVQ_2", "PVQ_35","PVQ_50")], na.rm=TRUE)
+#
+# Tradition
+# --------------
+dataFull$PVQ_trad <- rowMeans(dataFull[,c("PVQ_18", "PVQ_33","PVQ_40")], na.rm=TRUE)
+#
+# Conformity-Rules
+# --------------
+dataFull$PVQ_rules <- rowMeans(dataFull[,c("PVQ_15", "PVQ_31","PVQ_42")], na.rm=TRUE)
+#
+# Conformity Interpersonal
+# --------------
+dataFull$PVQ_int <- rowMeans(dataFull[,c("PVQ_4", "PVQ_22","PVQ_51")], na.rm=TRUE)
+#
+# Humility
+# --------------
+dataFull$PVQ_hum <- rowMeans(dataFull[,c("PVQ_7", "PVQ_38","PVQ_54")], na.rm=TRUE)
+#
+# Universalism-Nature
+# --------------
+dataFull$PVQ_nat <- rowMeans(dataFull[,c("PVQ_8", "PVQ_21","PVQ_45")], na.rm=TRUE)
+#
+# Universalism-Concern
+# --------------
+dataFull$PVQ_conc <- rowMeans(dataFull[,c("PVQ_5", "PVQ_37","PVQ_52")], na.rm=TRUE)
+#
+# Universalism-Tolerance
+# --------------
+dataFull$PVQ_tol <- rowMeans(dataFull[,c("PVQ_14", "PVQ_34","PVQ_57")], na.rm=TRUE)
+#
+# Benevolence-Care
+# --------------
+dataFull$PVQ_care <- rowMeans(dataFull[,c("PVQ_11", "PVQ_25","PVQ_47")], na.rm=TRUE)
+#
+# Benvolence-Dependability
+# --------------
+dataFull$PVQ_dep<- rowMeans(dataFull[,c("PVQ_19", "PVQ_27","PVQ_55")], na.rm=TRUE)
+#
+#
+#
+#
+########################
+## 10 original values #
+#######################
+#
+# Self Direction
+# --------------
+dataFull$PVQ_dir10 <- rowMeans(dataFull[,c("PVQ_1", "PVQ_23","PVQ_39", "PVQ_16", "PVQ_30","PVQ_56")], na.rm=TRUE)
+#
+# Stimulation
+# -----------
+dataFull$PVQ_stim10 <- rowMeans(dataFull[,c("PVQ_10", "PVQ_28","PVQ_43")], na.rm=TRUE)
+#
+# Hedonism
+# --------
+dataFull$PVQ_hed10 <- rowMeans(dataFull[,c("PVQ_3", "PVQ_36","PVQ_46")], na.rm=TRUE)
+#
+#
+# Achievement
+# -----------
+dataFull$PVQ_achiev10 <- rowMeans(dataFull[,c("PVQ_17", "PVQ_32","PVQ_48")], na.rm=TRUE)
+#
+#
+# Power
+# -----
+dataFull$PVQ_pow10 <- rowMeans(dataFull[,c("PVQ_6", "PVQ_29","PVQ_41","PVQ_12", "PVQ_20","PVQ_44")], na.rm=TRUE)
+#
+#
+# Security
+# ---------
+dataFull$PVQ_sec10 <- rowMeans(dataFull[,c("PVQ_13","PVQ_26", "PVQ_53","PVQ_2","PVQ_35", "PVQ_50")], na.rm=TRUE)
+#
+#
+# Conformity
+# ----------
+dataFull$PVQ_conf10 <- rowMeans(dataFull[,c("PVQ_15","PVQ_31", "PVQ_42","PVQ_4","PVQ_22", "PVQ_51")], na.rm=TRUE)
+#
+#
+#
+# Tradition
+# ---------
+dataFull$PVQ_trad10 <- rowMeans(dataFull[,c("PVQ_18","PVQ_33", "PVQ_40","PVQ_7","PVQ_38", "PVQ_54")], na.rm=TRUE)
+#
+#
+# Benevolence
+# ------------
+dataFull$PVQ_ben10 <- rowMeans(dataFull[,c("PVQ_11","PVQ_25", "PVQ_47","PVQ_19","PVQ_27", "PVQ_55")], na.rm=TRUE)
+#
+#
+# Universalism
+# -------------
+dataFull$PVQ_univ10 <- rowMeans(dataFull[,c("PVQ_8","PVQ_21", "PVQ_45","PVQ_5","PVQ_37", "PVQ_52", "PVQ_14", "PVQ_34", "PVQ_57")], na.rm=TRUE)
+#
+#
+#
+#
+#
+##########################
+## Higher order values ##
+########################
+#
+#
+# Self Transcendence
+#--------------------
+dataFull$PVQ_Trans <- rowMeans(dataFull[,c("PVQ_8","PVQ_21", "PVQ_45","PVQ_5","PVQ_37", "PVQ_52", "PVQ_14", "PVQ_34", "PVQ_57", "PVQ_11", "PVQ_25", "PVQ_47", "PVQ_19", "PVQ_27", "PVQ_55" )], na.rm=TRUE)
+#
+#
+#
+# Self Enhancement
+#------------------
+dataFull$PVQ_Enhanc <- rowMeans(dataFull[,c("PVQ_17","PVQ_32", "PVQ_48","PVQ_6","PVQ_29", "PVQ_41", "PVQ_12", "PVQ_20", "PVQ_44")], na.rm=TRUE)
+#
+#
+# Openness to change
+#--------------------
+dataFull$PVQ_Open <- rowMeans(dataFull[,c("PVQ_1","PVQ_23", "PVQ_39","PVQ_16","PVQ_30", "PVQ_56", "PVQ_10", "PVQ_28", "PVQ_43", "PVQ_3", "PVQ_36", "PVQ_46")], na.rm=TRUE)
+#
+#
+#
+# Conservation
+#--------------
+dataFull$PVQ_Conserv <- rowMeans(dataFull[,c("PVQ_13","PVQ_26", "PVQ_53","PVQ_2","PVQ_35", "PVQ_50", "PVQ_18", "PVQ_33", "PVQ_40", "PVQ_15", "PVQ_31", "PVQ_42", "PVQ_4", "PVQ_22", "PVQ_51" )], na.rm=TRUE)
+#
+#
+## PS.: Humility and Face may also be included in conservation, if no structural analysis is done to check their location in your own sample. Alternatively, they could be treated as separate values.
+#
+
+# "Self Direction Thought", "Self Direction Action", "Stimulation", "Hedonism", "Achievement", "Power Dominance", "Power Resources", "Face", "Security Personal", "Security Societal", "Tradition", "Conformity-Rules", "Conformity Interpersonal", "Humility", "Universalism-Nature", "Universalism-Concern", "Universalism-Tolerance", "Benevolence-Care", "Benvolence-Dependability"
+
+
+#"dataFull$PVQ_thought", "dataFull$PVQ_dir", "dataFull$PVQ_stim", "dataFull$PVQ_hed", "dataFull$PVQ_ach", "dataFull$PVQ_dom", "dataFull$PVQ_res","dataFull$PVQ_face", "dataFull$PVQ_per", "dataFull$PVQ_soc", "dataFull$PVQ_trad", "dataFull$PVQ_rules", "dataFull$PVQ_int", "dataFull$PVQ_hum", "dataFull$PVQ_nat", "dataFull$PVQ_conc", "dataFull$PVQ_tol", "dataFull$PVQ_care", "dataFull$PVQ_dep"
+```
+
+```{r Conservatism Henningham}
+###############
+# Henningham #
+#############
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW #-----------------------------------------
+#
+# Strongly agree (1) - Strongly disagree (9)
+# -------------------------------------------
+# Death penalty* 
+# Multiculturalism 
+# Stiffer jail terms* 
+# Voluntary euthanasia 
+# Bible truth* 
+# Gay rights
+# Premarital virginity* 
+# Muslim immigration
+# Church authority*
+# Legalized abortion 
+# Legalized prostitution 
+# 1, 3, 5, 7, 9
+# -----------------------
+# Henn 97
+# Government Welfare
+# Unemployment Benefits
+# Worker's Unions
+# Wealth Tax
+# Minimum Wage 
+#
+#
+dataFull$CS5_Henn_1_REV  <-  sapply(dataFull$CS5_Henn_1,  function(x) 10 - x)
+dataFull$CS5_Henn_3_REV  <-  sapply(dataFull$CS5_Henn_3,  function(x) 10 - x)
+dataFull$CS5_Henn_5_REV  <-  sapply(dataFull$CS5_Henn_5,  function(x) 10 - x)
+dataFull$CS5_Henn_7_REV  <-  sapply(dataFull$CS5_Henn_7,  function(x) 10 - x)
+dataFull$CS5_Henn_9_REV <-  sapply(dataFull$CS5_Henn_9,  function(x) 10 - x)
+#
+# Overall Score Henninghan 1996 (Social Conservatism)
+# ---------------------------------------------------
+#dataFull$CS5_Henn_1996 <- dataFull$CS5_Henn_1 + dataFull$CS5_Henn_2_REV + dataFull$CS5_Henn_3 + dataFull$CS5_Henn_4_REV + dataFull$CS5_Henn_5 + dataFull$CS5_Henn_6_REV + dataFull$CS5_Henn_7 + dataFull$CS5_Henn_8_REV + dataFull$CS5_Henn_9 + dataFull$CS5_Henn_10_REV + dataFull$CS5_Henn_11_REV
+#
+dataFull$CS5_Henn_1996 <- rowMeans(dataFull[,c("CS5_Henn_1_REV", "CS5_Henn_2", "CS5_Henn_3_REV", "CS5_Henn_4", "CS5_Henn_5_REV", "CS5_Henn_6", "CS5_Henn_7_REV", "CS5_Henn_8", "CS5_Henn_9_REV", "CS5_Henn_10", "CS5_Henn_11")], na.rm=TRUE)
+#
+# Overall Score Henninghan 1997 (Economic Conservatism)
+# -----------------------------------------------------
+#dataFull$CS5_Henn_1997 <- dataFull$CS5_Henn_12_REV + dataFull$CS5_Henn_13_REV + dataFull$CS5_Henn_14_REV + dataFull$CS5_Henn_15_REV + dataFull$CS5_Henn_16_REV  
+#
+dataFull$CS5_Henn_1997 <- rowMeans(dataFull[,c("CS5_Henn_12", "CS5_Henn_13", "CS5_Henn_14", "CS5_Henn_15", "CS5_Henn_16")], na.rm=TRUE)
+#
+# Overall Score Henninghan All Items
+# -----------------------------------
+#dataFull$CS5_Henn_All <- dataFull$CS5_Henn_1996 + dataFull$CS5_Henn_1997
+
+dataFull$CS5_Henn_All <- rowMeans(dataFull[,c("CS5_Henn_1_REV", "CS5_Henn_2", "CS5_Henn_3_REV", "CS5_Henn_4", "CS5_Henn_5_REV", "CS5_Henn_6", "CS5_Henn_7_REV", "CS5_Henn_8", "CS5_Henn_9_REV", "CS5_Henn_10", "CS5_Henn_11", "CS5_Henn_12", "CS5_Henn_13", "CS5_Henn_14", "CS5_Henn_15", "CS5_Henn_16")], na.rm=TRUE)
+#
+#
+#doBy::summaryBy(CS5_Henn_1996 ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#doBy::summaryBy(CS5_Henn_1997 ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#doBy::summaryBy(CS5_Henn_All ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#
+#
+dataFull$HC <- dataFull$CS5_Henn_All
+dataFull$HC.SC <- rowMeans(dataFull[c("CS5_Henn_1_REV", "CS5_Henn_2", "CS5_Henn_3_REV", "CS5_Henn_4", "CS5_Henn_5_REV", "CS5_Henn_6", "CS5_Henn_7_REV", "CS5_Henn_8", "CS5_Henn_9_REV", "CS5_Henn_10", "CS5_Henn_11")], na.rm=TRUE)
+dataFull$HC.EC <- rowMeans(dataFull[c("CS5_Henn_12", "CS5_Henn_13", "CS5_Henn_14", "CS5_Henn_15", "CS5_Henn_16")], na.rm=TRUE)
+#
+#
+#
+# Checking
+#corrplot::corrplot(cor(dataFull[c("CS5_Henn_1_REV", "CS5_Henn_2", "CS5_Henn_3_REV", "CS5_Henn_4", "CS5_Henn_5_REV", "CS5_Henn_6", "CS5_Henn_7_REV", "CS5_Henn_8", "CS5_Henn_9_REV", "CS5_Henn_10", "CS5_Henn_11", "CS5_Henn_12", "CS5_Henn_13", "CS5_Henn_14", "CS5_Henn_15", "CS5_Henn_16")], use = "na.or.complete"), method = "number")
+#corrplot::corrplot(cor(HC.EC))
+#corrplot::corrplot(cor(HC.SC))
+```
+
+```{r Conservatism Zell}
+#####################
+# Zell & Bernstein #
+###################
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW 
+#-----------------------------------------
+#
+# Strongly agree (1) - Strongly disagree (9)
+# -------------------------------------------
+#
+# There need to be stricter laws and regulations to protect the environment 
+# The government should help more needy people even if it means going deeper into debt 
+# The growing number of newcomers from other countries threaten traditional American customs and values*
+# I never doubt the existence of God*
+# Business corporations make too much profit 
+# Gays and lesbians should be allowed to marry legally
+# The government needs to do more to make health care affordable and accessible 
+# One parent can bring up a child as well as two parents together
+# Government regulation of business usually does more harm than good* 
+# Abortion should be illegal in all or most cases*
+# Labor unions are necessary to protect the working person 
+# Poor people have become too dependent on government assistance programs* 
+#
+#
+dataFull$CS1_ZB_3_REV <-  sapply(dataFull$CS1_ZB_3,  function(x) 10 - x)
+dataFull$CS1_ZB_4_REV <-  sapply(dataFull$CS1_ZB_4,  function(x) 10 - x)
+dataFull$CS1_ZB_9_REV <-  sapply(dataFull$CS1_ZB_9,  function(x) 10 - x)
+dataFull$CS1_ZB_10_REV <-  sapply(dataFull$CS1_ZB_10,  function(x) 10 - x)
+dataFull$CS1_ZB_12_REV <-  sapply(dataFull$CS1_ZB_12,  function(x) 10 - x)
+
+#
+#dataFull$CS1_ZB <- dataFull$CS1_ZB_1_REV + dataFull$CS1_ZB_2_REV + dataFull$CS1_ZB_3 + dataFull$CS1_ZB_4 + dataFull$CS1_ZB_5_REV + dataFull$CS1_ZB_6_REV + dataFull$CS1_ZB_7_REV + dataFull$CS1_ZB_8_REV + dataFull$CS1_ZB_9 + dataFull$CS1_ZB_10 + dataFull$CS1_ZB_11_REV + dataFull$CS1_ZB_12
+
+dataFull$CS1_ZB <- rowMeans(dataFull[,c("CS1_ZB_1", "CS1_ZB_2", "CS1_ZB_3_REV", "CS1_ZB_4_REV", "CS1_ZB_5", "CS1_ZB_6", "CS1_ZB_7", "CS1_ZB_8", "CS1_ZB_9_REV", "CS1_ZB_10_REV", "CS1_ZB_11", "CS1_ZB_12_REV")], na.rm=TRUE)
+#
+#
+#doBy::summaryBy(CS1_ZB ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#
+#
+########################################
+# Zell & Bernstein # Social & Economic #
+######################################
+#
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW 
+#-----------------------------------------
+# Strongly agree (1) - Strongly disagree (9)
+# -------------------------------------------
+#
+#
+# 1. [soc] There need to be stricter laws and regulations to protect the environment 
+# 2. [eco] The government should help more needy people even if it means going deeper into debt 
+# 3. [soc] [REV] The growing number of newcomers from other countries threaten traditional American customs and values*
+# 4. [soc] [REV] I never doubt the existence of God*
+# 5. [eco] Business corporations make too much profit 
+# 6. [soc] Gays and lesbians should be allowed to marry legally
+# 7. [soc] The government needs to do more to make health care affordable and accessible 
+# 8. [soc] One parent can bring up a child as well as two parents together
+# 9. [eco] [REV] Government regulation of business usually does more harm than good* 
+# 10. [soc] [REV] Abortion should be illegal in all or most cases*
+# 11. [eco] Labor unions are necessary to protect the working person 
+# 12. [eco] [REV] Poor people have become too dependent on government assistance programs* 
+#
+# [soc] = 1, 3, 4, 6, 7, 8, 10 (7 items)
+# [eco] = 2, 5, 9, 11, 12 (5 items)
+# [REV] = 3, 4, 9, 10, 12 (5 items)
+#
+#
+#
+# 1. [soc] There need to be stricter laws and regulations to protect the environment 
+# 3. [soc] [REV] The growing number of newcomers from other countries threaten traditional American customs and values*
+# 4. [soc] [REV] I never doubt the existence of God*
+# 6. [soc] Gays and lesbians should be allowed to marry legally
+# 7. [soc] The government needs to do more to make health care affordable and accessible 
+# 8. [soc] One parent can bring up a child as well as two parents together
+# 10. [soc] [REV] Abortion should be illegal in all or most cases*
+#-----------------
+# 2. [eco] The government should help more needy people even if it means going deeper into debt 
+# 5. [eco] Business corporations make too much profit 
+# 9. [eco] [REV] Government regulation of business usually does more harm than good* 
+# 11. [eco] Labor unions are necessary to protect the working person 
+# 12. [eco] [REV] Poor people have become too dependent on government assistance programs* 
+#
+#
+#
+dataFull$ZB <- dataFull$CS1_ZB
+dataFull$ZB.SC <- rowMeans(dataFull[c("CS1_ZB_1","CS1_ZB_3_REV", "CS1_ZB_4_REV", "CS1_ZB_6", "CS1_ZB_7", "CS1_ZB_8", "CS1_ZB_10_REV")], na.rm=TRUE)
+dataFull$ZB.EC <- rowMeans(dataFull[c("CS1_ZB_2", "CS1_ZB_5", "CS1_ZB_9_REV","CS1_ZB_11", "CS1_ZB_12_REV")], na.rm=TRUE)
+#
+#
+#corrplot::corrplot(cor(dataFull[c("CS1_ZB_1", "CS1_ZB_2", "CS1_ZB_3_REV", "CS1_ZB_4_REV", "CS1_ZB_5", "CS1_ZB_6", "CS1_ZB_7", "CS1_ZB_8", "CS1_ZB_9_REV", "CS1_ZB_10_REV", "CS1_ZB_11", "CS1_ZB_12_REV")], use ="na.or.complete"), method = "number")
+#corrplot::corrplot(cor(dataFull[c( "CS1_ZB_1","CS1_ZB_3_REV", "CS1_ZB_4_REV", "CS1_ZB_6", "CS1_ZB_7", "CS1_ZB_8", "CS1_ZB_10_REV")], use ="na.or.complete"), method = "number")
+#corrplot::corrplot(cor(dataFull[c( "CS1_ZB_2", "CS1_ZB_5", "CS1_ZB_9_REV","CS1_ZB_11", "CS1_ZB_12_REV")], use ="na.or.complete"), method = "number")
+#ZB.EC <- ZB[,c(2, 5, 9, 11, 12)]
+#ZB.SC <- ZB[,c(1, 3, 4,  6,  7, 8, 10)]
+```
+
+```{r Conservatism Everett}
+#############
+# Everett #
+###########
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW #-----------------------------------------
+# 1. I feel strongly negative -	5. I feel neutral - 9.I feel strongly positive
+#
+# Abortion 
+# Limited government 
+# Military and national security 
+# Religion 
+# Welfare benefits
+# Gun ownership 
+# Traditional marriage 
+# Traditional values 
+# Fiscal responsibility 
+# Business 
+# The family unit 
+# Patriotism 
+#
+#
+#
+##################################
+# Everett # # Social & Economic #
+################################
+##
+# Direction of means
+# Conservative are HIGH, Liberals are LOW 
+#-----------------------------------------
+# 1. I feel strongly negative -	5. I feel neutral - 9.I feel strongly positive
+# ------------------------------------------------------
+#
+# 1.  [soc] [REV] Abortion*
+# 2.  [eco] Limited government 
+# 3.  [soc] Military and national security 
+# 4.  [soc] Religion 
+# 5.  [eco] [REV] Welfare benefits*
+# 6.  [soc] Gun ownership 
+# 7.  [soc] Traditional marriage 
+# 8.  [soc] Traditional values 
+# 9.  [eco] Fiscal responsibility 
+# 10. [eco] Business 
+# 11. [soc] The family unit 
+# 12. [soc] Patriotism 
+#
+#
+# [soc] =  1, 3, 4, 6, 7, 8, 11, 12 (8 items)
+# [eco] =  2, 5, 9, 10              (4 items)
+# [REV] =  1, 5                     (2 items)
+#
+# Economic
+# 2.  [eco] Limited government 
+# 5.  [eco] [REV] Welfare benefits*
+# 9.  [eco] Fiscal responsibility 
+# 10. [eco] Business 
+#
+
+dataFull$CS2_Ever_1_REV <-  sapply(dataFull$CS2_Ever_1,  function(x) 10 - x)
+dataFull$CS2_Ever_5_REV <-  sapply(dataFull$CS2_Ever_5,  function(x) 10 - x)
+
+#dataFull$CS2_Ever <- dataFull$CS2_Ever_1_REV + dataFull$CS2_Ever_2 + dataFull$CS2_Ever_3 + dataFull$CS2_Ever_4 + dataFull$CS2_Ever_5_REV + dataFull$CS2_Ever_6 + dataFull$CS2_Ever_7 + dataFull$CS2_Ever_8 + dataFull$CS2_Ever_9 + dataFull$CS2_Ever_10 + dataFull$CS2_Ever_11 + dataFull$CS2_Ever_12
+#
+#
+dataFull$CS2_Ever <- rowMeans(dataFull[,c("CS2_Ever_1_REV", "CS2_Ever_2", "CS2_Ever_3", "CS2_Ever_4", "CS2_Ever_5_REV", "CS2_Ever_6", "CS2_Ever_7", "CS2_Ever_8", "CS2_Ever_9", "CS2_Ever_10", "CS2_Ever_11", "CS2_Ever_12")], na.rm=TRUE)
+#
+#
+#doBy::summaryBy(CS2_Ever ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#
+#
+dataFull$EV <- dataFull$CS2_Ever
+dataFull$EV.SC <- rowMeans(dataFull[c("CS2_Ever_1_REV",  "CS2_Ever_3", "CS2_Ever_4", "CS2_Ever_6", "CS2_Ever_7", "CS2_Ever_8", "CS2_Ever_11", "CS2_Ever_12")], na.rm=TRUE)
+dataFull$EV.EC <- rowMeans(dataFull[c("CS2_Ever_2","CS2_Ever_5_REV","CS2_Ever_9", "CS2_Ever_10")], na.rm=TRUE)
+#
+#
+#corrplot::corrplot(cor(dataFull[c("CS1_ZB_1", "CS1_ZB_2", "CS1_ZB_3_REV", "CS1_ZB_4_REV", "CS1_ZB_5", "CS1_ZB_6", "CS1_ZB_7", "CS1_ZB_8", "CS1_ZB_9_REV", "CS1_ZB_10_REV", "CS1_ZB_11", "CS1_ZB_12_REV")], use ="na.or.complete"), method = "number")
+#corrplot::corrplot(cor(dataFull[c( "CS1_ZB_1","CS1_ZB_3_REV", "CS1_ZB_4_REV", "CS1_ZB_6", "CS1_ZB_7", "CS1_ZB_8", "CS1_ZB_10_REV")], use ="na.or.complete"), method = "number")
+#corrplot::corrplot(cor(dataFull[c( "CS1_ZB_2", "CS1_ZB_5", "CS1_ZB_9_REV","CS1_ZB_11", "CS1_ZB_12_REV")], use ="na.or.complete"), method = "number")
+```
+
+```{r Conservatism Inbar}
+##########
+# Inbar #
+########
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW #-----------------------------------------
+#
+# Strongly agree (1) - Strongly disagree (9)
+# -------------------------------------------
+#
+# A woman should have the right to choose what to do with her body, even if that means getting an abortion 
+# Homosexuals should have the same right to marriage as anyone else 
+# The welfare system is too easy to abuse, and does not give people enough incentive to find work*
+# To try to prevent Iran from developing nuclear technology, the United States should consider bombing Iran's nuclear development sites* 
+# Overall, labor unions tend to hurt the US economy* 
+# It is important for our legal system to use the death penalty as punishment for heinous crimes*
+# Affirmative action gives those groups with a history of oppression a chance to get ahead
+# The United States should not have invaded Iraq 
+# Gun control laws are not nearly strict enough 
+# Federal tax cuts have been worth it, because they have helped strengthen the economy by allowing Americans to keep more of their own money*
+#
+#
+dataFull$CS3_Inb_3_REV <-  sapply(dataFull$CS3_Inb_3,  function(x) 10 - x)
+dataFull$CS3_Inb_4_REV <-  sapply(dataFull$CS3_Inb_4,  function(x) 10 - x)
+dataFull$CS3_Inb_5_REV <-  sapply(dataFull$CS3_Inb_5,  function(x) 10 - x)
+dataFull$CS3_Inb_6_REV <-  sapply(dataFull$CS3_Inb_6,  function(x) 10 - x)
+dataFull$CS3_Inb_10_REV <-  sapply(dataFull$CS3_Inb_10,  function(x) 10 - x)
+
+#dataFull$CS3_Inb <- dataFull$CS3_Inb_1_REV + dataFull$CS3_Inb_2_REV + dataFull$CS3_Inb_3 + dataFull$CS3_Inb_4 + dataFull$CS3_Inb_5 + dataFull$CS3_Inb_6 + dataFull$CS3_Inb_7_REV + dataFull$CS3_Inb_8_REV + dataFull$CS3_Inb_9_REV + dataFull$CS3_Inb_10
+
+dataFull$CS3_Inb <- rowMeans(dataFull[,c("CS3_Inb_1", "CS3_Inb_2", "CS3_Inb_3_REV", "CS3_Inb_4_REV", "CS3_Inb_5_REV", "CS3_Inb_6_REV", "CS3_Inb_7", "CS3_Inb_8", "CS3_Inb_9", "CS3_Inb_10_REV")], na.rm=TRUE)
+#doBy::summaryBy(CS3_Inb ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#
+#
+####################################################
+# Inbar, Pizarro, & Bloom  ### Social & Economic #
+#################################################
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW 
+#-----------------------------------------
+# Strongly agree (1) - Strongly disagree (9)
+# -------------------------------------------
+#
+#
+# 1.   [soc] A woman should have the right to choose what to do with her body, even if that means getting an abortion 
+# 2.   [soc] Homosexuals should have the same right to marriage as anyone else 
+# 3.   [eco] [REV] The welfare system is too easy to abuse, and does not give people enough incentive to find work*
+# 4.   [soc] [REV] To try to prevent Iran from developing nuclear technology, the United States should consider bombing Iran's nuclear sites*
+# 5.  [eco] [REV] Overall, labor unions tend to hurt the US economy* 
+# 6.  [soc] [REV] It is important for our legal system to use the death penalty as punishment for heinous crimes*
+# 7.  [eco] Affirmative action gives those groups with a history of oppression a chance to get ahead
+# 8.  [soc] The United States should not have invaded Iraq 
+# 9.  [soc] Gun control laws are not nearly strict enough 
+# 10. [eco] [REV] Federal tax cuts have been worth it, because they have helped strengthen the economy by allowing Americans to keep more of their own money*
+#
+#
+# [soc] = 1, 2, 4, 6, 8, 9 (6 items)
+# [eco] = 3, 5, 7, 10 (4 items)
+# [REV] = 3, 4, 5, 6, 10 (5 items)
+#
+#  
+#
+dataFull$IPB    <- dataFull$CS3_Inb
+dataFull$IPB.SC <- rowMeans(dataFull[c("CS3_Inb_1", "CS3_Inb_2", "CS3_Inb_4_REV",  "CS3_Inb_6_REV", "CS3_Inb_8", "CS3_Inb_9")], na.rm=TRUE)
+dataFull$IPB.EC <- rowMeans(dataFull[c( "CS3_Inb_3_REV","CS3_Inb_5_REV", "CS3_Inb_7","CS3_Inb_10_REV")], na.rm=TRUE)
+```
+
+```{r Conservatism Feldman}
+##########################
+# Feldman and Johnston  # 
+#########################
+#
+# Direction of means
+# Conservative are HIGH, Liberals are LOW 
+#-----------------------------------------
+# Varied, dependent on question
+# -----------------------------
+
+# Core issues
+# -----------
+# Government Spending. 
+# Some people think the government should provide fewer services even in areas such as health and education in order to reduce spending. Suppose these people are at one end of a scale (1). Other people feel it is important for the government to provide many more services even if it means an increase in spending. Suppose these people are at the other end, at point (9). Where would you place yourself on this scale? [CS4_FJ_8_1]
+#
+# Medical Insurance.
+# There is much concern about the rapid rise in medical and hospital costs. And also about the role of the Federal Government. Where would you place yourself on these scales? Some people feel there should be a government insurance plan which would cover all medical and hospital expenses for everyone (left); Others feel that all medical expenses should be paid by individuals through private insurance plans like Blue Cross or other company paid plans  [CS4_FJ_910_1]
+#
+# Guaranteed Jobs. Some people feel the government in Washington should see to it that every person has a job and a good standard of living (1). Others think the government should just let each person get ahead on their own. (9) [CS4_FJ_910_2]
+#
+# Assistance to Poor.
+# What about aid to poor people? Should federal spending on aid to poor people be increased, decreased, or kept about the same? Increased by a lot (1)	Increased (2)	Keep about the same (3)	Decreased (4)	Decreased by a lot (5) [CS4_FJ_12] 
+#
+# Abortion. 
+# There has been some discussion about abortion during recent years. Please tell me which one of the opinions best agrees with your view? [CS4_FJ_13]
+# By law, abortion should never be permitted.(1) The law should permit abortion only in case of rape, incest, or when the woman's life is in danger.(2)  The law should permit abortion where the child of the pregnancy would have an ' unacceptable quality of life' such as cases where the child would have serious physical handicaps, serious genetic problems or serious mental defects. (3) The law should permit abortion for social reasons, including in cases of extreme poverty, or mother unable to cope with a child (or another child), or too young. (4) By law, a woman should always be able to obtain an abortion as a matter of personal choice. (5) [CS4_FJ_13]
+#
+# Gay Adoption.
+# Do you think gay or lesbian couples, in other words, homosexual couples, should be legally permitted to adopt children? Strongly agree (1) Strongly disagree (9) [CS4_FJ_6]
+#
+# Women's Role.
+# Recently there has been a lot of talk about women's rights. Where would you place yourself on this scale? Some people feel that women should have an equal role with men in running business, industry, and government. Others feel that a woman's place is in the home.[CS4_FJ_11] 
+#
+#
+#names(dataFull)
+#names(dataFull)[259:271]
+#
+#
+dataFull$CS4_FJ_8_1_REV  <-  sapply(dataFull$CS4_FJ_8_1,  function(x) 10 - x)
+dataFull$CS4_FJ_13_REV   <-  sapply(dataFull$CS4_FJ_13,  function(x) 6 - x)
+#
+# Expanding range of CS4_FJ_12_1 and CS4_FJ_13_REV from 1-to-5 to 1-to-9 for mean
+dataFull$CS4_FJ_12_1 <- car::recode(dataFull$CS4_FJ_12_1,"c(5)='9'")
+dataFull$CS4_FJ_12_1 <- car::recode(dataFull$CS4_FJ_12_1,"c(4)='7'")
+dataFull$CS4_FJ_12_1 <- car::recode(dataFull$CS4_FJ_12_1,"c(3)='5'")
+dataFull$CS4_FJ_12_1 <- car::recode(dataFull$CS4_FJ_12_1,"c(2)='3'")
+#
+dataFull$CS4_FJ_13_REV <- car::recode(dataFull$CS4_FJ_13_REV,"c(5)='9'")
+dataFull$CS4_FJ_13_REV <- car::recode(dataFull$CS4_FJ_13_REV,"c(4)='7'")
+dataFull$CS4_FJ_13_REV <- car::recode(dataFull$CS4_FJ_13_REV,"c(3)='5'")
+dataFull$CS4_FJ_13_REV <- car::recode(dataFull$CS4_FJ_13_REV,"c(2)='3'")
+#
+#
+dataFull$CS4_FJ_CORE <- rowMeans(dataFull[ , c( "CS4_FJ_8_1_REV", # Government Spending [REV]
+                                                "CS4_FJ_910_1",  # Medical Insurance 
+                                                "CS4_FJ_910_2",  # Guaranteed Jobs 
+                                                "CS4_FJ_12_1",   # Assistance to Poor [1-to-5]
+                                                "CS4_FJ_13_REV", # Abortion  [REV] [1-to-5]
+                                                "CS4_FJ_6",      # Gay Adoption
+                                                "CS4_FJ_11_1"   # Woman's rights 
+                                                   )], na.rm=TRUE)
+#
+#  
+#
+dataFull$FJ    <- dataFull$CS4_FJ_CORE
+dataFull$FJ.SC <- rowMeans(dataFull[c("CS4_FJ_13_REV", "CS4_FJ_6","CS4_FJ_11_1")], na.rm=TRUE)
+dataFull$FJ.EC <- rowMeans(dataFull[c("CS4_FJ_8_1_REV","CS4_FJ_910_1","CS4_FJ_910_2","CS4_FJ_12_1")], na.rm=TRUE)
+#
+#
+#
+#
+#
+#
+#
+#
+# Egalitarianism
+# ---------------
+# Our society should do whatever is necessary to make sure that everyone has an equal opportunity to succeed [CS4_FJ_1]
+# We have gone too far in pushing equal rights in this country [CS4_FJ_2]*
+# One of the big problems in this country is that we don't give everyone an equal chance [CS4_FJ_3]
+# This country would be better off if we worried less about how equal people are [CS4_FJ_4]*
+# It is not really that big a problem if some people have more of a chance in life than others [CS4_FJ_5]*
+# If people were treated more equally in this country we would have many fewer problems [CS4_FJ_7]
+#
+#
+#
+#
+dataFull$CS4_FJ_2_REV   <-  sapply(dataFull$CS4_FJ_2,  function(x) 10 - x)
+dataFull$CS4_FJ_4_REV   <-  sapply(dataFull$CS4_FJ_4,  function(x) 10 - x)
+dataFull$CS4_FJ_5_REV   <-  sapply(dataFull$CS4_FJ_5,  function(x) 10 - x)
+#
+#
+#
+dataFull$CS4_FJ_EG <- rowMeans(dataFull[,c("CS4_FJ_1", "CS4_FJ_2_REV", "CS4_FJ_3", "CS4_FJ_4_REV", "CS4_FJ_5_REV", "CS4_FJ_7")], na.rm=TRUE)
+#
+#
+#doBy::summaryBy(CS4_FJ_CORE ~ Scr_PIDF, data=data.76, FUN=c(mean))
+#doBy::summaryBy(CS4_FJ_EG ~ Scr_PIDF, data=data.76, FUN=c(mean))
+
+```
+
+```{r Political Sophistication}
+#############################
+# Political Sophistication #
+###########################
+#
+# 1. [Soph_SH] Who is the current Speaker of the House? A: Paul Ryan (2)
+# 2. [Soph_SL] Who is the current Senate Leader? A: Mitch McConnell (4)
+# 3. [Soph_EV] How many electoral votes are needed to win the presidency? A: 270 (1)
+# 4. [Soph_veto] What fraction of votes is needed in Congress to override a Presidential veto? A: 2/3 (1)
+# 5. [Soph_hisp] What state just became the second to have a larger Hispanic population than white population? A: California (1) SOURCE: https://www.washingtonpost.com/news/the-fix/wp/2015/07/08/california-is-now-the-second-state-in-which-hispanics-outnumber-whites/?utm_term=.c16d7e6396f1
+# 6. [Soph_Cens] The Constitution requires an actual enumeration of the population every: A: 10 years (2)
+# 7. [Soph_] Conservatives would tend to support all of the following EXCEPT? A: Affirmative action (4)
+# 8. [dataFull$PS_jobs_1] Please select the current jobs of the following office holders in the answer boxes below (Secretary of the Treasury):  A: Jack Lew (1)
+# 9. [dataFull$PS_jobs_2] Secretary of Defense  A: Ash Carter (2)
+# 10. [dataFull$PS_jobs_3] Attorney General   A: Loretta Lynch (3)
+#
+# Scores Pol-Soph Scale
+# ----------------------
+dt <- cbind(dataFull$Soph_SH, 
+            dataFull$Soph_SL, 
+            dataFull$Soph_EV, 
+            dataFull$Soph_veto,
+            dataFull$Soph_hisp,
+            dataFull$Soph_Cens,
+            dataFull$Soph_, 
+            dataFull$PS_jobs_1,
+            dataFull$PS_jobs_2,
+            dataFull$PS_jobs_3)
+#
+key <- c(2,
+         4,
+         1,
+         1,
+         1,
+         2,
+         4,
+         1,
+         2,
+         3)
+#
+dtK <- psych::score.multiple.choice(key,dt,score=FALSE)
+dataFull$PolSoph <- rowSums(dtK)
+#
+#rm(list = c('dt','key','dtK'))
+#summary(dataFull$PolSoph)
+#table(dataFull$PolSoph)
+#
+#
+# Frequency News
+# --------------
+# How often do you follow politics in the news on television or on the radio or in the daily papers? 
+# At least once a day
+# Three times a week or more 
+# Almost every week
+# One to three times a month
+# Less than once a month or never
+dataFull$PS_media_REV  <- sapply(dataFull$PS_media,   function(x) 6 - x)
+
+dataFull$Freq.Read.Pol   <- dataFull$PS_media_REV
+```
+
+```{r Additional Items}
+#####################
+# Additional Items #
+###################
+#
+# Dangerous & Competitive World View:
+# -------------------------------------
+#
+# [REV] [D] Every day, our society become more lawless and bestial, a person's chances of being robbed, assaulted, and even murdered go up and up
+# [D] Although it may appear that things are constantly getting more dangerous and chaotic, it really isn't so. Every era has its problems, and a person's chances of living a safe, untroubled life are better today than ever before
+# [REV] [C] It's a dog-eat-dog world where you have to be ruthless at times
+# [REV] [C] There is really no such thing as ''right'' and ''wrong.'' It all boils down to what you can get away with
+#
+dataFull$Add_All_1_REV <- sapply(dataFull$Add_All_1,  function(x) 10 - x)
+#
+dataFull$WV_Dangerous <- rowMeans(dataFull[,c("Add_All_1_REV", "Add_All_2")], na.rm=TRUE)
+#dataFull$WV_Dangerous   <-  
+  #sapply(dataFull$Add_All_1,  function(x) 10 - x) +
+  #sapply(dataFull$Add_All_2,  function(x) 10 - x)
+
+#
+#
+dataFull$Add_All_3_REV <- sapply(dataFull$Add_All_3,  function(x) 10 - x)
+dataFull$Add_All_4_REV <- sapply(dataFull$Add_All_4,  function(x) 10 - x)
+#
+dataFull$WV_Competitive <- rowMeans(dataFull[,c("Add_All_3_REV", "Add_All_4_REV")], na.rm=TRUE)
+#dataFull$WV_Competitive <-  
+ # sapply(dataFull$Add_All_3,  function(x) 10 - x) +
+#  sapply(dataFull$Add_All_4,  function(x) 10 - x)
+#
+#
+#
+# Narcisism
+# ----------
+# [REV] I find it easy to read, influence and even manipulate people
+# [REV] Generally speaking, I am more capable than other people
+#
+dataFull$Add_All_5_REV <- sapply(dataFull$Add_All_5,  function(x) 10 - x)
+dataFull$Add_All_6_REV <- sapply(dataFull$Add_All_6,  function(x) 10 - x)
+#
+dataFull$Narcisism <- rowMeans(dataFull[,c("Add_All_5_REV", "Add_All_6_REV")], na.rm=TRUE)
+#
+#dataFull$Narcisism   <-  
+ # sapply(dataFull$Add_All_5,  function(x) 10 - x) +
+  #sapply(dataFull$Add_All_6,  function(x) 10 - x)
+#
+#
+#
+# Black Antagonism
+# -----------------
+# There is a lot of discrimination against Blacks in America today, which limits their chances to get ahead
+# It is easy to understand the anger of Black people in America
+# [REV] Blacks have become far too confrontational in their demand for equal rights
+# [REV] Social movements such as 'Black Lives Matters' are detrimental to society
+#
+dataFull$Add_All_9_REV <- sapply(dataFull$Add_All_9,  function(x) 10 - x)
+dataFull$Add_All_10_REV <- sapply(dataFull$Add_All_10,  function(x) 10 - x)
+#
+#
+dataFull$Black_Antagonism <- rowMeans(dataFull[,c("Add_All_7", "Add_All_8", "Add_All_9_REV", "Add_All_10_REV")], na.rm=TRUE)
+#
+#dataFull$Black_Antagonism <-  
+ # dataFull$Add_All_7 +
+  #dataFull$Add_All_8 +  
+  #sapply(dataFull$Add_All_9,  function(x) 10 - x) +
+  #sapply(dataFull$Add_All_10,  function(x) 10 - x)
+#
+#
+# Chauvinist sexism
+# -----------------
+# Gay men should stop shoving their lifestyles down people's throats
+# Homosexuals have become fat too confrontational in their demand for equal rights
+# Many lesbian women use their sexual orientation so that they can obtain special privileges
+#
+dataFull$Add_All_11_REV <- sapply(dataFull$Add_All_11,  function(x) 10 - x)
+dataFull$Add_All_12_REV <- sapply(dataFull$Add_All_12,  function(x) 10 - x)
+dataFull$Add_All_13_REV <- sapply(dataFull$Add_All_13,  function(x) 10 - x)
+#
+dataFull$Chauvinist_Sexism <- rowMeans(dataFull[,c("Add_All_11_REV", "Add_All_12_REV", "Add_All_13_REV")], na.rm=TRUE)
+#dataFull$Chauvinist_Sexism <- 
+ # sapply(dataFull$Add_All_11,  function(x) 10 - x) +
+  #sapply(dataFull$Add_All_12,  function(x) 10 - x) +
+  #sapply(dataFull$Add_All_13,  function(x) 10 - x) 
+# 
+#
+# Feminism ?? 
+# -------------
+# When an equally capable man and a woman apply for a job, the woman should always be selected for the job
+dataFull$Feminism <- sapply(dataFull$Add_All_14,  function(x) 10 - x)
+#
+#dataFull$Feminism <-   sapply(dataFull$Add_All_14,  function(x) 10 - x)
+#
+#
+
+```
+
+```{r Zeitgeist}
+#################
+# Zeitgeist  ###
+###############
+#
+# Average American - Social Discontent
+# -------------------------------------
+#
+# How many out of the last 30 days did the average american encounter problems with, or was bothered by...
+#
+#
+# Crime                                             AM_A_4
+# Immigrants                                        AM_A_5
+# Social Injustice
+# Health care provision
+# Global warming
+# The economy
+# Money shortages or budget cuts
+# Personal safety
+# Social cohesion
+# Privacy
+# Unemployment
+# The government
+# Unequal opportunities for privileged groups
+# Corruption and/or fraud
+# Lack of democracy
+# Income inequality
+# Lack of freedom
+# Overregulation (i.e. red tape)
+# Discrimination
+# Alchol or drugs abuse
+# Indecent or antisocial behavior
+# Unequal opportunities for unprivileged groups
+# Quality of the Justice System
+# Lack of respect
+# Quality of police work                          AM_A_28
+# Quality of politicians' work                    AM_A_29
+# Quality of journalism                           AM_A_30
+# Quality of education                            AM_A_31
+# Quality of health care                          AM_A_32
+#
+#
+dataFull$SocDisc <- rowMeans(dataFull[,c(
+  "AM_A_4", "AM_A_5", "AM_A_6", "AM_A_7",
+  "AM_A_8", "AM_A_9", "AM_A_10", "AM_A_11",
+  "AM_A_12", "AM_A_13", "AM_A_14", "AM_A_15",
+  "AM_A_16", "AM_A_17", "AM_A_18", "AM_A_19",
+  "AM_A_20", "AM_A_21", "AM_A_22", "AM_A_23", 
+  "AM_A_24", "AM_A_25", "AM_A_26", "AM_A_27",
+  "AM_A_28", "AM_A_29", "AM_A_30", "AM_A_31", "AM_A_32")], na.rm=TRUE)
+#
+#
+# Average American - Personal Discontent
+# ---------------------------------------
+#
+# How many out of the last 30 days did YOU encounter problems with, or was bothered by...
+#
+# [same items & order as above] 
+#
+#
+dataFull$P_Disc <- rowMeans(dataFull[,c(
+  "AM_P_4", "AM_P_5", "AM_P_6", "AM_P_7",
+  "AM_P_8", "AM_P_9", "AM_P_10", "AM_P_11",
+  "AM_P_12", "AM_P_13", "AM_P_14", "AM_P_15",
+  "AM_P_16", "AM_P_17", "AM_P_18", "AM_P_19",
+  "AM_P_20", "AM_P_21", "AM_P_22", "AM_P_23", 
+  "AM_P_24", "AM_P_25", "AM_P_26", "AM_P_27",
+  "AM_P_28", "AM_P_29", "AM_P_30", "AM_P_31", "AM_P_32")], na.rm=TRUE)
+```
+
+```{r Variable Names and Labels}
+3
+# dput(names(dataFull[555:644]))
+# names(dataFull[555:644]) # PID to JS
+# names(dataFull[645:701]) # PVQ
+# names(dataFull[702:755])  # PVQ to Freq.Read.Pol
+#
+# names(dataFull[166:192]) # Populism
+#
+# dataFull[,c(618,629)] # RWA & SDO
+# dataFull[,c("PS_Like_1_REV","RWA","SDO", "National_ID_All")] # RWA & SDO
+#
+#
+#doBy::summaryBy(~Scr_PIDF, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(~SC0_0F, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(~PS_Cand, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(~PS_Cand_PID, data=dataFull, FUN=c(mean))
+#doBy::summaryBy(~PS_PartiesF, data=dataFull, FUN=c(mean))
+#
+#
+#
+#dataFull$Vote_Pro
+#dataFull$Vote_Supp
+#dataFull$Vote_12 
+#dataFull$Vote_08 
+#
+#
+#
+#dataFull$Scr_PIDF
+#dataFull$SC0_0F
+#dataFull$PS_Cand_PID
+#dataFull$PS_CandF
+#dataFull$PS_PartiesF
+#dataFull$PS_Cand_Trumpism
+#
+#
+#
+labels <- readRDS("PPBS 2016 [labels].rds")
+dataFull <- sjlabelled::copy_labels(df_new = dataFull,
+                                    df_origin = labels)
+#
+#
+#
+#
+rm(list = c('df','dt', 'dtK', 'myfile', 'key', 'Quotas', 'labels'))
+#
+save.image(file="Working Data Full.RData")
+```
+
+### Creating "Working Data.RData"
+
+```{r Creating datasets}
+1
+#load("C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Working Data Full.RData")
+#
+load("Working Data Full.RData")
+#
+labels <- readRDS("PPBS 2016 [labels].rds")
+#
+# Separating into different datasets
+# ------------------------------------
+#
+dataQF <- dataFull[dataFull$Index == "QF",]
+dataOut <- dataFull[dataFull$Index == "Out",]
+dataIncomplete <- dataFull[dataFull$Index == "Incomplete",]
+data.76 <- dataFull[dataFull$Index == "Data1576",]
+#
+#
+#
+dataQF <- sjlabelled::copy_labels(df_new = dataQF, df_origin = labels)
+dataOut <- sjlabelled::copy_labels(df_new = dataOut, df_origin = labels)
+dataIncomplete <- sjlabelled::copy_labels(df_new = dataIncomplete, df_origin = labels)
+data.76 <- sjlabelled::copy_labels(df_new = data.76, df_origin = labels)
+#
+#
+#############
+# data1576 #
+###########
+# Qualtrics estimated completion time was 65.1 minutes
+# We used 1/3 of that time as threshold, 65.1/3 ~ 21.7
+data.76.Out <- data.76[(data.76$Q_TotalDuration/60) <= 21.7, ]
+data.76 <- data.76[(data.76$Q_TotalDuration/60) > 21.7, ]
+#
+# Now check for AQ
+#sum(ifelse(data.76$Attention.Score > 1, 1, 0))
+#
+# Because there is data from the Pre-launch, we check for SC1_0 as well
+# We find 4 AQ larger than 1. These need to be excluded.
+data.76$V8     <- as.Date(data.76$V8, format= "%m/%d/%Y")
+#sum(ifelse(data.76$SC1_0 > 1, 1, 0))
+data.76.Out.2 <- data.76[data.76$SC1_0 > 1, ]
+data.76 <- data.76[data.76$SC1_0 < 2, ]
+data.76 <- sjlabelled::copy_labels(df_new = data.76, df_origin = labels)
+#
+#
+###########
+# dataQF #
+#########
+#
+# Total duration larger than ~22 min. 
+dataQF.Out <- dataQF[(dataQF$Q_TotalDuration/60) <= 21.7, ]
+dataQF <- dataQF[(dataQF$Q_TotalDuration/60) > 21.7, ]
+dataQF <- sjlabelled::copy_labels(df_new = dataQF, df_origin = labels)
+
+#
+#
+# Now check for AQ
+#sum(ifelse(dataQF$Attention.Score > 1, 1, 0))
+#sum(ifelse(dataQF$SC1_0 > 1, 1, 0))
+# All good!
+# QF has 2119 cases then.
+#
+#
+############
+# dataOut #
+##########
+#
+# Here we have to include the 'excluded' data from the above datasets
+# Step by step
+data.76.Out <- rbind(data.76.Out, data.76.Out.2)
+data.Out    <- rbind(data.76.Out, dataQF.Out)
+dataOut     <- rbind(dataOut, data.Out)
+#
+#
+#c("data", "data.76", "data.76.Out", "data.76.Out.2", "data.Out", "dataFull", "dataIncomplete", "dataOut", "dataQF", "dataQF.Out", "labels")
+#
+nrow(data.76) +           # 1500  [NR]
+  nrow(data.76.Out) +     # 76
+  nrow(data.76.Out.2) +   # 4
+  nrow(dataQF) +          # 2119  [CF]
+  nrow(data.Out) +        # 80
+  nrow(dataOut) +         # 928
+  nrow(dataIncomplete) +  # 1302
+  nrow(dataQF.Out)        # 4
+#
+# 6013 - 5849 # 164
+# 76 + 4 + 80 + 4 = 164 - these are additional. This is in dataOut.
+# 1500 + 2119 + 1302 + 928 = 5849 
+#
+# Now remove un-necessary datasets, that are in dataOut
+#
+rm(list = c('data.76.Out','data.76.Out.2', 'dataQF.Out', 'data.Out'))
+#
+#
+###################
+# Processed data #
+#################
+#
+# Now aggregate separate datasets into one dataset.
+data <- rbind(data.76, dataQF, dataOut, dataIncomplete)
+data <- sjlabelled::copy_labels(df_new = data, df_origin = labels)
+# Which has same number of cases ans dataFull
+#
+# Now save image (Rdata file) and .csv files
+# change working directory to your
+#
+#
+rm(list = c('labels', 'data'))
+#
+save.image(file="Working Data.RData")
+#
+```
+
+```{r Quotas for Nationally Representative data}
+#
+#######################
+# Quotas - Screening #
+#####################
+Quotas <- 
+  rbind(
+    rbind(
+      as.data.frame(cbind(
+        Count=table(data.76$AgeF),
+        Percentage=round(prop.table(table(data.76$AgeF))*100,1))),
+        Total_Age=colSums(
+          as.data.frame(cbind(
+            Count=table(data.76$AgeF),
+            Percentage=round(prop.table(table(data.76$AgeF))*100,1))))),
+    
+    rbind(as.data.frame(cbind(
+      Count=table(data.76$SexF),
+      Percentage=round(prop.table(table(data.76$SexF))*100,1))),
+      Total_Gender=colSums(
+        as.data.frame(cbind(
+          Count=table(data.76$SexF),
+          Percentage=round(prop.table(table(data.76$SexF))*100,1))))),
+    
+    rbind(as.data.frame(cbind(
+      Count=table(data.76$IncF),
+      Percentage=round(prop.table(table(data.76$IncF))*100,1))),
+      Total_Income=colSums(
+        as.data.frame(cbind(
+          Count=table(data.76$IncF),
+          Percentage=round(prop.table(table(data.76$IncF))*100,1))))),
+  
+    rbind(as.data.frame(cbind(
+      Count=table(data.76$EduF),
+      Percentage=round(prop.table(table(data.76$EduF))*100,1))),
+      Total_Education=colSums(
+        as.data.frame(cbind(
+          Count=table(data.76$EduF),
+          Percentage=round(prop.table(table(data.76$EduF))*100,0))))),
+  
+    rbind(as.data.frame(cbind(
+      Count=table(data.76$P.ID),
+      Percentage=round(prop.table(table(data.76$P.ID))*100,1))),
+      Total_P.ID=colSums(
+        as.data.frame(cbind(
+          Count=table(data.76$P.ID),
+          Percentage=round(prop.table(table(data.76$P.ID))*100,1)))))
+    )
+
+Quotas$Census <- c(196, 263, 263, 288, 233, 258, 1500,
+                   738, 762, 1500,
+                   195, 180, 165,210,270,180, 180, 120, 1500,
+                   210, 435, 435, 270, 150, 1500,
+                   750,750, 1500)
+
+Quotas$Difference <- Quotas$Count - Quotas$Census
+Quotas$Percentage_Difference <- (Quotas$Count - Quotas$Census)*100/(Quotas$Count)
+names(Quotas) <- c("Data Frequencies", "Proportion in %",
+                   "U.S. Census Frequencies", "Data vs. Census",
+                   "Data vs. Census in %")
+#
+write.csv(Quotas, file = "SSI quota - w out revision [original - as in Womick].csv")
+rm("data.76", "dataFull", "dataIncomplete", "dataOut", "dataQF")
+```
+
+## PPBS format
+
+**Putting "US Conservatives" survey in PPBS format**
+
+### Creating NR.PPBS2016.raw, CF.PPBS2016.raw, & NRCF.PPBS2016.raw
+
+```{r}
+load(file="Working Data.RData")
+# Since I didn't code dataIncomplete or DataOut in Qualtrics with meta-data, and this was somehow find-able/deductible but I cannot find it anywhere, the only solution I could come up with was to separate proportionally between NR/CF. Remember that for whatever reason the programmed Qualtrics meta-data "Index" didn't work well (especially for Incompletes/Dataout), see here: # table(NR.full$Index) this is wrong. We did these calculations also manually with Tobias in file:Conservatism_US.xlsx
+#
+#nrow(data.76)/(nrow(data.76)+nrow(dataQF)) #  0.4144791
+#nrow(dataQF)/(nrow(data.76)+nrow(dataQF))  # 0.5855209
+#
+#round((nrow(data.76)/(nrow(data.76)+nrow(dataQF)))*nrow(dataOut))     # 385
+#round(nrow(data.76)/(nrow(data.76)+nrow(dataQF))*nrow(dataIncomplete)) # 540
+#
+set.seed(1234567);ResponseID.NR.Qual.Fail <- sample(dataOut$pid, round((nrow(data.76)/(nrow(data.76)+nrow(dataQF)))*nrow(dataOut)))
+set.seed(1234567);ResponseID.NR.Incomplete <- sample(dataIncomplete$pid, round(nrow(data.76)/(nrow(data.76)+nrow(dataQF))*nrow(dataIncomplete))-1)
+#
+# NR.PPBS2016.raw
+# NR.PPBS2016.raw
+#
+NR.full <- rbind(
+  data.76,
+  dataOut[dataOut$pid %in% c(ResponseID.NR.Qual.Fail), ],
+  dataIncomplete[dataIncomplete$pid %in% c(ResponseID.NR.Incomplete), ])
+#
+NR.full$respodent_status <- c(
+  rep(c("Complete"),   nrow(data.76)),
+  rep(c("QualityFail"),length(ResponseID.NR.Qual.Fail)),
+  rep(c("Incomplete"), length(ResponseID.NR.Incomplete))
+  )
+#
+NR.full$data_link <- c(
+  rep(c("NR"), nrow(data.76)),
+  rep(c("NR"), length(ResponseID.NR.Qual.Fail)),
+  rep(c("NR"), length(ResponseID.NR.Incomplete))
+  )
+#
+'%!in%' <- function(x,y)!('%in%'(x,y))
+#
+CF.full <- rbind(
+  dataQF,
+  dataOut[dataOut$pid %!in% c(ResponseID.NR.Qual.Fail), ],
+  dataIncomplete[dataIncomplete$pid %!in% c(ResponseID.NR.Incomplete), ])
+#
+CF.full$respodent_status <- c(
+  rep(c("Complete"),    nrow(dataQF)),
+  rep(c("QualityFail"), nrow(dataOut)-length(ResponseID.NR.Qual.Fail)),
+  rep(c("Incomplete"),  nrow(dataIncomplete) -length(ResponseID.NR.Incomplete))
+  )
+#
+CF.full$data_link <- c(
+  rep(c("CF"), nrow(dataQF)),
+  rep(c("CF"), nrow(dataOut)-length(ResponseID.NR.Qual.Fail)),
+  rep(c("CF"), nrow(dataIncomplete) -length(ResponseID.NR.Incomplete))
+  )
+#
+#nrow(NR.full) + nrow(CF.full)
+#
+NR.PPBS2016.raw   <- NR.full
+CF.PPBS2016.raw   <- CF.full
+NRCF.PPBS2016.raw <- rbind(NR.PPBS2016.raw, CF.PPBS2016.raw)
+#
+rm(NR.full,CF.full)
+#
+#
+# Checks out!
+#nrow(data.76) + nrow(dataQF) + nrow(dataIncomplete) + nrow(dataOut) == nrow(NR.PPBS2016.raw) + nrow(CF.PPBS2016.raw)
+#
+#
+#
+#
+#
+#
+#
+#
+#rm("data.76", "dataFull", "dataIncomplete", "dataOut", "dataQF",  "ResponseID.NR.Incomplete", "ResponseID.NR.Qual.Fail")
+```
+
+#### Checking NR.PPBS2016.raw & CF.PPBS2016.raw
+
+```{r Checking data and notepad PPBS16, eval=FALSE}
+#'@Data-definers[quality-checks]
+plyr::count(NRCF.PPBS2016.raw, c('respodent_status')) # 3619; fail = 1302; 928 inc
+plyr::count(NRCF.PPBS2016.raw, c('data_link','respodent_status')) 
+#
+#
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Index'))  # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','pid'))    # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','psid'))    # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','V1'))     # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','V7'))     # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','V10'))    # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','finish')) # no need (and if I recall correctly, this counter was not super accurate)
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Thanks'))  # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','SC1_0'))   # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Attention.Score'))  # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Check'))   # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Score'))  # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Att_out'))   # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','Quota_Incremented'))  # no need
+plyr::count(NRCF.PPBS2016.raw, c('data_link','psid'))  # no need
+#
+## ###############
+# REMEMBER that while everything worked out in the end, this data collection was a major struggle and lots of learning had to be made (especially in programming metadata - see above several of them didn't work as expected)
+#################
+#
+#
+#
+#
+# Checking for duplicated IDs
+#--------------------------
+#
+nrow(NRCF.PPBS2016.raw) - length(unique(NRCF.PPBS2016.raw$psid)) # 27 potential
+nrow(NRCF.PPBS2016.raw) - length(unique(NRCF.PPBS2016.raw$pid))  # 27
+#
+#NRCF.PPBS2016.raw[duplicated(NRCF.PPBS2016.raw$pid),"pid"]
+#NRCF.PPBS2016.raw[duplicated(NRCF.PPBS2016.raw$pid),"psid"]
+#
+#NRCF.PPBS2016.raw$check.duplicated <- duplicated(NRCF.PPBS2016.raw$pid)
+#plyr::count(NRCF.PPBS2016.raw, c('data_link','check.duplicated','respodent_status'))
+#
+#'@Results: There are *maybe* five duplicates in CF. Given that SSI/Dynata said they have a system the precludes **actual** duplicates, let's let that pass. Also, 5/2119 is 0.002359604.
+#
+#
+# Date
+#-----
+# Date is not available for some observations because of Qualtrics had an issue with it (possibly due to some of the embedded data I created), as per email exchanges with Qualtrics support.
+plyr::count(NRCF.PPBS2016.raw, c('data_link','V8'))
+plyr::count(NRCF.PPBS2016.raw, c('data_link','V9'))
+#
+#
+```
+
+## Processed data
+
+```{r}
+variables.to.filter.in <- c("V1", "V8", "V9", "Q_TotalDuration", "Scr_Age", "Scr_Edu", 
+"Scr_Inc", "Scr_Sex", "Scr_PID", "Dem_Eth", "Dem_Eth_TEXT", "Dem_Job", 
+"Dem_Rel", "Dem_Area", "Dem_State_1", "PS_PID_ANES", "PS_PID_ANES_1", 
+"PS_PID_ANES_2", "PS_PID_ANES_3", "PS_PID_ANES_4", "SC0_0", "PS_Cand", 
+"PS_Cand_1", "PS_Vol_PID_1", "PS_Parties", "PS_Reg", "PS_Part", 
+"PS_Vote_Pro", "PS_Vote_Supp", "PS_Like_1", "PS_Like_2", "PS_Like_3", 
+"PS_Vote_Retro12", "PS_Vote_Retro08", "PP_NatID_1_1", "PP_NatID_1_2", 
+"PP_NatID_1_3", "PS_Rob_1_1", "PS_Rob_2_1", "PS_Lib_PID", "PS_Lib_Rep_1", 
+"PS_Vol_Elec", "PS_Vol_Gen_1", "PS_Vol_Gen_2", "PS_Vol_Gen_4", 
+"PS_Vol_Gen_5", "PS_Vol_PID_2", "PP_JO_SP_1_1", "PP_JO_SP_2_1", 
+"PP_JO_SP_3_1", "PP_Rel_1", "PP_Quad_1", "PP_Quad_2", "PP_Quad_3", 
+"PP_Quad_4", "SC2_0", "Alek_CN_1", "Alek_CN_2", "Alek_CN_3", 
+"Alek_CN_4", "Alek_CN_5", "Cont_groups_1", "Nat.1", "Nat.2", 
+"B.Patr", "C.Patr", "Nat_Patr_6", "Nat_Patr_7", "Nat_Patr_8", 
+"Cont_Sat_1", "Cont_Fut_1", "Soc_mov_1", "Soc_mov_2", "Soc_mov_3", 
+"Soc_mov_4", "Soc_mov_5", "Soc_mov_6", "Soc_mov_7", "Soc_mov_8", 
+"Soc_mov_9", "Consp_Gen_1", "Consp_Gen_2", "Consp_Gen_3", "Consp_Clim_1", 
+"Consp_Clim_2", "Consp_Clim_4", "Consp_Clim_5", "Lib_1", "Lib_2", 
+"Lib_3", "Lib_4", "Lib_5", "Lib_6", "Lib_7", "Lib_8", "Lib_9", 
+"Lib_10", "Lib_11", "Lib_12", "Lib_13", "Lib_14", "Lib_15", "Lib_16", 
+"Lib_17", "Lib_18", "Lib_19", "Lib_20", "Lib_21", "Lib_22", "CSJ_Gen_1", 
+"CSJ_Gen_2", "CSJ_Gen_3", "CSJ_Gen_4", "CSJ_Gen_5", "CSJ_Gen_6", 
+"CSJ_Gen_7", "CSJ_Gen_8", "CSJ_Econ_1", "CSJ_Econ_2", "CSJ_Econ_3", 
+"CSJ_Econ_4", "CSJ_Econ_5", "CSJ_Econ_6", "CSJ_Econ_7", "CSJ_Econ_8", 
+"CSJ_Econ_9", "CSJ_Econ_10", "CSJ_Econ_11", "CSJ_Econ_12", "CSJ_Econ_13", 
+"CSJ_Econ_14", "CSJ_Econ_15", "CSJ_Econ_16", "CSJ_Econ_17", "CSJ_Gender_1", 
+"CSJ_Gender_2", "CSJ_Gender_3", "CSJ_Gender_4", "CSJ_Gender_5", 
+"CSJ_Gender_7", "CSJ_Gender_8", "CSJ_Gender_9", "Pop_1", "Pop_2", 
+"Pop_3", "Pop_4", "Pop_5", "Pop_6", "Pop_7", "Pop_8", "Pop_9", 
+"Pop_10", "Pop_11", "Pop_12", "Pop_13", "Pop_14", "Pop_15", "Pop_16", 
+"Pop_17", "Pop_18", "Pop_19", "Pop_20", "Pop_21", "Pop_22", "Pop_23", 
+"Pop_24", "Pop_25", "Pop_27", "Pop_28", "Env_1", "Env_2", "Env_3", 
+"Env_4", "Env_5", "Env_6", "Env_7", "Env_8", "Env_9", "Env_10", 
+"Env_11", "Env_12", "Env_13", "Env_14", "Env_15", "CS1_ZB_1", 
+"CS1_ZB_2", "CS1_ZB_3", "CS1_ZB_4", "CS1_ZB_5", "CS1_ZB_6", "CS1_ZB_7", 
+"CS1_ZB_8", "CS1_ZB_9", "CS1_ZB_10", "CS1_ZB_11", "CS1_ZB_12", 
+"CS2_Ever_1", "CS2_Ever_2", "CS2_Ever_3", "CS2_Ever_4", "CS2_Ever_5", 
+"CS2_Ever_6", "CS2_Ever_7", "CS2_Ever_8", "CS2_Ever_9", "CS2_Ever_10", 
+"CS2_Ever_11", "CS2_Ever_12", "CS3_Inb_1", "CS3_Inb_2", "CS3_Inb_3", 
+"CS3_Inb_4", "CS3_Inb_5", "CS3_Inb_6", "CS3_Inb_7", "CS3_Inb_8", 
+"CS3_Inb_9", "CS3_Inb_10", "CS5_Henn_1", "CS5_Henn_2", "CS5_Henn_3", 
+"CS5_Henn_4", "CS5_Henn_5", "CS5_Henn_6", "CS5_Henn_7", "CS5_Henn_8", 
+"CS5_Henn_9", "CS5_Henn_10", "CS5_Henn_11", "CS5_Henn_12", "CS5_Henn_13", 
+"CS5_Henn_14", "CS5_Henn_15", "CS5_Henn_16", "CS4_FJ_1", "CS4_FJ_2", 
+"CS4_FJ_3", "CS4_FJ_4", "CS4_FJ_5", "CS4_FJ_6", "CS4_FJ_7", "CS4_FJ_8_1", 
+"CS4_FJ_910_1", "CS4_FJ_910_2", "CS4_FJ_11_1", "CS4_FJ_12_1", 
+"CS4_FJ_13", "Soph_SH", "Soph_SL", "Soph_EV", "Soph_veto", "Soph_hisp", 
+"Soph_Cens", "Soph_", "PS_jobs_1", "PS_jobs_2", "PS_jobs_3", 
+"PS_media", "JS_1_1", "JS_1_2", "JS_2_1", "JS_2_2", "JS_3_1", 
+"JS_3_2", "JS_4_1", "JS_4_2", "R1_IRI_1", "R1_IRI_2", "R1_IRI_3", 
+"R1_IRI_4", "R1_IRI_5", "R1_IRI_6", "R1_IRI_7", "R1_IRI_8", "R1_IRI_9", 
+"R1_IRI_10", "R1_IRI_11", "R1_IRI_12", "R1_IRI_13", "R1_IRI_14", 
+"R1_IRI_15", "R1_IRI_16", "R1_IRI_17", "R1_IRI_18", "R1_IRI_19", 
+"R1_IRI_20", "R1_IRI_21", "Add_All_1", "Add_All_2", "Add_All_3", 
+"Add_All_4", "Add_All_5", "Add_All_6", "Add_All_7", "Add_All_8", 
+"Add_All_9", "Add_All_10", "Add_All_11", "Add_All_12", "Add_All_13", 
+"Add_All_14", "SD07_1", "SD07_2", "SD07_3", "SD07_4", "SD07_5", 
+"SD07_6", "SD07_7", "SD07_8", "SD07_9", "SD07_10", "SD07_11", 
+"SD07_12", "SD07_14", "SD07_15", "SD07_16", "SD07_17", "RWA_1", 
+"RWA_2", "RWA_3", "RWA_4", "RWA_5", "RWA_6", "RWA_7", "RWA_8", 
+"RWA_9", "RWA_10", "RWA_11", "RWA_12", "AM_A_4", "AM_A_5", "AM_A_6", 
+"AM_A_7", "AM_A_8", "AM_A_9", "AM_A_10", "AM_A_11", "AM_A_12", 
+"AM_A_13", "AM_A_14", "AM_A_15", "AM_A_16", "AM_A_17", "AM_A_18", 
+"AM_A_19", "AM_A_20", "AM_A_21", "AM_A_22", "AM_A_23", "AM_A_24", 
+"AM_A_25", "AM_A_26", "AM_A_27", "AM_A_28", "AM_A_29", "AM_A_30", 
+"AM_A_31", "AM_A_32", "AM_P_4", "AM_P_5", "AM_P_6", "AM_P_7", 
+"AM_P_8", "AM_P_9", "AM_P_10", "AM_P_11", "AM_P_12", "AM_P_13", 
+"AM_P_14", "AM_P_15", "AM_P_16", "AM_P_17", "AM_P_18", "AM_P_19", 
+"AM_P_20", "AM_P_21", "AM_P_22", "AM_P_23", "AM_P_24", "AM_P_25", 
+"AM_P_26", "AM_P_27", "AM_P_28", "AM_P_29", "AM_P_30", "AM_P_31", 
+"AM_P_32", "PVQ_RR_Male_1", "PVQ_RR_Male_2", "PVQ_RR_Male_3", 
+"PVQ_RR_Male_4", "PVQ_RR_Male_5", "PVQ_RR_Male_6", "PVQ_RR_Male_7", 
+"PVQ_RR_Male_8", "PVQ_RR_Male_9", "PVQ_RR_Male_10", "PVQ_RR_Male_11", 
+"PVQ_RR_Male_12", "PVQ_RR_Male_13", "PVQ_RR_Male_14", "PVQ_RR_Male_15", 
+"PVQ_RR_Male_16", "PVQ_RR_Male_17", "PVQ_RR_Male_18", "PVQ_RR_Male_19", 
+"PVQ_RR_Male_20", "PVQ_RR_Male_21", "PVQ_RR_Male_22", "PVQ_RR_Male_23", 
+"PVQ_RR_Male_24", "PVQ_RR_Male_25", "PVQ_RR_Male_26", "PVQ_RR_Male_27", 
+"PVQ_RR_Male_28", "PVQ_RR_Male_29", "PVQ_RR_Male_30", "PVQ_RR_Male_31", 
+"PVQ_RR_Male_32", "PVQ_RR_Male_33", "PVQ_RR_Male_34", "PVQ_RR_Male_35", 
+"PVQ_RR_Male_36", "PVQ_RR_Male_37", "PVQ_RR_Male_38", "PVQ_RR_Male_39", 
+"PVQ_RR_Male_40", "PVQ_RR_Male_41", "PVQ_RR_Male_42", "PVQ_RR_Male_43", 
+"PVQ_RR_Male_44", "PVQ_RR_Male_45", "PVQ_RR_Male_46", "PVQ_RR_Male_47", 
+"PVQ_RR_Male_48", "PVQ_RR_Male_49", "PVQ_RR_Male_50", "PVQ_RR_Male_51", 
+"PVQ_RR_Male_52", "PVQ_RR_Male_53", "PVQ_RR_Male_54", "PVQ_RR_Male_55", 
+"PVQ_RR_Male_56", "PVQ_RR_Male_57", "PVQ_RR_Fem_1", "PVQ_RR_Fem_2", 
+"PVQ_RR_Fem_3", "PVQ_RR_Fem_4", "PVQ_RR_Fem_5", "PVQ_RR_Fem_6", 
+"PVQ_RR_Fem_7", "PVQ_RR_Fem_8", "PVQ_RR_Fem_9", "PVQ_RR_Fem_10", 
+"PVQ_RR_Fem_11", "PVQ_RR_Fem_12", "PVQ_RR_Fem_13", "PVQ_RR_Fem_14", 
+"PVQ_RR_Fem_15", "PVQ_RR_Fem_16", "PVQ_RR_Fem_17", "PVQ_RR_Fem_18", 
+"PVQ_RR_Fem_19", "PVQ_RR_Fem_20", "PVQ_RR_Fem_21", "PVQ_RR_Fem_22", 
+"PVQ_RR_Fem_23", "PVQ_RR_Fem_24", "PVQ_RR_Fem_25", "PVQ_RR_Fem_26", 
+"PVQ_RR_Fem_27", "PVQ_RR_Fem_28", "PVQ_RR_Fem_29", "PVQ_RR_Fem_30", 
+"PVQ_RR_Fem_31", "PVQ_RR_Fem_32", "PVQ_RR_Fem_33", "PVQ_RR_Fem_34", 
+"PVQ_RR_Fem_35", "PVQ_RR_Fem_36", "PVQ_RR_Fem_37", "PVQ_RR_Fem_38", 
+"PVQ_RR_Fem_39", "PVQ_RR_Fem_40", "PVQ_RR_Fem_41", "PVQ_RR_Fem_42", 
+"PVQ_RR_Fem_43", "PVQ_RR_Fem_44", "PVQ_RR_Fem_45", "PVQ_RR_Fem_46", 
+"PVQ_RR_Fem_47", "PVQ_RR_Fem_48", "PVQ_RR_Fem_49", "PVQ_RR_Fem_50", 
+"PVQ_RR_Fem_51", "PVQ_RR_Fem_52", "PVQ_RR_Fem_53", "PVQ_RR_Fem_54", 
+"PVQ_RR_Fem_55", "PVQ_RR_Fem_56", "PVQ_RR_Fem_57", "respodent_status", 
+"data_link")
+#
+NR.PPBS2016 <- NR.PPBS2016.raw[, names(NR.PPBS2016.raw) %in% c(variables.to.filter.in)]
+#
+CF.PPBS2016 <- CF.PPBS2016.raw[, names(CF.PPBS2016.raw) %in% c(variables.to.filter.in)]
+#
+NRCF.PPBS2016 <- NRCF.PPBS2016.raw[, names(NRCF.PPBS2016.raw) %in% c(variables.to.filter.in)]
+#
+#
+NR.PPBS2016   <- NR.PPBS2016[NR.PPBS2016$respodent_status %in% c("Complete"),]
+CF.PPBS2016   <- CF.PPBS2016[CF.PPBS2016$respodent_status %in% c("Complete"),]
+NRCF.PPBS2016 <- NRCF.PPBS2016[NRCF.PPBS2016$respodent_status %in% c("Complete"),]
+#
+labels <- readRDS("PPBS 2016 [labels].rds")
+#
+NR.PPBS2016 <- sjlabelled::copy_labels(df_new = NR.PPBS2016,
+                                       df_origin = labels)
+#
+CF.PPBS2016 <- sjlabelled::copy_labels(df_new = CF.PPBS2016,
+                                       df_origin = labels)
+#
+NRCF.PPBS2016 <- sjlabelled::copy_labels(df_new = NRCF.PPBS2016,
+                                         df_origin = labels)
+#
+#
+#
+#################################
+# Saving data ##################
+###############################
+#
+haven::write_sav(NR.PPBS2016, "_data_processed/PPBS US 2016 NR.sav")
+haven::write_sav(CF.PPBS2016, "_data_processed/PPBS US 2016 CF.sav")
+#
+write.csv(NR.PPBS2016, "_data_processed/PPBS US 2016 NR.csv")
+write.csv(CF.PPBS2016, "_data_processed/PPBS US 2016 CF.csv")
+#
+save(NR.PPBS2016, CF.PPBS2016, NRCF.PPBS2016, 
+     file = "_data_processed/PPBS US 2016 NR & CF.RData")
+#
+#
+rm("CF.PPBS2016", "NR.PPBS2016",  "NRCF.PPBS2016", "variables.to.filter.in", "ResponseID.NR.Incomplete", "ResponseID.NR.Qual.Fail")
+#
+```
+
+## Creating Working data
+
+```{r}
+NR.PPBS2016.WD   <- NR.PPBS2016.raw[NR.PPBS2016.raw$respodent_status %in% c("Complete"),]
+CF.PPBS2016.WD   <- CF.PPBS2016.raw[CF.PPBS2016.raw$respodent_status %in% c("Complete"),]
+NRCF.PPBS2016.WD <- NRCF.PPBS2016.raw[NRCF.PPBS2016.raw$respodent_status %in% c("Complete"),]
+#
+#
+#
+labels <- readRDS("PPBS 2016 [labels].rds")
+#
+NR.PPBS2016.WD <- sjlabelled::copy_labels(df_new = NR.PPBS2016.WD,
+                                          df_origin = labels)
+#
+CF.PPBS2016.WD <- sjlabelled::copy_labels(df_new = CF.PPBS2016.WD,
+                                          df_origin = labels)
+#
+NRCF.PPBS2016.WD <- sjlabelled::copy_labels(df_new = NRCF.PPBS2016.WD,
+                                            df_origin = labels)
+#
+save(NR.PPBS2016.WD, CF.PPBS2016.WD, NRCF.PPBS2016.WD, 
+     file = "Working Data PPBS2016.RData")
+#
+#
+rm("NR.PPBS2016.WD", "CF.PPBS2016.WD",  "NRCF.PPBS2016.WD")
+```
+
+## Creating Raw data
+
+**For methods.Rmd**
+
+```{r}
+save(NR.PPBS2016.raw, CF.PPBS2016.raw, NRCF.PPBS2016.raw, 
+     file = "PPBS2016.raw.RData")
+#
+#
+rm("NR.PPBS2016.raw", "CF.PPBS2016.raw",  "NRCF.PPBS2016.raw", "ResponseID.NR.Incomplete", "ResponseID.NR.Qual.Fail", "%!in%")
+```
+
+## Creating Original format data
+
+```{r}
+save("data.76", "dataFull", "dataIncomplete", "dataOut", "dataQF", "labels", 
+     file = "PPBS2016 Original.RData")
+#
+#
+rm("data.76", "dataFull", "dataIncomplete", "dataOut", "dataQF", 
+"labels")
+```
+
+### If/when necessary [DB shared with Tobias Rothmund]
+
+```{r this chunk saves data at DB in Tobias Rothmund DB if or when needed, eval=FALSE}
+#
+# Full data is saved as data
+write.csv(data, 
+          "C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/data.csv")
+#
+# data.76 is saved as dataQ, for data based on "Quotas"
+write.csv(data.76, 
+          "C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/dataQ.csv")
+#
+# dataQF saved as dataQF, for "Quota Full"
+write.csv(dataQF, 
+          "C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/dataQF.csv")
+#
+# dataOut saved as dataOut, for data out of analysis
+write.csv(dataOut, 
+          "C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/dataOut.csv")
+#
+# dataIncomplete saved as dataInc, for Incomplete observations
+write.csv(dataIncomplete, 
+          "C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/dataIncomplete.csv")
+#
+# 
+# Saving image, which is equivalent to all of the above
+save.image(file="C:/Users/falaf/Dropbox/Shared/Projects/Current/Tobias Rothmund/_OriginalData/1st Study/Processed datasets/Working Data.RData")
+```
+
+```{r, eval=FALSE}
+c(min(as.Date(NR.PPBS2016.WD$V8)), max(as.Date(NR.PPBS2016.WD$V9)))
+with(SSI, difftime(max(EndDate), min(StartDate)))
+#
+c(min(as.Date(NR.PPBS2016.raw$V8)), max(as.Date(NR.PPBS2016.raw$V9)))
+#
+#
+#
+dput(names(NR.PPBS2016.raw[,1:40]))
+# pid  V1 (ResponseId),   psid
+data <- haven::read_sav("C:/Users/falaf/Desktop/Conservatism+US_September+17,+2020_14.59.sav")
+#
+# DATES: "2016-08-16" "2016-09-19"
+c(min(as.Date(data$StartDate)), max(as.Date(data$EndDate)))
+#
+#
+sum(NR.PPBS2016.WD$psid %in% data$psid)
+sum(CF.PPBS2016.WD$psid %in% data$psid)
+#
+sum(NR.PPBS2016.WD$pid %in% data$pid)
+sum(CF.PPBS2016.WD$pid %in% data$pid)
+#
+sum(NR.PPBS2016.WD$V1 %in% data$ResponseId)
+sum(CF.PPBS2016.WD$V1 %in% data$ResponseId)
+#
+
+```
+
+
+```{r}
+#load("C:/Users/falaf/Academia/_data sets/_PPBS/2016/Conservatism US/share/_data_raw/1st Study/Working Data PPBS2016.RData")
+PPBS_US_2016_NR <- haven::read_sav("_data_processed/PPBS US 2016 NR.sav")
+#
+PPBS_US_2016_NR$CS4_FJ_7
+#
+labelled::look_for()
+
+labels <- readRDS("PPBS 2016 [labels].rds")
+PPBS_US_2016_NR <- sjlabelled::copy_labels(df_new = PPBS_US_2016_NR,
+                                          df_origin = labels)
+#
+PPBS_US_2016_NR$CS4_FJ_7
+#
+library(labelled);library(dplyr); library(haven)
+ls()
+labelled::look_for(PPBS_US_2016_NR) %>% dplyr::as_tibble() -> df
+#
+look_for(PPBS_US_2016_NR) %>% convert_list_columns_to_character() -> df
+```
+

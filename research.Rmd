@@ -1,7 +1,8 @@
 ---
 title: "Research"
-description: Some additional details about the Ph.D. thesis.
-
+description: |
+  Under construction. Coming soon!
+  
 output:
   distill::distill_article:
     css: researchstyle.css
