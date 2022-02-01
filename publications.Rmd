@@ -99,6 +99,7 @@ Azevedo, F., **Micheli, L.**, \& Bolesta., D. S. Does Stereotype Threat contribu
 <div style="text-align: justify"> Beliefs in upward economic mobility are prevalent in many societies and especially pervasive among the poor. This research focuses on bottom-tier consumers—and examines how beliefs in upward mobility affect status seeking and the likelihood to engage in conspicuous consumption. Because perceptions of high economic mobility enhance the perceived legitimacy of inequality and thus the credibility of status goods, bottom-tier consumers are expected to become more prone to signal their status under high rather than low economic mobility. Four studies provide evidence for this hypothesis across various measures of status consumption and show the underlying process through perceived legitimacy of inequality. The effect of perceptions of upward mobility on preference for status consumption is independent of the perceived level of economic inequality and only present when income is not directly observable, suggesting that status consumption is used to signal one’s income. The present research sheds light on the importance of investigating societal perceptions among the poor to understand consumer behavior and offers implications for policy making.</div>
 
 <br>
+
 ## Work in Progress
 
 Breil, C., **Micheli, L.**, \& Böckler, A. Perceptions of others' social affect and social cognition influences prosocial behavior. [(Preregistration)](https://osf.io/8ey4f)
