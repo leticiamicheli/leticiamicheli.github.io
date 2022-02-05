@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Inequality and decision-making
 
 <div class="col2">
-![](Inequality2.jpg){width=300px}
+![](Inequality2.jpg){width=300px}   
 <sub><sup><sub><sup><a href="https://www.freepik.com/vectors/business">Vector created by pch.vector - www.freepik.com</a></sup></sub></sup></sub>
 
 In my main line of research, I investigate how contexts of *inequality, unfairness and scarcity* impact our decisions when interacting with others. I am primarily interested in understanding how such challenging contexts influence social and consumer decision-making and what are the neural mechanisms underlying such decisions. As the differences between the rich and the poor become larger in several countries, many people constantly face situations in which they have less than others or less than what they need. The way we interact with each other, in turn, can definitely play a role in mitigating or intensifying inequality in our surroundings. Specifically, I investigate how different types of inequality (e.g., inequality in outcomes or inequality in opportunities) affect our decisions, and how individuals think situations of unfairness should be addressed. I am also interested in understanding how individuals' perceptions of inequality and economic mobility influence their decisions.
@@ -35,7 +35,7 @@ In my main line of research, I investigate how contexts of *inequality, unfairne
 
 <div class="col2">
 
-![](money.png){width=250px}   
+![](money.png){width=250px}      
 <sub><sup><sub><sup><a href="https://www.flaticon.com/free-icons/head" title="head icons">Icon created by juicy_fish - Flaticon</a></sup></sub></sup></sub>
 
 Besides impacting decision-making, situations of inequality also influence our perception and beliefs of others and the world. In addition, individual differences in psychological needs and ideology can lead to important cleavages in how people perceive and deal with inequality and unfairness. I am interested in investigating how inequality affects psychological processes such as attribution of individual responsibility, hope and creativity, and in the role of individual differences in confronting social inequality.
@@ -51,7 +51,7 @@ Besides impacting decision-making, situations of inequality also influence our p
 ## Social cognition and Prosocial behavior
 
 <div class="col2">
-![](Prosocial.jpg){width=300px}
+![](Prosocial.jpg){width=300px}   
 <sub><sup><sub><sup><a href="https://www.freepik.com/vectors/monotone">Vector created by rawpixel.com - www.freepik.com</a></sup></sub></sup></sub>
 
 Humans are remarkably cooperative. But how do people decide when and with whom to cooperate? Understanding how cooperation emerges and is sustained in groups is especially important in light of emerging societal issues such as health and climate crises, which require a large share of the population to cooperate and adhere to certain rules. I am interested in understanding the neural mechanisms and underlying psychological motivations of our behavior towards others. Some of the questions that I try to answer in this line of research are: What is the role of external incentives in promoting cooperation? How situations of uncertainty influence social decision-making? And how our perception of others' behavior and social cognition affect how nice we are towards them?
@@ -76,8 +76,7 @@ I am also interested in open scholarship. Whenever I can, I try to get involved 
 
 - Azevedo, F., Micheli, L., & Bolesta., D. S. Does Stereotype Threat contribute to the Political Knowledge Gender Gap? A Preregistered Replication Study of Ihme and Tausendpfund (2018). *(Under review).*
 
-![](openscience.png){width=300px}
-
+![](openscience.png){width=300px} 
 
 </div>
 
