@@ -33,11 +33,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ## Bio
-
+<div style="text-align: justify">
 I am a psychologist trained in Cognitive Neuroscience and Neuroeconomics. I am mainly interested in 
-investigating how situations of *inequality, unfairness and scarcity* influence our psychology as well as our social and consumer decision-making. In my research, I adopt an interdisciplinary and multi-method approach, using insights and methods from Psychology, Economics and Neuroscience. I am also striving to adopt open scholarship into my own work. Since 2020, I am a community manager at the Framework for Open and Reproducible Research Training [(FORRT)](https://forrt.org/). 
+investigating how situations of *inequality, unfairness and scarcity* influence our psychology as well as our social and consumer decision-making. In my research, I adopt an interdisciplinary and multi-method approach, using insights and methods from Psychology, Economics and Neuroscience. I am also striving to adopt open scholarship into my own work.    
 
-I am currently a postdoctoral researcher at the [Institute of Psychology, Würzburg University, in Germany](https://www.psychologie.uni-wuerzburg.de/social-cognition/startseite/).
+I am an ambassador for the [Center of Open Science](https://www.cos.io/communities/ambassadors#:~:text=Building%20a%20Network%20of%20Open,community%20with%20tools%20for%20change.) and, since 2020, I am a community manager at the Framework for Open and Reproducible Research Training [(FORRT)](https://forrt.org/). 
+
+I am currently a postdoctoral researcher at the [Institute of Psychology, Würzburg University, in Germany](https://www.psychologie.uni-wuerzburg.de/social-cognition/startseite/). </div>
 
 <br>
 
