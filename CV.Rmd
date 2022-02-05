@@ -9,8 +9,8 @@ description: |
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<object data="CV.pdf" type="application/pdf" width="500px" height="700px">
-    <embed src="CV.pdf">
+<object data="CV_Leticia.pdf" type="application/pdf" width="500px" height="700px">
+    <embed src="CV_Leticia.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="CV.pdf">Download PDF</a>.</p>
     </embed>
 </object>
