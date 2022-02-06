@@ -3,7 +3,7 @@
     "path": "C:/Users/leler/Website/leticiamicheli.github.io/phdthesis.Rmd",
     "project_path": "phdthesis.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1345539388",
     "contents": "",
     "dirty": false,
     "created": 1642854228140.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "6,0",
-        "scrollLine": "0"
+        "cursorPosition": "49,179",
+        "scrollLine": "48"
     },
     "folds": "",
-    "lastKnownWriteTime": 1644000431,
+    "lastKnownWriteTime": 1644152086,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1644000431638,
+    "last_content_update": 1644152086346,
     "read_only": false,
     "read_only_alternatives": []
 }
