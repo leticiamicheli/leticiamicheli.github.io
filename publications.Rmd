@@ -19,8 +19,13 @@ Azevedo, F., Liu, M., Pennington, C. R., Pownall, M., Evans, T. R., Parsons, S.,
 
 Azevedo, F., Marques, T., \& **Micheli, L.** (in press). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. *Perspectives on Politics.*
 
-Parsons, S., Azevedo, F., Elsherif, M. M., Guay, S., Shahim, O. N., Govaart, G. H., Norris, E.,  ... **Micheli, L.**, \& Aczel, B. (in press). A Community-Sourced Glossary of Open Scholarship Terms. *Nature Human Behavior.*  
+Parsons, S., Azevedo, F., Elsherif, M. M., Guay, S., Shahim, O. N., Govaart, G. H., Norris, E.,  ... **Micheli, L.**, \& Aczel, B. (2022). A Community-Sourced Glossary of Open Scholarship Terms. *Nature Human Behavior.*  [(link)](https://doi.org/10.1038/s41562-021-01269-4) | [(preprint)](https://osf.io/preprints/metaarxiv/kdqcw)
 *[Team Science Contributorship: Resources; Writing: review and editing]* 
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1038/s41562-021-01269-4" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
 
 
 ### 2021
