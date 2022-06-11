@@ -1,26 +1,26 @@
 {
-    "id": "1FFCE664",
-    "path": "C:/Users/leler/Website/leticiamicheli.github.io/publications.Rmd",
-    "project_path": "publications.Rmd",
+    "id": "EA54B550",
+    "path": "C:/Users/leler/Website/leticiamicheli.github.io/index.Rmd",
+    "project_path": "index.Rmd",
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1642854229012.0,
+    "created": 1642854227039.0,
     "source_on_save": false,
-    "relative_order": 6,
+    "relative_order": 4,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "21,273",
-        "scrollLine": "7"
+        "cursorPosition": "18,19",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1645464097,
+    "lastKnownWriteTime": 1644151087,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1645464097387,
+    "last_content_update": 1644151087768,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -1,14 +1,19 @@
 ---
 title: "About me"
-description: |
+description: A little bit about me
  
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+# Added by Leticia
+install.packages(c("htmlwidgets","remotes"), repos = "http://cran.us.r-project.org")
+remotes::install_github('royfrancis/pixture')
 ```
 
 ```{r, echo=FALSE, fig.align='center'}
+
 library(pixture)
 pixgallery(list.files("img.about", full.names=TRUE), 
            dim = "200px", gap = "10px", type = "grid")

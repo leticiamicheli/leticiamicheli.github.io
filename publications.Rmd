@@ -15,11 +15,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 2022
 
-Azevedo, F., Liu, M., Pennington, C. R., Pownall, M., Evans, T. R., Parsons, S., Elsherif, M., **Micheli, L.**, Westwood, S., \& FORRT. (in press). Towards a culture of open scholarship: The role of pedagogical communities. *BMC Research Notes.* [(Preprint)](https://osf.io/preprints/metaarxiv/ek9m5)  
+Azevedo, F., Liu, M., Pennington, C. R., Pownall, M., Evans, T. R., Parsons, S., Elsherif, M., **Micheli, L.**, Westwood, S., \& FORRT. (in press). Towards a culture of open scholarship: The role of pedagogical communities. *BMC Research Notes, 15*(75).[(link)](https://bmcresnotes.biomedcentral.com/articles/10.1186/s13104-022-05944-1) | [(Preprint)](https://osf.io/preprints/metaarxiv/ek9m5) 
 
-Azevedo, F., Marques, T., \& **Micheli, L.** (in press). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. *Perspectives on Politics.*
+<aside>
+<div data-badge-type="donut" data-doi="10.1186/s13104-022-05944-1" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
 
-Parsons, S., Azevedo, F., Elsherif, M. M., Guay, S., Shahim, O. N., Govaart, G. H., Norris, E.,  ... **Micheli, L.**, \& Aczel, B. (2022). A Community-Sourced Glossary of Open Scholarship Terms. *Nature Human Behavior.*  [(link)](https://doi.org/10.1038/s41562-021-01269-4) | [(preprint)](https://osf.io/preprints/metaarxiv/kdqcw)
+Azevedo, F., Marques, T., \& **Micheli, L.** (2022). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. *Perspectives on Politics.* [(link)](https://doi.org/10.1017/S1537592722001098)
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1017/S1537592722001098" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
+
+Parsons, S., Azevedo, F., Elsherif, M. M., Guay, S., Shahim, O. N., Govaart, G. H., Norris, E.,  ... **Micheli, L.**, \& Aczel, B. (2022). A Community-Sourced Glossary of Open Scholarship Terms. *Nature Human Behavior.* [(link)](https://doi.org/10.1038/s41562-021-01269-4) | [(preprint)](https://osf.io/preprints/metaarxiv/kdqcw)
 *[Team Science Contributorship: Resources; Writing: review and editing]* 
 
 <aside>
