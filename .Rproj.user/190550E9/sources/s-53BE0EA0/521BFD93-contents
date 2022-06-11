@@ -9,7 +9,7 @@ description: |
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<object data="CV_Leticia Micheli_Feb2022.pdf" type="application/pdf" width="500px" height="700px">
+<object data="CV_Leticia Micheli_June2022.pdf" type="application/pdf" width="500px" height="700px">
     <embed src="CV_Leticia Micheli_June2022.pdf">
         <p>If you cannot view the CV above, please download the PDF here:   
         <a href="CV_Leticia Micheli_June2022.pdf">Download PDF</a>.</p>
