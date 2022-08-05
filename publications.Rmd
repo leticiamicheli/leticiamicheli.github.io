@@ -119,9 +119,13 @@ Schumacher, A., \& **Micheli, L.** Anticipated scarcity and stockpiling during t
 
 <br>
 
-## Work in Progress
+**Micheli, L.**, Breil, C., \& Böckler, A. Golden gazes: Gaze direction and emotional context promote prosocial behavior by increasing attributions of empathy and perspective-taking [(Preregistration)](https://osf.io/8ey4f) 
 
-Breil, C., **Micheli, L.**, \& Böckler, A. Perceptions of others' social affect and social cognition influences prosocial behavior. [(Preregistration)](https://osf.io/8ey4f)
+<div style="text-align: justify"> Prosocial behavior is a fundamental element of cooperation in societies. Accordingly, when and towards whom humans act generously are questions of particular interest. We investigate the impact of a conversation partner’s gaze direction and the emotional context on perceptions of their social cognition and prosocial decisions towards them. In three experiments (two preregistered, N = 486), participants witnessed pre-recorded video conversations between a listener (visible) and a speaker (audible, but not visible). The listener either established constant eye contact, constantly averted gaze or showed a mixed gaze pattern (gaze direction) while the speaker told a neutral  or negatively-valenced autobiographic episode (emotional context). Participants rated the listener’s empathy and perspective-taking after each video and played the Trust Game (study 1) or the Dictator Game (study 2) with the listener. Replicating previous findings, occasional gaze avoidance, especially during negative narrations, increased attributions of social understanding to the listener. Critically, mediation analyses revealed that listeners perceived as empathic and taking perspective were ultimately treated with more trust and generosity in subsequent strategic and non-strategic economic games, suggesting that social signals and contextual cues in social interactions can serve as an indication of another’s reputation, thereby promoting indirect reciprocity. Lastly, in study 3, we show that the emotional context, but not the listeners’ gaze behavior, promoted the spread of generosity towards anonymous, previously unobserved individuals in a Dictator Game. We conclude that social signals and contextual cues in social interactions can be important promoters of cooperation in large societies via mechanisms such as indirect reciprocity and social contagion of generosity.  </div>
+
+<br>
+
+## Work in Progress
 
 **Micheli, L.**, \& Böckler, A. Effects of gaze direction and face visibility on third-party punishment and compensation. [(Preregistration)](https://osf.io/9myx6)
 
