@@ -21,7 +21,7 @@ As the differences between the rich and the poor become larger in several countr
 
 - Huijsmans, I., Ma, I., Micheli, L., Civai, C., Stallen, M., & Sanfey, A.G. (2019). A scarcity mindset alters neural processing underlying value-based decision making. *PNAS, 116(24)*, 11699-11704.
 
-- Micheli, L., Negrini, M., Schuhmann, T., & Riedl, A. Brain stimulation reveals distinct motives underlying reciprocal punishment and reward. *(Under review).*
+- Micheli, L., Negrini, M., Schuhmann, T., & Riedl, A. Brain stimulation reveals distinct motives underlying reciprocal punishment and reward. *(In press at Proceedings of the Royal Society B).*
 
 - Micheli, L., Geyskens, K., Goukens, C., & Riedl, A. More opportunities, better outcomes: Does inequality in opportunity call for outcome redistribution? *(In preparation).*
 
@@ -59,7 +59,7 @@ Humans are remarkably cooperative. But how do people decide when and with whom t
 
 - Micheli, L., Stallen, M., & Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. *Brain Sciences, 11*(3), 317.
 
-- Breil, C., Micheli, L., & Böckler, A. Perceptions of others’ social affect and social cognition influences prosocial behavior. *(In preparation).*
+- Breil, C., Micheli, L., & Böckler, A. Perceptions of others’ social affect and social cognition influences prosocial behavior. *(Submitted).*
 
 ![](Prosocial.jpg){width=300px}   
 <sub><sup><sub><sup><a href="https://www.freepik.com/vectors/monotone">Vector created by rawpixel.com - www.freepik.com</a></sup></sub></sup></sub>
