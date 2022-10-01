@@ -1,0 +1,17 @@
+---
+title: "CV"
+
+description: |
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<object data="CV_Leticia_Sept22.pdf" type="application/pdf" width="500px" height="700px">
+    <embed src="CV_Leticia_Sept22.pdf"> 
+        <p>If you cannot view the CV above, please download the PDF here:   
+        <a href="CV_Leticia_Sept22.pdf">Download PDF</a>.</p>
+    </embed>
+</object>

@@ -19,6 +19,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Azevedo, F., **Micheli, L.**, \& Bolesta., D. S. Does Stereotype Threat contribute to the Political Knowledge Gender Gap? A Preregistered Replication Study of Ihme and Tausendpfund (2018). Conditionally accepted at *Journal of Experimental Political Science*.
 
+Dorison, C.A., Lerner, J.S., Heller, B.H., Rothman, A., Kawachi, I.I., Wang, K., ... **Micheli, L.** ... &
+Coles, N.A. (2022). In COVID-19 Health Messaging, Loss Framing Increases Anxiety with Little-to-No Concomitant Benefits: Experimental Evidence from 84 Countries. *Affective Science.* [(link)](https://link.springer.com/article/10.1007/s42761-022-00128-3) *[Team Science Contributorship: Resources; Writing: review and editing]* 
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1007/s42761-022-00128-3" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
+
 Azevedo, F., Marques, T., \& **Micheli, L.** (2022). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. *Perspectives on Politics,* 1-23. [(link)](https://doi.org/10.1017/S1537592722001098)
 
 <aside>
