@@ -27,7 +27,7 @@ Azevedo, F., **Micheli, L.**, \& Bolesta., D. S. Does Stereotype Threat contribu
 Breznau, N., Rinke, E., Wuttke, A., Nguyen, H. H. V., Adem, M., Adriaans, J., Alvarez-Benjumea,
 A., ... **Micheli, L.**, ... & Żółtak, T. (2022). Observing Many Researchers Using the Same Data and
 Hypothesis Reveals a Hidden Universe of Uncertainty. *PNAS, 119*(44), e2203150119.
-[(link)] (https://doi.org/10.1073/pnas.2203150119) *[Team Science Contributorship: Data Analysis]* 
+[(link)](https://doi.org/10.1073/pnas.2203150119) *[Team Science Contributorship: Data Analysis]* 
 
 <aside>
 <div data-badge-type="donut" data-doi="10.1073/pnas.2203150119" data-hide-no-mentions="true" class="altmetric-embed"></div>
