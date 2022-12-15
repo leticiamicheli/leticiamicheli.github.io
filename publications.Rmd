@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 2022
 
-Azevedo, F., **Micheli, L.**, \& Bolesta., D. S. Does Stereotype Threat contribute to the Political Knowledge Gender Gap? A Preregistered Replication Study of Ihme and Tausendpfund (2018). Conditionally accepted at *Journal of Experimental Political Science*.
+Azevedo, F., **Micheli, L.**, \& Bolesta., D. S. Does Stereotype Threat contribute to the Political Knowledge Gender Gap? A Preregistered Replication Study of Ihme and Tausendpfund (2018). Accepted at *Journal of Experimental Political Science*.
 
 **Micheli, L.**, Negrini, M., Schuhmann, T., \& Riedl, A. (2022). Brain stimulation reveals distinct motives underlying reciprocal punishment and reward. *Proceedings of the Royal Society B, 289:* 20221590. [(link)](https://doi.org/10.1098/rspb.2022.1590)
 
@@ -43,7 +43,7 @@ Coles, N.A. (2022). In COVID-19 Health Messaging, Loss Framing Increases Anxiety
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 </aside>
 
-Azevedo, F., Marques, T., \& **Micheli, L.** (2022). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. *Perspectives on Politics,* 1-23. [(link)](https://doi.org/10.1017/S1537592722001098)
+Azevedo, F., Marques, T., \& **Micheli, L.** (2022). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. *Perspectives on Politics, 20*(4), 1305-1327. [(link)](https://doi.org/10.1017/S1537592722001098)
 
 <aside>
 <div data-badge-type="donut" data-doi="10.1017/S1537592722001098" data-hide-no-mentions="true" class="altmetric-embed"></div>
