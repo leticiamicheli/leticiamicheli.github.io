@@ -13,7 +13,7 @@ links:
   - label: ORCID
     url: "https://orcid.org/0000-0003-0066-8222"
   - label: Email
-    url: "mailto:leticia.micheli@uni-wuerzburg.de"
+    url: "mailto:l.rettore.micheli@fsw.leidenuniv.nl"
 
 output: 
   postcards::trestles
