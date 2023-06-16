@@ -17,7 +17,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Pownall, M., Azevedo, F., König, L.M., Slack, H.R., Evans, T., Flack, Z., Grinschgl, S., ... **Micheli, L.** ... \& FORRT. Teaching open and reproducible scholarship: a critical review of the evidence base for current pedagogical methods and their outcomes. *Royal Society Open Science, 10:* 221255. [(link)](https://doi.org/10.1098/rsos.221255)
 
+<aside>
+<div data-badge-type="donut" data-doi="10.1098/rsos.221255" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
+
 Azevedo, F., **Micheli, L.**, \& Bolesta., D. S. Does Stereotype Threat contribute to the Political Knowledge Gender Gap? A Preregistered Replication Study of Ihme and Tausendpfund (2018). *Journal of Experimental Political Science*. [(link)](https://doi.org/10.1017/XPS.2022.35)
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1017/XPS.2022.35" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
 
 ### 2022
 
