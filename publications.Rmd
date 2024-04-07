@@ -13,7 +13,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Peer-reviewed
 
+### 2024
+Schumacher, A., \& **Micheli, L.** Anticipated scarcity and stockpiling during the COVID-19 pandemic: The role of perceived threat, childhood SES and materialism. *PLOS One, 19*(3): e0294497 [(link)](https://https://doi.org/10.1371/journal.pone.0294497) 
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1371/journal.pone.0294497" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
+
 ### 2023
+
+**Micheli, L.**, Breil, C., \& Böckler, A. Golden Gazes: Gaze Direction and Emotional Context Promote Prosocial Behavior by Increasing Attributions of Empathy and Perspective-Taking. *Journal of Personality and Social Psychology: IRGP*. Advanced Online Publication. [(link)](https://doi.org/10.1037/pspi0000437) 
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1037/pspi0000437" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
+
+Korbmacher, M., Azevedo, F., Pennington, C., Hartmann, H., Pownall, M., Schmidt, K., Elsherif, M., ... **Micheli, L.** \& Evans, T. The replication crisis has led to positive structural, procedural, and community changes. *Communications Psychology 1,* 3. [(link)](https://doi.org/10.1038/s44271-023-00003-2) 
+
+<aside>
+<div data-badge-type="donut" data-doi="10.1038/s44271-023-00003-2" data-hide-no-mentions="true" class="altmetric-embed"></div>
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</aside>
 
 Pownall, M., Azevedo, F., König, L.M., Slack, H.R., Evans, T., Flack, Z., Grinschgl, S., ... **Micheli, L.** ... \& FORRT. Teaching open and reproducible scholarship: a critical review of the evidence base for current pedagogical methods and their outcomes. *Royal Society Open Science, 10:* 221255. [(link)](https://doi.org/10.1098/rsos.221255)
 

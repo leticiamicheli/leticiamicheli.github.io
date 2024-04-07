@@ -59,7 +59,8 @@ Humans are remarkably cooperative. But how do people decide when and with whom t
 
 - Micheli, L., Stallen, M., & Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. *Brain Sciences, 11*(3), 317.
 
-- Breil, C., Micheli, L., & Böckler, A. Perceptions of others’ social affect and social cognition influences prosocial behavior. *(Submitted).*
+- Breil, C., Micheli, L., & Böckler, A. (2023). Perceptions of others’ social affect and social cognition influences prosocial behavior. *Journal of Personality and Social Psychology: IRGP*.
+
 
 ![](Prosocial.jpg){width=300px}   
 <sub><sup><sub><sup><a href="https://www.freepik.com/vectors/monotone">Vector created by rawpixel.com - www.freepik.com</a></sup></sub></sup></sub>
