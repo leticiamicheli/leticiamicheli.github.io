@@ -59,7 +59,7 @@ Humans are remarkably cooperative. But how do people decide when and with whom t
 
 - Micheli, L., Stallen, M., & Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. *Brain Sciences, 11*(3), 317.
 
-- Breil, C., Micheli, L., & Böckler, A. (2023). Perceptions of others’ social affect and social cognition influences prosocial behavior. *Journal of Personality and Social Psychology: IRGP*.
+- Breil, C., Micheli, L., & Böckler, A. (2023). Golden gazes: Gaze direction and emotional context promote prosocial behavior by increasing attributions of empathy and perspective-taking. *Journal of Personality and Social Psychology: IRGP,126*(4), 643–659*.
 
 
 ![](Prosocial.jpg){width=300px}   
