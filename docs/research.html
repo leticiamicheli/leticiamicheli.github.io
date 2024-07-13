@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -454,8 +455,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -784,6 +785,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -824,9 +826,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display: none !important;
   }
 
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
+    border-top: none;
   }
 
   d-appendix {
@@ -921,6 +935,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
   }
 
   d-article pre {
@@ -1025,10 +1044,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1686,6 +1701,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // create d-title
     $('.d-title').changeElementType('d-title');
 
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
@@ -1763,8 +1784,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('.distill-force-highlighting-css').parent().remove();
 
     // remove empty line numbers inserted by pandoc when using a
-    // custom syntax highlighting theme
-    $('code.sourceCode a:empty').remove();
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
 
     // load distill framework
     load_distill_framework();
@@ -1790,12 +1812,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
         if (orcid_id) {
           var a = $('<a></a>');
           a.attr('href', 'https://orcid.org/' + orcid_id);
           var img = $('<img></img>');
           img.addClass('orcid-id');
-          img.attr('alt', 'ORCID ID');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
           img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
           a.append(img);
           $(this).append(a);
@@ -1860,9 +1883,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1874,6 +1909,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1973,6 +2033,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1995,7 +2057,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2034,7 +2096,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2070,6 +2132,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="about.html">About</a>
 <a href="CV.html">CV</a>
 <a href="research.html">Research</a>
+<a href="teaching.html">Teaching</a>
 <a href="phdthesis.html">Ph.D. Thesis</a>
 <a href="publications.html">Publications</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2082,6 +2145,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-title">
 <h1>Research</h1>
+
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2089,163 +2153,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<h2 id="inequality-and-decision-making">Inequality and
-decision-making</h2>
+<h2 id="inequality-and-decision-making">Inequality and decision-making</h2>
 <div class="col2">
-<p>As the differences between the rich and the poor become larger in
-several countries, many people constantly face situations in which they
-have less than others or less than what they need. The way we interact
-with each other, in turn, can definitely play a role in mitigating or
-intensifying inequality in our surroundings. In my main line of
-research, I investigate how contexts of <em>inequality, unfairness and
-scarcity</em> impact our decisions when interacting with others. I am
-primarily interested in understanding how these challenging contexts
-influence social and consumer decision-making and what are the neural
-mechanisms underlying such decisions. Specifically, I investigate how
-different types of inequality (e.g., inequality in outcomes or
-inequality in opportunities) affect our decisions, and how individuals
-think situations of unfairness should be addressed. I am also interested
-in understanding how individuals’ perceptions of inequality and economic
-mobility influence their decisions.</p>
+<p>As the differences between the rich and the poor become larger in several countries, many people constantly face situations in which they have less than others or less than what they need. The way we interact with each other, in turn, can definitely play a role in mitigating or intensifying inequality in our surroundings. In my main line of research, I investigate how contexts of <em>inequality, unfairness and scarcity</em> impact our decisions when interacting with others. I am primarily interested in understanding how these challenging contexts influence social and consumer decision-making and what are the neural mechanisms underlying such decisions. Specifically, I investigate how different types of inequality (e.g., inequality in outcomes or inequality in opportunities) affect our decisions, and how individuals think situations of unfairness should be addressed. I am also interested in understanding how individuals’ perceptions of inequality and economic mobility influence their decisions.</p>
 <p><em>Selected Publications and Projects:</em></p>
 <ul>
-<li><p>Huijsmans, I., Ma, I., Micheli, L., Civai, C., Stallen, M., &amp;
-Sanfey, A.G. (2019). A scarcity mindset alters neural processing
-underlying value-based decision making. <em>PNAS, 116(24)</em>,
-11699-11704.</p></li>
-<li><p>Micheli, L., Negrini, M., Schuhmann, T., &amp; Riedl, A. Brain
-stimulation reveals distinct motives underlying reciprocal punishment
-and reward. <em>Proceedings of the Royal Society B, 289:</em>
-20221590.</p></li>
-<li><p>Micheli, L., Geyskens, K., Goukens, C., &amp; Riedl, A. More
-opportunities, better outcomes: Does inequality in opportunity call for
-outcome redistribution? <em>(In preparation).</em></p></li>
-<li><p>Micheli, L., Geyskens, K., Briers, B., &amp; Goukens, C. Climbing
-the ladder: Perceptions of high upward economic mobility increase status
-consumption among bottom-tier consumers. <em>(In
-preparation).</em></p></li>
+<li><p>Huijsmans, I., Ma, I., Micheli, L., Civai, C., Stallen, M., &amp; Sanfey, A.G. (2019). A scarcity mindset alters neural processing underlying value-based decision making. <em>PNAS, 116(24)</em>, 11699-11704.</p></li>
+<li><p>Micheli, L., Negrini, M., Schuhmann, T., &amp; Riedl, A. Brain stimulation reveals distinct motives underlying reciprocal punishment and reward. <em>Proceedings of the Royal Society B, 289:</em> 20221590.</p></li>
+<li><p>Micheli, L., Geyskens, K., Goukens, C., &amp; Riedl, A. More opportunities, better outcomes: Does inequality in opportunity call for outcome redistribution? <em>(In preparation).</em></p></li>
+<li><p>Micheli, L., Geyskens, K., Briers, B., &amp; Goukens, C. Climbing the ladder: Perceptions of high upward economic mobility increase status consumption among bottom-tier consumers. <em>(In preparation).</em></p></li>
 </ul>
 <p><img src="Inequality2.jpg" width="300" /><br />
-<sub><sup><sub><sup><a href="https://www.freepik.com/vectors/business">Vector
-created by pch.vector - www.freepik.com</a></sup></sub></sup></sub></p>
+<sub><sup><sub><sup><a href="https://www.freepik.com/vectors/business">Vector created by pch.vector - www.freepik.com</a></sup></sub></sup></sub></p>
 </div>
 <h2 id="the-psychology-of-inequality">The psychology of inequality</h2>
 <div class="col2">
-<p>Besides impacting decision-making, situations of inequality also
-influence our perception and beliefs of others and the world. In
-addition, individual differences in psychological needs and ideology can
-lead to important cleavages in how people perceive and deal with
-inequality and unfairness. I am interested in investigating how
-inequality affects psychological processes such as attribution of
-individual responsibility, hope and creativity, and in the role of
-individual differences in confronting social inequality.</p>
+<p>Besides impacting decision-making, situations of inequality also influence our perception and beliefs of others and the world. In addition, individual differences in psychological needs and ideology can lead to important cleavages in how people perceive and deal with inequality and unfairness. I am interested in investigating how inequality affects psychological processes such as attribution of individual responsibility, hope and creativity, and in the role of individual differences in confronting social inequality.</p>
 <p><em>Selected Publications and Projects:</em></p>
 <ul>
-<li><p>Micheli, L. &amp; Gagnon, N. (2020). Unequal chances: Ex ante
-fairness and individual control. <em>Scientific Reports, 10</em>,
-21862.</p></li>
-<li><p>Azevedo, F., Marques, T., &amp; Micheli, L. (2022). In pursuit of
-racial equality: Identifying the determinants of support for the Black
-Lives Matter Movement with a systematic review and multiple
-meta-analyses. <em>Perspectives on Politics, 20</em>(4),
-1305-1327.</p></li>
+<li><p>Micheli, L. &amp; Gagnon, N. (2020). Unequal chances: Ex ante fairness and individual control. <em>Scientific Reports, 10</em>, 21862.</p></li>
+<li><p>Azevedo, F., Marques, T., &amp; Micheli, L. (2022). In pursuit of racial equality: Identifying the determinants of support for the Black Lives Matter Movement with a systematic review and multiple meta-analyses. <em>Perspectives on Politics, 20</em>(4), 1305-1327.</p></li>
 </ul>
 <p><img src="money.png" width="250" /><br />
-<sub><sup><sub><sup><a href="https://www.flaticon.com/free-icons/head" title="head icons">Icon
-created by juicy_fish - Flaticon</a></sup></sub></sup></sub></p>
+<sub><sup><sub><sup><a href="https://www.flaticon.com/free-icons/head" title="head icons">Icon created by juicy_fish - Flaticon</a></sup></sub></sup></sub></p>
 </div>
-<h2 id="social-cognition-and-prosocial-behavior">Social cognition and
-Prosocial behavior</h2>
+<h2 id="social-cognition-and-prosocial-behavior">Social cognition and Prosocial behavior</h2>
 <div class="col2">
-<p>Humans are remarkably cooperative. But how do people decide when and
-with whom to cooperate? Understanding how cooperation emerges and is
-sustained in groups is especially important in light of emerging
-societal issues such as health and climate crises, which require a large
-share of the population to cooperate and adhere to certain rules. I am
-interested in understanding the neural mechanisms and underlying
-psychological motivations of our behavior towards others. Some of the
-questions that I try to answer in this line of research are: What is the
-role of external incentives in promoting cooperation? How situations of
-uncertainty influence social decision-making? And how our perception of
-others’ behavior and social cognition affects how nice we are towards
-them?</p>
+<p>Humans are remarkably cooperative. But how do people decide when and with whom to cooperate? Understanding how cooperation emerges and is sustained in groups is especially important in light of emerging societal issues such as health and climate crises, which require a large share of the population to cooperate and adhere to certain rules. I am interested in understanding the neural mechanisms and underlying psychological motivations of our behavior towards others. Some of the questions that I try to answer in this line of research are: What is the role of external incentives in promoting cooperation? How situations of uncertainty influence social decision-making? And how our perception of others’ behavior and social cognition affects how nice we are towards them?</p>
 <p><em>Selected Publications and Projects:</em></p>
 <ul>
-<li><p>Micheli, L., Stallen, M., &amp; Sanfey, A.G. (2021). The effect
-of centralized financial and social incentives on cooperative behavior
-and its underlying neural mechanisms. <em>Brain Sciences, 11</em>(3),
-317.</p></li>
-<li><p>Breil, C., Micheli, L., &amp; Böckler, A. Perceptions of others’
-social affect and social cognition influences prosocial behavior.
-<em>(Submitted).</em></p></li>
+<li><p>Micheli, L., Stallen, M., &amp; Sanfey, A.G. (2021). The effect of centralized financial and social incentives on cooperative behavior and its underlying neural mechanisms. <em>Brain Sciences, 11</em>(3), 317.</p></li>
+<li><p>Breil, C., Micheli, L., &amp; Böckler, A. (2023). Perceptions of others’ social affect and social cognition influences prosocial behavior. <em>Journal of Personality and Social Psychology: IRGP</em>.</p></li>
 </ul>
 <p><img src="Prosocial.jpg" width="300" /><br />
-<sub><sup><sub><sup><a href="https://www.freepik.com/vectors/monotone">Vector
-created by rawpixel.com -
-www.freepik.com</a></sup></sub></sup></sub></p>
+<sub><sup><sub><sup><a href="https://www.freepik.com/vectors/monotone">Vector created by rawpixel.com - www.freepik.com</a></sup></sub></sup></sub></p>
 </div>
-<h2 id="open-scholarship-and-team-science">Open Scholarship and Team
-Science</h2>
+<h2 id="open-scholarship-and-team-science">Open Scholarship and Team Science</h2>
 <div class="col2">
-<p>I am also interested in open scholarship. Whenever I can, I try to
-get involved in replications and Team Science projects, which are a new
-and fun way to do science collaboratively leveraging the expertise and
-resources of a large (and often multidisciplinary!) team of researchers.
-Since I am involved with the Framework for Open and Reproducible
-Research Training (FORRT), I am particularly interested in helping
-develop Open Educational Resources that facilitate the teaching of Open
-Scholarship practices. Some of the publications below were developed as
-part of FORRT’s initiatives (see <a
-href="https://forrt.org/publications/"
-class="uri">https://forrt.org/publications/</a> for the whole list of
-FORRT’s publications).</p>
+<p>I am also interested in open scholarship. Whenever I can, I try to get involved in replications and Team Science projects, which are a new and fun way to do science collaboratively leveraging the expertise and resources of a large (and often multidisciplinary!) team of researchers. Since I am involved with the Framework for Open and Reproducible Research Training (FORRT), I am particularly interested in helping develop Open Educational Resources that facilitate the teaching of Open Scholarship practices. Some of the publications below were developed as part of FORRT’s initiatives (see <a href="https://forrt.org/publications/" class="uri">https://forrt.org/publications/</a> for the whole list of FORRT’s publications).</p>
 <p><em>Selected Publications and Projects:</em></p>
 <ul>
-<li><p>Parsons, S., Azevedo, F., Elsherif, M. M., Guay, S., Shahim, O.
-N., Govaart, G. H., Norris, E., … Micheli, L., &amp; Aczel, B. (2022). A
-Community-Sourced Glossary of Open Scholarship Terms. <em>Nature Human
-Behavior.</em></p></li>
-<li><p>Azevedo, F., Liu, M., Pennington, C.R., Pownall, M., Evans, T.R.,
-Parsons, S., Elsherif, M., Micheli, L., Westwood, S., &amp; FORRT.
-(2022). Towards a culture of open scholarship: The role of pedagogical
-communities. <em>BMC Research Notes, 15</em>(75).</p></li>
-<li><p>Azevedo, F., Micheli, L., &amp; Bolesta., D. S. Does Stereotype
-Threat contribute to the Political Knowledge Gender Gap? A Preregistered
-Replication Study of Ihme and Tausendpfund (2018). <em>Journal of
-Experimental Political Science.</em></p></li>
+<li><p>Parsons, S., Azevedo, F., Elsherif, M. M., Guay, S., Shahim, O. N., Govaart, G. H., Norris, E., … Micheli, L., &amp; Aczel, B. (2022). A Community-Sourced Glossary of Open Scholarship Terms. <em>Nature Human Behavior.</em></p></li>
+<li><p>Azevedo, F., Liu, M., Pennington, C.R., Pownall, M., Evans, T.R., Parsons, S., Elsherif, M., Micheli, L., Westwood, S., &amp; FORRT. (2022). Towards a culture of open scholarship: The role of pedagogical communities. <em>BMC Research Notes, 15</em>(75).</p></li>
+<li><p>Azevedo, F., Micheli, L., &amp; Bolesta., D. S. Does Stereotype Threat contribute to the Political Knowledge Gender Gap? A Preregistered Replication Study of Ihme and Tausendpfund (2018). <em>Journal of Experimental Political Science.</em></p></li>
 </ul>
-<p><img src="openscience.PNG" width="300" /></p>
+<p><img src="openscience.png" width="300" /></p>
 </div>
 <h2 id="previous-research">Previous Research</h2>
 <div class="col2">
-<p>Before doing my PhD, I worked as a research assistant in the field of
-Developmental Neuropsychology. This work has resulted in some
-publications, which can be seen below.</p>
+<p>Before doing my PhD, I worked as a research assistant in the field of Developmental Neuropsychology. This work has resulted in some publications, which can be seen below.</p>
 <p><em>Publications:</em></p>
 <ul>
-<li><p>Ferreira, O.F., Costa, D.S., <strong>Micheli, L.R.</strong>,
-Oliveira, L.F.S., Pinheiro-Chagas, P., &amp; Haase, V.G. (2012). School
-Achievement Test: Normative data for a representative sample of
-elementary school children. <em>Psychology &amp; Neuroscience,
-5</em>(2), 157-164.</p></li>
-<li><p>Gianelli, C., Ranzini, M., Marzocchi, M., <strong>Micheli,
-L.R</strong>, &amp; Borghi, A.M. (2012). Influence of numerical
-magnitudes on the free choice of an object position. <em>Cognitive
-Processing, 13</em>, Suppl.1, S185-S188.</p></li>
-<li><p>Haase, V.G., Julio-Costa, A., Pinheiro-Chagas, P., Oliveira,
-L.F.S, <strong>Micheli, L.R.</strong>, &amp; Wood, G. (2012). Math
-self-assessment, but not negative feelings, predicts mathematics
-performance of elementary school children. <em>Child Development
-Research, 2012.</em></p></li>
-<li><p>Wood, G., Pinheiro-Chagas, P., Julio-Costa, A., <strong>Micheli,
-L.R.</strong>, Krinzinger, H., Kaufmann, L., Willmes, K., &amp; Haase,
-V.G. (2012). Math anxiety questionnaire: Similar latent structure in
-Brazilian and German School children. <em>Child Development Research,
-2012.</em></p></li>
+<li><p>Ferreira, O.F., Costa, D.S., <strong>Micheli, L.R.</strong>, Oliveira, L.F.S., Pinheiro-Chagas, P., &amp; Haase, V.G. (2012). School Achievement Test: Normative data for a representative sample of elementary school children. <em>Psychology &amp; Neuroscience, 5</em>(2), 157-164.</p></li>
+<li><p>Gianelli, C., Ranzini, M., Marzocchi, M., <strong>Micheli, L.R</strong>, &amp; Borghi, A.M. (2012). Influence of numerical magnitudes on the free choice of an object position. <em>Cognitive Processing, 13</em>, Suppl.1, S185-S188.</p></li>
+<li><p>Haase, V.G., Julio-Costa, A., Pinheiro-Chagas, P., Oliveira, L.F.S, <strong>Micheli, L.R.</strong>, &amp; Wood, G. (2012). Math self-assessment, but not negative feelings, predicts mathematics performance of elementary school children. <em>Child Development Research, 2012.</em></p></li>
+<li><p>Wood, G., Pinheiro-Chagas, P., Julio-Costa, A., <strong>Micheli, L.R.</strong>, Krinzinger, H., Kaufmann, L., Willmes, K., &amp; Haase, V.G. (2012). Math anxiety questionnaire: Similar latent structure in Brazilian and German School children. <em>Child Development Research, 2012.</em></p></li>
 </ul>
 </div>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
