@@ -12,14 +12,12 @@ knitr::opts_chunk$set(echo = FALSE)
 Master's course within the *Economic and Consumer Psychology* specialization <br>
 2023 - Present
 
-<br>
 
 <div style="text-align: justify"> [**Academic Skills for Evidence-based Policy \& Advice**](https://studiegids.universiteitleiden.nl/en/courses/121606/academic-skills-for-evidence-based-policy-and-advice) 
 <br>**Leiden University** <br>
 Master's course within the *Economic and Consumer Psychology* \& *Social and Organisational Psychology* specializations <br>
 2023 - Present
 
-<br>
 
 <div style="text-align: justify"> [**Social Psychology in Organisations**](https://studiegids.universiteitleiden.nl/en/courses/117971/social-psychology-in-organisations) 
 <br>**Leiden University** <br>
@@ -27,7 +25,6 @@ International Bachelor in Psychology <br>
 2023 - Present
 </div>
 
-<br>
 
 <div style="text-align: justify"> **Consumer Behaviour**
 <br>**Maastricht University** <br>
