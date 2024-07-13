@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Peer-reviewed
 
 ### 2024
-Schumacher, A., \& **Micheli, L.** Anticipated scarcity and stockpiling during the COVID-19 pandemic: The role of perceived threat, childhood SES and materialism. *PLOS One, 19*(3): e0294497 [(link)](https://https://doi.org/10.1371/journal.pone.0294497) 
+**Micheli, L.** \& Schumacher, A. Anticipated scarcity and stockpiling during the COVID-19 pandemic: The role of perceived threat, childhood SES and materialism. *PLOS One, 19*(3): e0294497 [(link)](https://https://doi.org/10.1371/journal.pone.0294497) 
 
 <aside>
 <div data-badge-type="donut" data-doi="10.1371/journal.pone.0294497" data-hide-no-mentions="true" class="altmetric-embed"></div>
@@ -156,17 +156,6 @@ Huijsmans, I., Ma, I., **Micheli, L.**, Civai, C., Stallen, M., \& Sanfey, A.G. 
 <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 </aside>
 
-## Under Review
-
-**Micheli, L.**, Breil, C., \& Böckler, A. Golden gazes: Gaze direction and emotional context promote prosocial behavior by increasing attributions of empathy and perspective-taking [(Preregistration)](https://osf.io/8ey4f) 
-
-<div style="text-align: justify"> Prosocial behavior is fundamental to societies. But when and towards whom do humans act generously? We investigate the impact of a conversation partner’s gaze direction and the emotional context on (i) perceptions of their social cognition skills and (ii) prosocial decisions towards them. In three experiments (two preregistered, N = 486), participants witnessed pre-recorded video conversations between a listener (visible) and a speaker (audible, not visible). The listener either established eye contact, averted gaze or showed a mixed gaze pattern (gaze direction) while the speaker told a neutral or negatively-valenced autobiographic episode (emotional context). Participants rated the listener’s empathy and perspective-taking after each video and played the Trust Game (study 1) or the Dictator Game (study 2) with the listener. Replicating previous findings, occasional gaze avoidance, especially during negative narrations, increased attributions of social understanding to the listener. Critically, mediation analyses revealed that listeners perceived as empathic and taking perspective were ultimately treated with more trust and generosity in strategic and non-strategic economic games, suggesting that social signals and contextual cues can serve as an indication of another’s reputation, thereby promoting indirect reciprocity. Lastly, in study 3, we show that emotional context, but not listeners’ gaze behavior, promoted the spread of generosity towards anonymous, previously unobserved individuals in a Dictator Game, driven by social cognition skills attributed to the listener. We conclude that social signals and contextual cues can be important drivers of cooperation in societies via mechanisms such as indirect reciprocity and social contagion of generosity. </div>    
-
-<br>
-
-**Micheli, L.,** \& Schumacher, A. Anticipated scarcity and stockpiling during the COVID-19 pandemic: The role of perceived threat, childhood SES and materialism. 
-
-<div style="text-align: justify">Previous research has shown that perceived existential threat experienced during or shortly after the first wave of the global COVID-19 pandemic, engendered anticipated scarcity and stockpiling behavior. However, the relationship between anticipated scarcity and stockpiling may not hold unambiguously for everyone. Across two exploratory and one preregistered study (N=644), we show that perceived threat of COVID-19 is associated with stockpiling tendencies by increasing the anticipation of product scarcity – a resource threat. The association between anticipated product scarcity and stockpiling depends, however, on childhood socio-economic status (SES) and materialism. For individuals with low childhood SES, the anticipation of product scarcity was only associated with stockpiling among those who valued materialism. Individuals with high childhood SES, by contrast, stockpiled in response to anticipated scarcity regardless of their level of materialism. Our findings qualify previous literature on the association between perceived threat of COVID-19, anticipated scarcity and stockpiling during the COVID-19 pandemic and help reconcile contradictory predictions about the role of childhood SES in individuals’ consumption behavior in response to adversity.</div>
 
 ## In Preparation
 
@@ -183,7 +172,7 @@ Huijsmans, I., Ma, I., **Micheli, L.**, Civai, C., Stallen, M., \& Sanfey, A.G. 
 
 ## Work in Progress
 
-**Micheli, L.**, \& Böckler, A. Effects of gaze direction and face visibility on third-party punishment and compensation. [(Preregistration)](https://osf.io/9myx6)
+**Micheli, L.**, Seubert, O. \& Böckler, A. Effects of gaze direction and face visibility on third-party punishment and compensation. [(Preregistration)](https://osf.io/9myx6)
 
 
 
